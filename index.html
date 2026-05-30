@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cup of Joe · Full Playlist | Statistika by Nazril</title>
+    <title>Cup of Joe · Official Stats | Nazril XI TKJ 3</title>
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Font Awesome -->
@@ -19,13 +19,17 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: #fef9f0;
-            color: #2c2418;
+            background: #0d0d0d;
+            color: #f0ebe3;
             scroll-behavior: smooth;
         }
 
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1e1914; }
+        ::-webkit-scrollbar-thumb { background: #c28a4e; border-radius: 10px; }
+
         nav {
-            background: rgba(30, 20, 12, 0.95);
+            background: rgba(13, 13, 13, 0.95);
             backdrop-filter: blur(12px);
             padding: 0.9rem 2rem;
             position: sticky;
@@ -35,7 +39,7 @@
             justify-content: center;
             gap: 1.5rem;
             flex-wrap: wrap;
-            border-bottom: 1px solid rgba(200, 150, 80, 0.4);
+            border-bottom: 1px solid rgba(200, 150, 80, 0.3);
         }
 
         nav a {
@@ -44,58 +48,59 @@
             font-weight: 600;
             padding: 0.5rem 1rem;
             border-radius: 40px;
-            transition: all 0.3s ease;
+            transition: all 0.3s;
             font-size: 0.9rem;
         }
 
-        nav a i {
-            margin-right: 8px;
-        }
+        nav a i { margin-right: 8px; }
+        nav a:hover { background: #c28a4e; color: #0d0d0d; transform: translateY(-2px); }
 
-        nav a:hover {
-            background: #c28a4e;
-            color: #1f140a;
-        }
+        .container { max-width: 1300px; margin: 0 auto; padding: 40px 24px; }
 
-        .container {
-            max-width: 1300px;
-            margin: 0 auto;
-            padding: 40px 24px;
-        }
-
-        /* Hero */
         .hero {
-            background: linear-gradient(135deg, #2a1a0e 0%, #1f140a 100%);
+            background: linear-gradient(135deg, #1a1208 0%, #0f0b06 100%);
             border-radius: 48px;
             padding: 48px 40px;
             margin-bottom: 40px;
-            color: white;
+            border: 1px solid rgba(200, 150, 80, 0.3);
             position: relative;
             overflow: hidden;
         }
 
-        .cover-section {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            align-items: center;
-            margin-bottom: 30px;
+        .hero::before {
+            content: "♪ ♫ ♪ ♫";
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 80px;
+            opacity: 0.03;
+            font-family: monospace;
         }
 
-        .cover-art {
-            width: 140px;
-            height: 140px;
-            border-radius: 24px;
-            background: linear-gradient(145deg, #c28a4e, #8b5a2e);
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        .band-logo {
+            width: 100px;
+            height: 100px;
+            background: #0d0d0d;
+            border-radius: 28px;
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 20px 35px rgba(0,0,0,0.3);
+            font-size: 3rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+            overflow: hidden;
         }
-
-        .cover-art i {
-            font-size: 3.5rem;
-            color: #fef0df;
+        .band-logo img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            border-radius: 20px; 
         }
 
         .identity-row {
@@ -104,35 +109,24 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 16px;
-            margin-top: 30px;
+            margin-top: 20px;
             padding-top: 20px;
             border-top: 1px solid rgba(230, 175, 100, 0.3);
         }
 
-        .student-info h3 {
-            font-size: 1.3rem;
-            color: #f5d7b3;
-        }
-
-        .student-info p {
-            color: #d4b48c;
-        }
-
-        .cup-badge {
-            background: #c28a4e;
-            padding: 8px 24px;
-            border-radius: 60px;
-            font-weight: 700;
-        }
+        .student-info h3 { font-size: 1.3rem; color: #f5d7b3; }
+        .student-info p { color: #d4b48c; }
+        .cup-badge { background: #c28a4e; padding: 8px 24px; border-radius: 60px; font-weight: 700; }
 
         .card {
-            background: white;
+            background: #16120e;
             border-radius: 32px;
             padding: 32px;
             margin: 40px 0;
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.05);
-            border: 1px solid #f0e2d0;
+            border: 1px solid #2a241e;
+            transition: transform 0.2s;
         }
+        .card:hover { transform: translateY(-3px); border-color: #c28a4e40; }
 
         h2 {
             font-family: 'Playfair Display', serif;
@@ -141,31 +135,57 @@
             border-left: 8px solid #c28a4e;
             padding-left: 20px;
             margin: 40px 0 28px;
-            color: #3d2916;
+            color: #f0dfca;
         }
+        h2 i { color: #c28a4e; margin-right: 12px; }
+        h3 { font-weight: 700; font-size: 1.3rem; margin: 24px 0 16px; color: #e6cfb0; }
 
-        h2 i {
+        .member-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        .member-card {
+            background: #1e1914;
+            border-radius: 28px;
+            padding: 20px;
+            text-align: center;
+            width: 140px;
+            transition: 0.2s;
+            border: 1px solid #3a2e22;
+        }
+        .member-card:hover { transform: translateY(-5px); border-color: #c28a4e; }
+        .member-photo {
+            width: 100px;
+            height: 100px;
+            background: #2a241e;
+            border-radius: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px;
+            font-size: 2.5rem;
             color: #c28a4e;
-            margin-right: 12px;
+            overflow: hidden;
         }
-
-        h3 {
-            font-weight: 700;
-            font-size: 1.3rem;
-            margin: 24px 0 16px;
-            color: #6b3e1c;
+        .member-photo img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            border-radius: 60px; 
         }
+        .member-name { font-weight: 800; font-size: 1.1rem; }
 
-        /* Playlist Grid - Semua Lagu Bisa Diputar */
         .playlist-grid {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 12px;
             margin: 24px 0;
         }
-
         .song-item {
-            background: #fef7ef;
+            background: #1e1914;
             border-radius: 60px;
             padding: 12px 20px;
             display: flex;
@@ -173,26 +193,14 @@
             align-items: center;
             justify-content: space-between;
             gap: 15px;
-            border: 1px solid #e6cfb0;
+            border: 1px solid #3a2e22;
             transition: 0.2s;
         }
-
-        .song-item:hover {
-            background: #fef0e2;
-            transform: translateX(5px);
-        }
-
-        .song-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex: 2;
-            min-width: 150px;
-        }
-
+        .song-item:hover { background: #2a241e; border-color: #c28a4e; }
+        .song-info { display: flex; align-items: center; gap: 15px; flex: 2; min-width: 160px; }
         .song-number {
             background: #c28a4e;
-            color: white;
+            color: #0d0d0d;
             width: 32px;
             height: 32px;
             border-radius: 60px;
@@ -201,101 +209,15 @@
             justify-content: center;
             font-weight: bold;
         }
+        .song-title { font-weight: 700; font-size: 1rem; }
+        .song-year { font-size: 0.7rem; color: #b87b44; }
+        audio { height: 40px; border-radius: 40px; max-width: 260px; width: 100%; }
+        .song-duration { font-size: 0.75rem; color: #b87b44; min-width: 60px; }
 
-        .song-title {
-            font-weight: 700;
-            font-size: 1.1rem;
-        }
-
-        .song-year {
-            font-size: 0.8rem;
-            color: #b87b44;
-        }
-
-        .audio-control {
-            flex: 3;
-            min-width: 250px;
-        }
-
-        audio {
-            width: 100%;
-            max-width: 300px;
-            height: 40px;
-            border-radius: 40px;
-        }
-
-        .song-duration {
-            font-size: 0.8rem;
-            color: #8b6946;
-            min-width: 50px;
-        }
-
-        /* Member Grid */
-        .member-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
-            justify-content: center;
-            margin: 30px 0;
-        }
-
-        .member-card {
-            background: #fef7ef;
-            border-radius: 28px;
-            padding: 20px;
-            text-align: center;
-            width: 130px;
-            transition: 0.2s;
-            border: 1px solid #e6cfb0;
-        }
-
-        .member-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .member-photo {
-            width: 90px;
-            height: 90px;
-            background: linear-gradient(145deg, #d4a373, #b87b44);
-            border-radius: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 12px;
-            font-size: 2.5rem;
-            color: white;
-        }
-
-        .member-name {
-            font-weight: 800;
-        }
-
-        .member-role {
-            font-size: 0.7rem;
-            color: #b87b44;
-        }
-
-        /* Tabel & Data */
-        .table-wrapper {
-            overflow-x: auto;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        th {
-            background: #e6d5bc;
-            padding: 14px;
-        }
-
-        td {
-            padding: 12px;
-            border-bottom: 1px solid #f0e2cf;
-            text-align: center;
-            background: #fffdf9;
-        }
+        .table-wrapper { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th { background: #c28a4e; color: #0d0d0d; padding: 14px; }
+        td { padding: 12px; border-bottom: 1px solid #2a241e; text-align: center; background: #16120e; }
 
         .data-grid {
             display: flex;
@@ -304,13 +226,12 @@
             justify-content: center;
             margin: 24px 0;
         }
-
         .data-item {
-            background: #f9f2e6;
+            background: #1e1914;
             padding: 10px 18px;
             border-radius: 60px;
             font-weight: 700;
-            border: 1px solid #e6cfb0;
+            border: 1px solid #3a2e22;
         }
 
         .stat-flex {
@@ -319,21 +240,15 @@
             gap: 24px;
             margin: 32px 0;
         }
-
         .stat-box {
             flex: 1;
-            background: #fef7ef;
+            background: #1e1914;
             padding: 24px;
             border-radius: 28px;
             text-align: center;
             border-left: 6px solid #c28a4e;
         }
-
-        .stat-number {
-            font-size: 2.8rem;
-            font-weight: 800;
-            color: #b87b44;
-        }
+        .stat-number { font-size: 2.8rem; font-weight: 800; color: #c28a4e; }
 
         .chart-grid {
             display: flex;
@@ -341,32 +256,33 @@
             gap: 30px;
             margin: 40px 0;
         }
-
         .chart-card {
             flex: 1;
             min-width: 280px;
-            background: #fefcf7;
+            background: #1e1914;
             border-radius: 28px;
             padding: 20px;
-            border: 1px solid #eedfc8;
+            border: 1px solid #3a2e22;
         }
-
-        .chart-card h3 {
-            text-align: center;
-        }
-
-        canvas {
-            max-height: 280px;
-            width: 100%;
-        }
+        .chart-card h3 { text-align: center; margin-top: 0; }
+        canvas { max-height: 280px; width: 100%; }
 
         footer {
-            background: #2c1f13;
-            color: #eedbbc;
+            background: #0a0806;
             text-align: center;
             padding: 32px;
             border-radius: 40px 40px 0 0;
             margin-top: 60px;
+            border-top: 1px solid #c28a4e30;
+        }
+
+        .guide-note {
+            background: #1e1914;
+            border-left: 4px solid #c28a4e;
+            padding: 12px 20px;
+            border-radius: 16px;
+            margin-bottom: 20px;
+            font-size: 0.85rem;
         }
 
         @media (max-width: 700px) {
@@ -374,7 +290,6 @@
             .container { padding: 24px 16px; }
             h2 { font-size: 1.6rem; }
             .song-item { flex-direction: column; text-align: center; border-radius: 28px; }
-            .audio-control { width: 100%; }
             audio { max-width: 100%; }
         }
     </style>
@@ -395,154 +310,37 @@
     <!-- BERANDA -->
     <section id="beranda">
         <div class="hero">
-            <div class="cover-section">
-                <div class="cover-art">
-                    <i class="fas fa-mug-hot"></i>
+            <div class="logo-container">
+                <!-- LOGO SUDAH DIGANTI DENGAN GAMBAR ANDA -->
+                <div class="band-logo">
+                    <img src="logo-cupofjoe.jpg" alt="Logo Cup of Joe">
                 </div>
                 <div>
-                    <h2 style="border-left:none; padding-left:0; margin:0 0 8px 0; color:#f5d7b3;">Cup of Joe</h2>
-                    <p style="font-size:1.1rem;">Full Playlist & Statistika</p>
-                    <p><i class="fas fa-music"></i> 7 Lagu Hits · Bisa diputar semua</p>
+                    <h2 style="border-left:none; padding-left:0; margin:0 0 8px 0;">Cup of Joe</h2>
+                    <p>Full Playlist & Statistika | 7 Lagu Hits</p>
                 </div>
             </div>
+
             <div class="identity-row">
                 <div class="student-info">
                     <h3><i class="fas fa-user-graduate"></i> Nazril Ilham Dillion Pratama</h3>
                     <p><i class="fas fa-school"></i> Kelas XI TKJ 3 · Absen 04</p>
                 </div>
-                <div class="cup-badge"><i class="fas fa-headphones"></i> Cup of Joe · Statistika Project</div>
+                <div class="cup-badge"><i class="fas fa-headphones"></i> Cup of Joe · Project</div>
             </div>
             <p style="margin-top: 24px;">Survei durasi mendengarkan lagu Cup of Joe dari 20 responden + playlist lengkap yang bisa diputar semua!</p>
         </div>
     </section>
 
-    <!-- PLAYLIST SEMUA LAGU BISA DIPLAY -->
+    <!-- PLAYLIST -->
     <section id="playlist">
-        <h2><i class="fas fa-headphones"></i> 🎵 Playlist Cup of Joe (Play All)</h2>
+        <h2><i class="fas fa-headphones"></i> 🎵 Playlist Cup of Joe</h2>
+        <div class="guide-note">
+            <i class="fas fa-edit"></i> <strong>File MP3 asli:</strong> Ganti `audioSrc` di bagian JavaScript dengan file MP3 Anda.
+        </div>
         <div class="card">
-            <p><i class="fas fa-info-circle"></i> Klik tombol play pada setiap lagu untuk mendengarkan preview. <strong>Untuk lagu asli, ganti file MP3 dengan file original.</strong></p>
-            <div class="playlist-grid">
-                <!-- Lagu 1 - Multo -->
-                <div class="song-item">
-                    <div class="song-info">
-                        <div class="song-number">1</div>
-                        <div>
-                            <div class="song-title">Multo</div>
-                            <div class="song-year">2023 · Cup of Joe</div>
-                        </div>
-                    </div>
-                    <div class="audio-control">
-                        <audio controls>
-                            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-                            Browser tidak support audio.
-                        </audio>
-                    </div>
-                    <div class="song-duration">🎧 3:45</div>
-                </div>
-
-                <!-- Lagu 2 - Tingin -->
-                <div class="song-item">
-                    <div class="song-info">
-                        <div class="song-number">2</div>
-                        <div>
-                            <div class="song-title">Tingin</div>
-                            <div class="song-year">2022 · Cup of Joe</div>
-                        </div>
-                    </div>
-                    <div class="audio-control">
-                        <audio controls>
-                            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" type="audio/mpeg">
-                        </audio>
-                    </div>
-                    <div class="song-duration">🎧 4:12</div>
-                </div>
-
-                <!-- Lagu 3 - Misteryoso -->
-                <div class="song-item">
-                    <div class="song-info">
-                        <div class="song-number">3</div>
-                        <div>
-                            <div class="song-title">Misteryoso</div>
-                            <div class="song-year">2023 · Cup of Joe</div>
-                        </div>
-                    </div>
-                    <div class="audio-control">
-                        <audio controls>
-                            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" type="audio/mpeg">
-                        </audio>
-                    </div>
-                    <div class="song-duration">🎧 3:58</div>
-                </div>
-
-                <!-- Lagu 4 - Patutunguhan -->
-                <div class="song-item">
-                    <div class="song-info">
-                        <div class="song-number">4</div>
-                        <div>
-                            <div class="song-title">Patutunguhan</div>
-                            <div class="song-year">2023 · Cup of Joe</div>
-                        </div>
-                    </div>
-                    <div class="audio-control">
-                        <audio controls>
-                            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" type="audio/mpeg">
-                        </audio>
-                    </div>
-                    <div class="song-duration">🎧 4:05</div>
-                </div>
-
-                <!-- Lagu 5 - Sinderela -->
-                <div class="song-item">
-                    <div class="song-info">
-                        <div class="song-number">5</div>
-                        <div>
-                            <div class="song-title">Sinderela</div>
-                            <div class="song-year">2022 · Cup of Joe</div>
-                        </div>
-                    </div>
-                    <div class="audio-control">
-                        <audio controls>
-                            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" type="audio/mpeg">
-                        </audio>
-                    </div>
-                    <div class="song-duration">🎧 3:32</div>
-                </div>
-
-                <!-- Lagu 6 - Estranghero -->
-                <div class="song-item">
-                    <div class="song-info">
-                        <div class="song-number">6</div>
-                        <div>
-                            <div class="song-title">Estranghero</div>
-                            <div class="song-year">2023 · Cup of Joe</div>
-                        </div>
-                    </div>
-                    <div class="audio-control">
-                        <audio controls>
-                            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3" type="audio/mpeg">
-                        </audio>
-                    </div>
-                    <div class="song-duration">🎧 4:20</div>
-                </div>
-
-                <!-- Lagu 7 - Wag Na Lang -->
-                <div class="song-item">
-                    <div class="song-info">
-                        <div class="song-number">7</div>
-                        <div>
-                            <div class="song-title">Wag Na Lang</div>
-                            <div class="song-year">2023 · Cup of Joe</div>
-                        </div>
-                    </div>
-                    <div class="audio-control">
-                        <audio controls>
-                            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3" type="audio/mpeg">
-                        </audio>
-                    </div>
-                    <div class="song-duration">🎧 3:50</div>
-                </div>
-            </div>
-            <p style="margin-top: 20px; font-size:0.85rem; text-align:center;"><i class="fas fa-exchange-alt"></i> 🎵 Ganti file MP3 dengan lagu asli Cup of Joe untuk pengalaman penuh</p>
+            <div class="playlist-grid" id="playlist-container"></div>
+            <p style="margin-top: 20px; font-size:0.8rem; text-align:center;"><i class="fas fa-sync-alt"></i> Ganti file MP3 asli Cup of Joe untuk pengalaman penuh</p>
         </div>
     </section>
 
@@ -559,14 +357,8 @@
             </div>
             <p>Cup of Joe adalah grup musik Filipina yang viral dengan lagu "Tingin" dan "Multo". Nama mereka terinspirasi dari secangkir kopi — simbol kehangatan dan persahabatan.</p>
             
-            <h3><i class="fas fa-users"></i> Anggota Grup</h3>
-            <div class="member-grid">
-                <div class="member-card"><div class="member-photo"><i class="fas fa-user-circle"></i></div><div class="member-name">Gian</div><div class="member-role">Vokalis</div></div>
-                <div class="member-card"><div class="member-photo"><i class="fas fa-guitar"></i></div><div class="member-name">Raphael</div><div class="member-role">Gitar/Vokal</div></div>
-                <div class="member-card"><div class="member-photo"><i class="fas fa-music"></i></div><div class="member-name">Tristan</div><div class="member-role">Piano</div></div>
-                <div class="member-card"><div class="member-photo"><i class="fas fa-drum"></i></div><div class="member-name">Xavier</div><div class="member-role">Drum</div></div>
-                <div class="member-card"><div class="member-photo"><i class="fas fa-guitar"></i></div><div class="member-name">Vench</div><div class="member-role">Bass</div></div>
-            </div>
+            <h3><i class="fas fa-users"></i> Anggota</h3>
+            <div class="member-grid" id="members-container"></div>
         </div>
     </section>
 
@@ -575,13 +367,7 @@
         <h2><i class="fas fa-database"></i> Data Mentah Survei</h2>
         <div class="card">
             <p>Survei 20 responden: <em>"Berapa menit/hari mendengarkan Cup of Joe?"</em></p>
-            <div class="data-grid">
-                <span class="data-item">35</span> <span class="data-item">42</span> <span class="data-item">28</span> <span class="data-item">50</span>
-                <span class="data-item">31</span> <span class="data-item">47</span> <span class="data-item">53</span> <span class="data-item">22</span>
-                <span class="data-item">49</span> <span class="data-item">36</span> <span class="data-item">55</span> <span class="data-item">38</span>
-                <span class="data-item">47</span> <span class="data-item">60</span> <span class="data-item">44</span> <span class="data-item">33</span>
-                <span class="data-item">39</span> <span class="data-item">41</span> <span class="data-item">58</span> <span class="data-item">45</span>
-            </div>
+            <div class="data-grid" id="data-grid"></div>
             <p><strong>Total durasi:</strong> 853 menit/hari | <strong>Rentang:</strong> 22 - 60 menit</p>
         </div>
     </section>
@@ -591,24 +377,8 @@
         <h2><i class="fas fa-chart-line"></i> Pengolahan Data</h2>
         <div class="card">
             <h3>Tabel Distribusi Frekuensi</h3>
-            <div class="table-wrapper">
-                <table>
-                    <thead><tr><th>Interval</th><th>Frekuensi</th><th>Titik Tengah</th><th>f·x</th></tr></thead>
-                    <tbody>
-                        <tr><td>22-29</td><td>2</td><td>25.5</td><td>51</td></tr>
-                        <tr><td>30-37</td><td>4</td><td>33.5</td><td>134</td></tr>
-                        <tr><td>38-45</td><td>6</td><td>41.5</td><td>249</td></tr>
-                        <tr><td>46-53</td><td>5</td><td>49.5</td><td>247.5</td></tr>
-                        <tr><td>54-61</td><td>3</td><td>57.5</td><td>172.5</td></tr>
-                        <tr style="background:#f3e9dc;"><th>Jumlah</th><th>20</th><th>-</th><th>854</th></tr>
-                    </tbody>
-                </table>
-            </div>
-            <div class="stat-flex">
-                <div class="stat-box"><div class="stat-number">42.7</div><p>Mean (Rata-rata)</p></div>
-                <div class="stat-box"><div class="stat-number">43</div><p>Median</p></div>
-                <div class="stat-box"><div class="stat-number">47</div><p>Modus</p></div>
-            </div>
+            <div class="table-wrapper" id="freq-table"></div>
+            <div class="stat-flex" id="stat-boxes"></div>
             <p><strong>Perhitungan:</strong> Mean = 853/20 = 42.65 ≈ 42.7 | Median (urut) = (42+44)/2 = 43 | Modus = 47 (muncul 2x)</p>
         </div>
     </section>
@@ -628,36 +398,128 @@
         <h2><i class="fas fa-pen-fancy"></i> Kesimpulan</h2>
         <div class="card">
             <p>🎶 Rata-rata pendengar Cup of Joe mendengarkan selama <strong>43 menit/hari</strong>. Median 43 dan modus 47 menunjukkan konsistensi fans. Lagu "Multo", "Tingin", dan "Misteryoso" menjadi favorit berdasarkan durasi mendengarkan.</p>
-            <p style="margin-top: 16px; background:#f7efe2; padding: 16px; border-radius: 24px;">✅ <strong>Nazril Ilham Dillion Pratama</strong> · XI TKJ 3 · Absen 04</p>
+            <p style="margin-top: 16px; background:#1e1914; padding: 16px; border-radius: 24px;">✅ <strong>Nazril Ilham Dillion Pratama</strong> · XI TKJ 3 · Absen 04</p>
         </div>
     </section>
 </div>
 
 <footer>
     <i class="fas fa-mug-hot"></i> Cup of Joe · Full Playlist & Statistika <i class="fas fa-headphones"></i><br>
-    7 Lagu Hits | Semua Bisa Diputar | Gian · Raphael · Tristan · Xavier · Vench ☕
+    7 Lagu Hits | Semua Bisa Diputar | Gian · Raphael · Gabriel · CJ · Xen ☕
 </footer>
 
 <script>
-    const labels = ["22-29", "30-37", "38-45", "46-53", "54-61"];
-    const frek = [2, 4, 6, 5, 3];
+    // ============================================================
+    // 🎵 DATA PLAYLIST - GANTI DENGAN FILE MP3 ASLI KAMU
+    // ============================================================
+    // PANDUAN: Ganti "https://www.soundhelix.com/..." dengan "nama_file.mp3"
+    // ============================================================
+    const playlistData = [
+        { number: 1, title: "Multo", year: "2023", duration: "3:45", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
+        { number: 2, title: "Tingin", year: "2022", duration: "4:12", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
+        { number: 3, title: "Misteryoso", year: "2023", duration: "3:58", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },
+        { number: 4, title: "Patutunguhan", year: "2023", duration: "4:05", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" },
+        { number: 5, title: "Sinderela", year: "2022", duration: "3:32", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" },
+        { number: 6, title: "Estranghero", year: "2023", duration: "4:20", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3" },
+        { number: 7, title: "Wag Na Lang", year: "2023", duration: "3:50", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3" }
+    ];
 
+    // ============================================================
+    // 👥 DATA ANGGOTA - FOTO SUDAH DIISI SESUAI GAMBAR ANDA
+    // ============================================================
+    // Pastikan file gambar: gian.jpg, raphael.jpg, gabriel.jpg, cj.jpg, xen.jpg
+    // berada di folder yang sama dengan index.html
+    // ============================================================
+    const membersData = [
+        { name: "Gian", icon: "fas fa-microphone-alt", photo: "gian.jpg" },
+        { name: "Raphael", icon: "fas fa-guitar", photo: "raphael.jpg" },
+        { name: "Gabriel", icon: "fas fa-music", photo: "gabriel.jpg" },
+        { name: "CJ", icon: "fas fa-drum", photo: "cj.jpg" },
+        { name: "Xen", icon: "fas fa-guitar", photo: "xen.jpg" }
+    ];
+
+    // ============================================================
+    // 📊 DATA STATISTIKA (TIDAK PERLU DIUBAH)
+    // ============================================================
+    const rawData = [35, 42, 28, 50, 31, 47, 53, 22, 49, 36, 55, 38, 47, 60, 44, 33, 39, 41, 58, 45];
+    const labels = ["22-29", "30-37", "38-45", "46-53", "54-61"];
+    const frekuensi = [2, 4, 6, 5, 3];
+
+    // Render data mentah
+    const dataGrid = document.getElementById('data-grid');
+    rawData.forEach(d => { dataGrid.innerHTML += `<span class="data-item">${d}</span>`; });
+
+    // Render tabel frekuensi
+    const freqTable = document.getElementById('freq-table');
+    freqTable.innerHTML = `<table>
+        <thead><tr><th>Interval</th><th>Frekuensi (f)</th><th>Titik Tengah (x)</th><th>f·x</th></tr></thead>
+        <tbody>
+            <tr><td>22-29</td><td>2</td><td>25.5</td><td>51</td></tr>
+            <tr><td>30-37</td><td>4</td><td>33.5</td><td>134</td></tr>
+            <tr><td>38-45</td><td>6</td><td>41.5</td><td>249</td></tr>
+            <tr><td>46-53</td><td>5</td><td>49.5</td><td>247.5</td></tr>
+            <tr><td>54-61</td><td>3</td><td>57.5</td><td>172.5</td></tr>
+            <tr style="background:#2a241e;"><th>Jumlah</th><th>20</th><th>-</th><th>854</th></tr>
+        </tbody>
+    </table>`;
+
+    // Render stat boxes
+    const statBoxes = document.getElementById('stat-boxes');
+    statBoxes.innerHTML = `
+        <div class="stat-box"><div class="stat-number">42.7</div><p>Mean (Rata-rata)</p></div>
+        <div class="stat-box"><div class="stat-number">43</div><p>Median</p></div>
+        <div class="stat-box"><div class="stat-number">47</div><p>Modus</p></div>
+    `;
+
+    // Render playlist
+    const playlistContainer = document.getElementById('playlist-container');
+    playlistData.forEach(song => {
+        const songDiv = document.createElement('div');
+        songDiv.className = 'song-item';
+        songDiv.innerHTML = `
+            <div class="song-info">
+                <div class="song-number">${song.number}</div>
+                <div><div class="song-title">${song.title}</div><div class="song-year">${song.year} · Cup of Joe</div></div>
+            </div>
+            <div class="audio-control"><audio controls><source src="${song.audioSrc}" type="audio/mpeg">Browser tidak support</audio></div>
+            <div class="song-duration">🎧 ${song.duration}</div>
+        `;
+        playlistContainer.appendChild(songDiv);
+    });
+
+    // Render members (DENGAN FOTO)
+    const membersContainer = document.getElementById('members-container');
+    membersData.forEach(member => {
+        const memberDiv = document.createElement('div');
+        memberDiv.className = 'member-card';
+        // Jika ada foto, pakai img, jika tidak pakai icon (fallback)
+        let photoHtml = member.photo 
+            ? `<img src="${member.photo}" alt="${member.name}">` 
+            : `<i class="${member.icon}"></i>`;
+        memberDiv.innerHTML = `
+            <div class="member-photo">${photoHtml}</div>
+            <div class="member-name">${member.name}</div>
+        `;
+        membersContainer.appendChild(memberDiv);
+    });
+
+    // Charts
     new Chart(document.getElementById('barChart'), {
         type: 'bar',
-        data: { labels, datasets: [{ label: 'Responden', data: frek, backgroundColor: '#c28a4e', borderRadius: 10 }] },
+        data: { labels, datasets: [{ label: 'Responden', data: frekuensi, backgroundColor: '#c28a4e', borderRadius: 10 }] },
         options: { responsive: true, scales: { y: { beginAtZero: true, stepSize: 1 } } }
     });
 
     new Chart(document.getElementById('pieChart'), {
         type: 'pie',
-        data: { labels, datasets: [{ data: frek, backgroundColor: ['#c28a4e', '#b5723a', '#9f5e2c', '#8a4e21', '#6a3c18'] }] },
-        options: { responsive: true, plugins: { legend: { position: 'right' } } }
+        data: { labels, datasets: [{ data: frekuensi, backgroundColor: ['#c28a4e', '#b5723a', '#9f5e2c', '#8a4e21', '#6a3c18'] }] },
+        options: { responsive: true, plugins: { legend: { position: 'right', labels: { color: '#f0e2cf' } } } }
     });
 
     new Chart(document.getElementById('histogramChart'), {
         type: 'bar',
-        data: { labels, datasets: [{ label: 'Frekuensi', data: frek, backgroundColor: '#9b673c', barPercentage: 1.0 }] },
-        options: { responsive: true, scales: { y: { beginAtZero: true }, x: { title: { display: true, text: 'Durasi (menit)' } } } }
+        data: { labels, datasets: [{ label: 'Frekuensi', data: frekuensi, backgroundColor: '#9b673c', barPercentage: 1.0 }] },
+        options: { responsive: true, scales: { y: { beginAtZero: true }, x: { title: { display: true, text: 'Durasi (menit)', color: '#f0e2cf' } } } }
     });
 </script>
 </body>
