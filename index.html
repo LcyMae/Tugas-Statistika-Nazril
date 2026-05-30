@@ -35,7 +35,7 @@
         ::-webkit-scrollbar-track { background: #1a1a1a; border-radius: 50px; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #c28a4e, #e6b06e); border-radius: 50px; }
 
-        /* ---------- LOADING SCREEN (FIXED) ---------- */
+        /* ---------- LOADING SCREEN (FIXED, NO EMOJI) ---------- */
         #loader {
             position: fixed;
             top: 0; left: 0;
@@ -60,11 +60,12 @@
             height: 80px;
             border-radius: 50%;
             background: conic-gradient(from 0deg, #c28a4e, #e6b06e, #c28a4e, #e6b06e, #c28a4e);
-            animation: spin 1.5s linear infinite;
+            animation: spin 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
             display: flex;
             align-items: center;
             justify-content: center;
             position: relative;
+            will-change: transform;
         }
         #loader .ring::before {
             content: '';
@@ -74,16 +75,17 @@
             background: #0a0a0a;
         }
         #loader .ring::after {
-            content: '☕';
-            font-size: 2rem;
-            position: relative;
-            z-index: 1;
-            animation: breathe 2s ease-in-out infinite;
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 2px solid transparent;
+            border-top: 2px solid #e6b06e;
+            animation: spin 2s cubic-bezier(0.4, 0, 0.2, 1) infinite reverse;
         }
-        @keyframes spin { 100% { transform: rotate(360deg); } }
-        @keyframes breathe {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.1); opacity: 1; }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         #loader .text {
             margin-top: 24px;
@@ -627,7 +629,7 @@
         .chart-card h3 { text-align: center; margin-bottom: 1rem; font-size: 0.95rem; color: #f0ece8; }
         canvas { max-height: 220px; width: 100%; }
 
-        /* ---------- LYRIC POPUP (DRAGGABLE + ZOOMABLE) ---------- */
+        /* ---------- LYRIC POPUP (DRAGGABLE + ZOOMABLE + NO BUG) ---------- */
         .lyric-popup {
             position: fixed;
             bottom: 90px;
@@ -764,17 +766,45 @@
         }
         .lyric-toggle-btn.visible { display: block; }
 
-        @media (max-width: 480px) {
+        /* ---------- RESPONSIVE MOBILE ---------- */
+        @media (max-width: 768px) {
+            .container { padding: 1rem; }
+            .member { width: 100px; padding: 1rem; }
+            .member .photo { width: 60px; height: 60px; }
+            .stat-flex { flex-direction: column; }
+            .chart-grid { flex-direction: column; }
+            .chart-card { min-width: 100%; }
             .lyric-popup {
-                width: 260px;
+                width: 280px;
                 bottom: 70px;
                 right: 10px;
                 padding: 14px 16px;
+                max-height: 350px;
+            }
+            .lyric-popup .lyrics-text {
+                max-height: 200px;
+                font-size: 0.8rem;
             }
             .lyric-toggle-btn {
                 bottom: 70px;
                 right: 10px;
                 padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+        }
+        @media (max-width: 480px) {
+            .member { width: 80px; }
+            .member .photo { width: 50px; height: 50px; }
+            .stat-box .num { font-size: 2rem; }
+            .lyric-popup {
+                width: 240px;
+                bottom: 60px;
+                right: 8px;
+                padding: 12px 14px;
+                max-height: 300px;
+            }
+            .lyric-popup .lyrics-text {
+                max-height: 180px;
                 font-size: 0.75rem;
             }
         }
@@ -809,7 +839,7 @@
 </head>
 <body>
 
-<!-- Loading Screen (FIXED) -->
+<!-- Loading Screen (FIXED, NO EMOJI) -->
 <div id="loader">
     <div class="container">
         <div class="ring"></div>
@@ -1065,7 +1095,7 @@
 
 </div>
 
-<!-- Lyric Popup (Draggable + Zoomable) -->
+<!-- Lyric Popup (Draggable + Zoomable + No Bug) -->
 <div id="lyricPopup" class="lyric-popup">
     <button class="hide-btn" onclick="hideLyricsPermanent()" title="Sembunyikan pop-up lirik"><i class="fas fa-eye-slash"></i></button>
     <span class="close-btn" onclick="closeLyrics()"><i class="fas fa-times"></i></span>
@@ -1586,12 +1616,14 @@ Ikaw pa rin ang pipiliin ko`
         popup.style.transformOrigin = 'center center';
     }
 
-    // Pinch to zoom (two fingers)
+    // Pinch to zoom (two fingers) - FIXED: No page zoom, no flicker
     let initialPinchDistance = 0;
     let initialScale = 1;
+    let pinchActive = false;
 
     document.addEventListener('touchstart', function(e) {
         if (e.touches.length === 2 && e.target.closest('.lyric-popup')) {
+            pinchActive = true;
             const touch1 = e.touches[0];
             const touch2 = e.touches[1];
             initialPinchDistance = Math.hypot(
@@ -1599,11 +1631,13 @@ Ikaw pa rin ang pipiliin ko`
                 touch2.clientY - touch1.clientY
             );
             initialScale = currentScale;
+            // Prevent page zoom
+            e.preventDefault();
         }
-    }, { passive: true });
+    }, { passive: false });
 
     document.addEventListener('touchmove', function(e) {
-        if (e.touches.length === 2 && e.target.closest('.lyric-popup')) {
+        if (e.touches.length === 2 && pinchActive && e.target.closest('.lyric-popup')) {
             const touch1 = e.touches[0];
             const touch2 = e.touches[1];
             const distance = Math.hypot(
@@ -1622,7 +1656,11 @@ Ikaw pa rin ang pipiliin ko`
         }
     }, { passive: false });
 
-    // ---------- DRAGGABLE POPUP (SMOOTH) ----------
+    document.addEventListener('touchend', function() {
+        pinchActive = false;
+    });
+
+    // ---------- DRAGGABLE POPUP (SMOOTH + FIXED) ----------
     const popup = document.getElementById('lyricPopup');
     let isDragging = false;
     let startX, startY, currentX = 0, currentY = 0;
