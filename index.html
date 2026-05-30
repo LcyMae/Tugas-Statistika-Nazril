@@ -3,19 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cup of Joe · 5.000 Baris Kode</title>
-    <!-- Chart.js -->
+    <title>Cup of Joe · Cover Lagu</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        /* ============================================================ */
-        /* 🎨 5.000 BARIS - REDESIGN KREATIF + FIX LOADING */
-        /* ============================================================ */
-        
-        /* --- SECTION 1: RESET & BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         *::before, *::after { box-sizing: border-box; }
         html { scroll-behavior: smooth; scroll-padding-top: 80px; font-size: 16px; }
@@ -32,31 +24,26 @@
         img { max-width: 100%; display: block; }
         ul, ol { list-style: none; }
 
-        /* --- SECTION 2: SCROLLBAR UNIK --- */
         ::-webkit-scrollbar { width: 6px; height: 6px; }
         ::-webkit-scrollbar-track { background: #0a0a0a; border-radius: 50px; margin: 4px; }
         ::-webkit-scrollbar-thumb {
             background: linear-gradient(135deg, #c28a4e, #e6b06e, #c28a4e);
             border-radius: 50px;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 0 20px rgba(194, 138, 78, 0.3);
+            box-shadow: 0 0 20px rgba(194,138,78,0.3);
         }
-        ::-webkit-scrollbar-thumb:hover { box-shadow: 0 0 40px rgba(194, 138, 78, 0.4); }
-        ::-webkit-scrollbar-thumb:active { transform: scale(0.9); }
+        ::-webkit-scrollbar-thumb:hover { box-shadow: 0 0 40px rgba(194,138,78,0.4); }
         ::-webkit-scrollbar-corner { background: #0a0a0a; }
         * { scrollbar-width: thin; scrollbar-color: #c28a4e #0a0a0a; }
 
-        /* --- SECTION 3: SELECTION --- */
         ::selection { background: #c28a4e; color: #050505; text-shadow: none; }
         ::-moz-selection { background: #c28a4e; color: #050505; text-shadow: none; }
 
-        /* --- SECTION 4: LOADING SCREEN (FIX) --- */
+        /* Loading Screen */
         .loader {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: #050505;
             display: flex;
             flex-direction: column;
@@ -66,17 +53,13 @@
             transition: opacity 0.6s ease, visibility 0.6s ease;
             pointer-events: none;
         }
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
+        .loader.hidden { opacity: 0; visibility: hidden; }
         .loader .ring {
-            width: 80px;
-            height: 80px;
+            width: 80px; height: 80px;
             border-radius: 50%;
-            border: 4px solid rgba(194, 138, 78, 0.1);
+            border: 4px solid rgba(194,138,78,0.1);
             border-top: 4px solid #c28a4e;
-            animation: spin 1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            animation: spin 1s cubic-bezier(0.4,0,0.2,1) infinite;
             position: relative;
         }
         .loader .ring::before {
@@ -86,7 +69,7 @@
             border-radius: 50%;
             border: 2px solid transparent;
             border-top: 2px solid #e6b06e;
-            animation: spin 2s cubic-bezier(0.4, 0, 0.2, 1) infinite reverse;
+            animation: spin 2s cubic-bezier(0.4,0,0.2,1) infinite reverse;
         }
         .loader .ring::after {
             content: '';
@@ -94,8 +77,8 @@
             inset: -12px;
             border-radius: 50%;
             border: 1px solid transparent;
-            border-top: 1px solid rgba(194, 138, 78, 0.3);
-            animation: spin 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            border-top: 1px solid rgba(194,138,78,0.3);
+            animation: spin 3s cubic-bezier(0.4,0,0.2,1) infinite;
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
@@ -114,7 +97,7 @@
             margin-top: 20px;
             width: 200px;
             height: 3px;
-            background: rgba(194, 138, 78, 0.1);
+            background: rgba(194,138,78,0.1);
             border-radius: 50px;
             overflow: hidden;
             position: relative;
@@ -122,13 +105,12 @@
         .loader .bar::after {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
+            top: 0; left: 0;
             height: 100%;
             width: 0%;
             background: linear-gradient(90deg, #c28a4e, #e6b06e, #c28a4e);
             background-size: 200% 100%;
-            animation: loadingProgress 2s cubic-bezier(0.4, 0, 0.2, 1) forwards, shimmer 1.5s ease-in-out infinite;
+            animation: loadingProgress 2s cubic-bezier(0.4,0,0.2,1) forwards, shimmer 1.5s ease-in-out infinite;
             border-radius: 50px;
         }
         @keyframes loadingProgress {
@@ -140,19 +122,19 @@
             100% { background-position: 200% 0; }
         }
         @keyframes breathe {
-            0%, 100% { opacity: 0.6; transform: scale(1); }
+            0%,100% { opacity: 0.6; transform: scale(1); }
             50% { opacity: 1; transform: scale(1.02); }
         }
 
-        /* --- SECTION 5: NAVBAR UNIK --- */
+        /* Navbar */
         .navbar {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(5, 5, 5, 0.92);
+            background: rgba(5,5,5,0.92);
             backdrop-filter: blur(20px) saturate(200%);
-            border-bottom: 1px solid rgba(194, 138, 78, 0.08);
-            box-shadow: 0 4px 40px rgba(0, 0, 0, 0.8);
+            border-bottom: 1px solid rgba(194,138,78,0.08);
+            box-shadow: 0 4px 40px rgba(0,0,0,0.8);
             padding: 0 2rem;
             display: flex;
             justify-content: space-between;
@@ -171,10 +153,7 @@
             align-items: center;
             gap: 10px;
         }
-        .navbar .brand i {
-            -webkit-text-fill-color: #c28a4e;
-            font-size: 1.2rem;
-        }
+        .navbar .brand i { -webkit-text-fill-color: #c28a4e; font-size: 1.2rem; }
         .navbar .links {
             display: flex;
             gap: 0.8rem;
@@ -187,7 +166,7 @@
             font-size: 0.85rem;
             padding: 0.4rem 1rem;
             border-radius: 50px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
             position: relative;
             letter-spacing: 0.3px;
         }
@@ -198,14 +177,14 @@
             border-radius: 50px;
             background: linear-gradient(135deg, #c28a4e, #e6b06e);
             opacity: 0;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
             z-index: -1;
         }
         .navbar .links a:hover::before { opacity: 1; }
         .navbar .links a:hover {
             color: #050505;
             transform: translateY(-2px) scale(1.04);
-            box-shadow: 0 4px 20px rgba(194, 138, 78, 0.3);
+            box-shadow: 0 4px 20px rgba(194,138,78,0.3);
         }
         .navbar .toggle {
             display: none;
@@ -221,7 +200,7 @@
             .navbar .toggle { display: block; }
         }
 
-        /* --- SECTION 6: HERO CREATIF --- */
+        /* Hero */
         .hero {
             padding: 4rem 2rem;
             margin: 2rem auto;
@@ -229,7 +208,7 @@
             background: radial-gradient(ellipse at 80% 20%, rgba(194,138,78,0.06), transparent 60%),
                         radial-gradient(ellipse at 20% 80%, rgba(194,138,78,0.03), transparent 50%);
             border-radius: 40px;
-            border: 1px solid rgba(194, 138, 78, 0.08);
+            border: 1px solid rgba(194,138,78,0.08);
             position: relative;
             overflow: hidden;
             min-height: 300px;
@@ -248,7 +227,7 @@
             animation: floatText 8s ease-in-out infinite;
         }
         @keyframes floatText {
-            0%, 100% { transform: translateY(0) rotate(-2deg); }
+            0%,100% { transform: translateY(0) rotate(-2deg); }
             50% { transform: translateY(-15px) rotate(2deg); }
         }
         .hero .content {
@@ -266,20 +245,16 @@
             border-radius: 28px;
             overflow: hidden;
             background: #0a0a0a;
-            border: 1px solid rgba(194, 138, 78, 0.15);
-            box-shadow: 0 16px 60px rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(194,138,78,0.15);
+            box-shadow: 0 16px 60px rgba(0,0,0,0.6);
             flex-shrink: 0;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
         }
         .hero .logo:hover {
             transform: scale(1.04) rotate(-2deg);
-            border-color: rgba(194, 138, 78, 0.3);
+            border-color: rgba(194,138,78,0.3);
         }
-        .hero .logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .hero .logo img { width: 100%; height: 100%; object-fit: cover; }
         .hero .text h1 {
             font-family: 'Playfair Display', serif;
             font-size: 3rem;
@@ -302,17 +277,9 @@
             align-items: center;
             flex-wrap: wrap;
         }
-        .hero .meta .student {
-            text-align: right;
-        }
-        .hero .meta .student h3 {
-            font-size: 1.1rem;
-            color: #f0ece8;
-        }
-        .hero .meta .student p {
-            color: #8a7a6a;
-            font-size: 0.8rem;
-        }
+        .hero .meta .student { text-align: right; }
+        .hero .meta .student h3 { font-size: 1.1rem; color: #f0ece8; }
+        .hero .meta .student p { color: #8a7a6a; font-size: 0.8rem; }
         .hero .meta .badge {
             background: linear-gradient(135deg, #c28a4e, #e6b06e);
             color: #050505;
@@ -321,13 +288,13 @@
             border-radius: 50px;
             font-size: 0.8rem;
             letter-spacing: 0.5px;
-            box-shadow: 0 4px 20px rgba(194, 138, 78, 0.2);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(194,138,78,0.2);
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
             white-space: nowrap;
         }
         .hero .meta .badge:hover {
             transform: scale(1.06) translateY(-2px);
-            box-shadow: 0 8px 30px rgba(194, 138, 78, 0.3);
+            box-shadow: 0 8px 30px rgba(194,138,78,0.3);
         }
         .hero .desc {
             margin-top: 1rem;
@@ -343,7 +310,7 @@
             .hero .logo { width: 80px; height: 80px; }
         }
 
-        /* --- SECTION 7: ACCORDION PREMIUM --- */
+        /* Section & Accordion */
         .section {
             max-width: 1400px;
             margin: 2rem auto;
@@ -355,11 +322,11 @@
             align-items: center;
             cursor: pointer;
             padding: 1rem 0;
-            border-bottom: 2px solid rgba(194, 138, 78, 0.06);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 2px solid rgba(194,138,78,0.06);
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
         }
         .section-header:hover {
-            border-bottom-color: rgba(194, 138, 78, 0.15);
+            border-bottom-color: rgba(194,138,78,0.15);
             padding-left: 4px;
         }
         .section-header h2 {
@@ -370,19 +337,16 @@
             border-left: 4px solid #c28a4e;
             padding-left: 1rem;
         }
-        .section-header h2 i {
-            color: #c28a4e;
-            margin-right: 10px;
-        }
+        .section-header h2 i { color: #c28a4e; margin-right: 10px; }
         .section-header .icon {
             color: #c28a4e;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
             font-size: 1.2rem;
         }
         .section-header .icon.rotated { transform: rotate(180deg); }
         .section-content {
             overflow: hidden;
-            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+            transition: max-height 0.6s cubic-bezier(0.4,0,0.2,1), opacity 0.4s ease;
             max-height: 3000px;
             opacity: 1;
         }
@@ -392,56 +356,65 @@
             padding: 0;
         }
 
-        /* --- SECTION 8: CARD SYSTEM --- */
+        /* Card */
         .card {
-            background: rgba(15, 11, 8, 0.7);
+            background: rgba(15,11,8,0.7);
             border-radius: 24px;
             padding: 2rem;
             margin: 1rem 0 2rem 0;
-            border: 1px solid rgba(194, 138, 78, 0.06);
+            border: 1px solid rgba(194,138,78,0.06);
             backdrop-filter: blur(8px);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
         }
         .card:hover {
             transform: translateY(-4px);
-            border-color: rgba(194, 138, 78, 0.15);
-            box-shadow: 0 8px 40px rgba(0, 0, 0, 0.4);
+            border-color: rgba(194,138,78,0.15);
+            box-shadow: 0 8px 40px rgba(0,0,0,0.4);
         }
-        .card h3 {
-            font-size: 1.2rem;
-            color: #f0ece8;
-            margin-bottom: 1rem;
-            font-weight: 600;
-        }
-        .card p {
-            color: #b8a694;
-            font-size: 0.9rem;
-            line-height: 1.8;
-        }
+        .card h3 { font-size: 1.2rem; color: #f0ece8; margin-bottom: 1rem; font-weight: 600; }
+        .card p { color: #b8a694; font-size: 0.9rem; line-height: 1.8; }
 
-        /* --- SECTION 9: PLAYLIST UNIK --- */
+        /* Playlist with Covers */
         .playlist-grid {
             display: flex;
             flex-direction: column;
-            gap: 0.8rem;
+            gap: 1rem;
         }
         .song {
-            background: rgba(20, 16, 12, 0.6);
-            border-radius: 16px;
+            background: rgba(20,16,12,0.6);
+            border-radius: 20px;
             padding: 0.8rem 1.5rem;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            border: 1px solid rgba(194, 138, 78, 0.04);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 1.2rem;
+            border: 1px solid rgba(194,138,78,0.04);
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
             flex-wrap: wrap;
         }
         .song:hover {
-            background: rgba(30, 25, 20, 0.6);
-            border-color: rgba(194, 138, 78, 0.15);
+            background: rgba(30,25,20,0.6);
+            border-color: rgba(194,138,78,0.15);
             transform: translateX(6px);
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+        .song .cover {
+            width: 64px;
+            height: 64px;
+            border-radius: 14px;
+            overflow: hidden;
+            flex-shrink: 0;
+            background: #0a0a0a;
+            border: 1px solid rgba(194,138,78,0.1);
+            transition: all 0.3s;
+        }
+        .song:hover .cover {
+            transform: scale(1.06) rotate(-2deg);
+            border-color: rgba(194,138,78,0.3);
+        }
+        .song .cover img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .song .info {
             display: flex;
@@ -491,22 +464,22 @@
             border-radius: 50%;
             cursor: pointer;
             font-size: 1rem;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 12px rgba(194, 138, 78, 0.15);
+            box-shadow: 0 2px 12px rgba(194,138,78,0.15);
         }
         .song .play:hover {
             transform: scale(1.15) rotate(5deg);
-            box-shadow: 0 4px 24px rgba(194, 138, 78, 0.3);
+            box-shadow: 0 4px 24px rgba(194,138,78,0.3);
         }
         .song .play:active { transform: scale(0.9); }
         .song .play.playing {
             animation: pulseNeon 1.5s infinite;
         }
         @keyframes pulseNeon {
-            0%, 100% { box-shadow: 0 0 0 0 rgba(194,138,78,0.5); }
+            0%,100% { box-shadow: 0 0 0 0 rgba(194,138,78,0.5); }
             50% { box-shadow: 0 0 0 12px rgba(194,138,78,0); }
         }
         .song audio {
@@ -514,7 +487,7 @@
             border-radius: 20px;
             max-width: 160px;
             width: 100%;
-            background: rgba(20, 16, 12, 0.8);
+            background: rgba(20,16,12,0.8);
         }
         .song .duration {
             font-size: 0.7rem;
@@ -526,9 +499,10 @@
             .song { flex-direction: column; align-items: stretch; text-align: center; }
             .song .controls { justify-content: center; }
             .song audio { max-width: 100%; }
+            .song .cover { margin: 0 auto; }
         }
 
-        /* --- SECTION 10: MEMBER GRID UNIK --- */
+        /* Member Grid */
         .member-grid {
             display: flex;
             flex-wrap: wrap;
@@ -537,18 +511,18 @@
             padding: 1rem 0;
         }
         .member {
-            background: rgba(20, 16, 12, 0.6);
+            background: rgba(20,16,12,0.6);
             border-radius: 20px;
             padding: 1.5rem 1rem;
             text-align: center;
             width: 130px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid rgba(194, 138, 78, 0.04);
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
+            border: 1px solid rgba(194,138,78,0.04);
         }
         .member:hover {
             transform: translateY(-8px) scale(1.03);
-            border-color: rgba(194, 138, 78, 0.15);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(194,138,78,0.15);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
         }
         .member .photo {
             width: 80px;
@@ -557,25 +531,17 @@
             background: #0a0a0a;
             margin: 0 auto 0.8rem;
             overflow: hidden;
-            border: 2px solid rgba(194, 138, 78, 0.08);
+            border: 2px solid rgba(194,138,78,0.08);
             transition: all 0.3s;
         }
         .member:hover .photo {
             transform: scale(1.08);
-            border-color: rgba(194, 138, 78, 0.3);
+            border-color: rgba(194,138,78,0.3);
         }
-        .member .photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .member .name {
-            font-weight: 700;
-            color: #f0ece8;
-            font-size: 0.95rem;
-        }
+        .member .photo img { width: 100%; height: 100%; object-fit: cover; }
+        .member .name { font-weight: 700; color: #f0ece8; font-size: 0.95rem; }
 
-        /* --- SECTION 11: DATA GRID --- */
+        /* Data Grid */
         .data-grid {
             display: flex;
             flex-wrap: wrap;
@@ -584,34 +550,32 @@
             padding: 1rem 0;
         }
         .data-item {
-            background: rgba(20, 16, 12, 0.6);
+            background: rgba(20,16,12,0.6);
             padding: 0.5rem 1.2rem;
             border-radius: 40px;
             font-weight: 600;
             font-size: 0.85rem;
-            border: 1px solid rgba(194, 138, 78, 0.04);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(194,138,78,0.04);
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
         }
         .data-item:hover {
             transform: scale(1.06) translateY(-2px);
-            border-color: rgba(194, 138, 78, 0.15);
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+            border-color: rgba(194,138,78,0.15);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.2);
         }
 
-        /* --- SECTION 12: TABLE --- */
+        /* Table */
         .table-wrap {
             overflow-x: auto;
             border-radius: 12px;
-            border: 1px solid rgba(194, 138, 78, 0.06);
+            border: 1px solid rgba(194,138,78,0.06);
         }
         table {
             width: 100%;
             border-collapse: collapse;
             font-size: 0.9rem;
         }
-        thead {
-            background: linear-gradient(135deg, #c28a4e, #e6b06e);
-        }
+        thead { background: linear-gradient(135deg, #c28a4e, #e6b06e); }
         th {
             color: #050505;
             padding: 0.8rem 1.2rem;
@@ -620,15 +584,13 @@
         }
         td {
             padding: 0.8rem 1.2rem;
-            border-bottom: 1px solid rgba(194, 138, 78, 0.04);
-            background: rgba(15, 11, 8, 0.3);
+            border-bottom: 1px solid rgba(194,138,78,0.04);
+            background: rgba(15,11,8,0.3);
             text-align: center;
         }
-        tr:hover td {
-            background: rgba(30, 25, 20, 0.4);
-        }
+        tr:hover td { background: rgba(30,25,20,0.4); }
 
-        /* --- SECTION 13: STAT BOXES --- */
+        /* Stat Boxes */
         .stat-flex {
             display: flex;
             flex-wrap: wrap;
@@ -638,16 +600,16 @@
         .stat-box {
             flex: 1;
             min-width: 120px;
-            background: rgba(20, 16, 12, 0.6);
+            background: rgba(20,16,12,0.6);
             padding: 1.5rem 1rem;
             border-radius: 20px;
             text-align: center;
             border-left: 4px solid #c28a4e;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
         }
         .stat-box:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
             border-left-color: #e6b06e;
         }
         .stat-box .num {
@@ -656,13 +618,9 @@
             color: #c28a4e;
             font-family: 'Playfair Display', serif;
         }
-        .stat-box p {
-            color: #8a7a6a;
-            font-size: 0.85rem;
-            margin-top: 0.2rem;
-        }
+        .stat-box p { color: #8a7a6a; font-size: 0.85rem; margin-top: 0.2rem; }
 
-        /* --- SECTION 14: CHART GRID --- */
+        /* Chart Grid */
         .chart-grid {
             display: flex;
             flex-wrap: wrap;
@@ -672,16 +630,16 @@
         .chart-card {
             flex: 1;
             min-width: 260px;
-            background: rgba(15, 11, 8, 0.7);
+            background: rgba(15,11,8,0.7);
             border-radius: 20px;
             padding: 1.5rem;
-            border: 1px solid rgba(194, 138, 78, 0.04);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(194,138,78,0.04);
+            transition: all 0.4s cubic-bezier(0.4,0,0.2,1);
         }
         .chart-card:hover {
             transform: translateY(-4px);
-            border-color: rgba(194, 138, 78, 0.12);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            border-color: rgba(194,138,78,0.12);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
         }
         .chart-card h3 {
             text-align: center;
@@ -691,12 +649,12 @@
         }
         canvas { max-height: 220px; width: 100%; }
 
-        /* --- SECTION 15: FOOTER --- */
+        /* Footer */
         footer {
-            background: rgba(5, 5, 5, 0.9);
+            background: rgba(5,5,5,0.9);
             text-align: center;
             padding: 2.5rem 1.5rem;
-            border-top: 1px solid rgba(194, 138, 78, 0.06);
+            border-top: 1px solid rgba(194,138,78,0.06);
             margin-top: 3rem;
             color: #8a7a6a;
             font-size: 0.85rem;
@@ -710,10 +668,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-        footer i {
-            color: #c28a4e;
-            margin: 0 0.3rem;
-        }
+        footer i { color: #c28a4e; margin: 0 0.3rem; }
         footer .divider {
             width: 50px;
             height: 2px;
@@ -725,18 +680,14 @@
 </head>
 <body>
 
-<!-- ============================================================ -->
-<!-- 🚀 LOADING SCREEN (FIX: akan hilang setelah halaman loaded) -->
-<!-- ============================================================ -->
+<!-- Loading Screen -->
 <div class="loader" id="loader">
     <div class="ring"></div>
     <div class="text">Loading Cup of Joe...</div>
     <div class="bar"></div>
 </div>
 
-<!-- ============================================================ -->
-<!-- 🧭 NAVBAR UNIK -->
-<!-- ============================================================ -->
+<!-- Navbar -->
 <nav class="navbar">
     <div class="brand">
         <i class="fas fa-mug-hot"></i> Cup of Joe
@@ -755,9 +706,7 @@
     </div>
 </nav>
 
-<!-- ============================================================ -->
-<!-- 📦 KONTEN UTAMA -->
-<!-- ============================================================ -->
+<!-- Beranda -->
 <div class="section" id="beranda">
     <div class="hero">
         <div class="content">
@@ -778,14 +727,12 @@
         </div>
         <div class="desc">
             <i class="fas fa-info-circle" style="color:#c28a4e;margin-right:6px;"></i>
-            Survei durasi mendengarkan lagu Cup of Joe dari 20 responden + playlist lengkap yang bisa diputar semua. Klik judul kategori untuk membuka/menutup.
+            Survei durasi mendengarkan lagu Cup of Joe dari 20 responden + playlist lengkap dengan cover lagu yang bisa diganti. Klik judul kategori untuk membuka/menutup.
         </div>
     </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- 🎵 PLAYLIST -->
-<!-- ============================================================ -->
+<!-- Playlist -->
 <div class="section" id="playlist">
     <div class="section-header" onclick="toggleSection(this)">
         <h2><i class="fas fa-headphones"></i> Playlist Cup of Joe</h2>
@@ -798,9 +745,7 @@
     </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- 👥 PROFIL & ANGGOTA -->
-<!-- ============================================================ -->
+<!-- Profil -->
 <div class="section" id="profil">
     <div class="section-header" onclick="toggleSection(this)">
         <h2><i class="fas fa-microphone-alt"></i> Profil Cup of Joe</h2>
@@ -824,9 +769,7 @@
     </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- 📊 DATA MENTAH -->
-<!-- ============================================================ -->
+<!-- Data Mentah -->
 <div class="section" id="data">
     <div class="section-header" onclick="toggleSection(this)">
         <h2><i class="fas fa-database"></i> Data Mentah Survei</h2>
@@ -841,9 +784,7 @@
     </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- 📈 PENGOLAHAN -->
-<!-- ============================================================ -->
+<!-- Pengolahan -->
 <div class="section" id="pengolahan">
     <div class="section-header" onclick="toggleSection(this)">
         <h2><i class="fas fa-chart-line"></i> Pengolahan Data</h2>
@@ -859,9 +800,7 @@
     </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- 🥧 DIAGRAM -->
-<!-- ============================================================ -->
+<!-- Diagram -->
 <div class="section" id="diagram">
     <div class="section-header" onclick="toggleSection(this)">
         <h2><i class="fas fa-chart-pie"></i> Diagram</h2>
@@ -876,9 +815,7 @@
     </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- 📝 KESIMPULAN -->
-<!-- ============================================================ -->
+<!-- Kesimpulan -->
 <div class="section" id="kesimpulan">
     <div class="section-header" onclick="toggleSection(this)">
         <h2><i class="fas fa-pen-fancy"></i> Kesimpulan</h2>
@@ -894,35 +831,25 @@
     </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- 🦶 FOOTER -->
-<!-- ============================================================ -->
+<!-- Footer -->
 <footer>
     <i class="fas fa-mug-hot"></i> <span class="brand">Cup of Joe</span> · Full Playlist & Statistika <i class="fas fa-headphones"></i>
     <div class="divider"></div>
     8 Lagu Hits · Semua Bisa Diputar · Gian · Raphael · Gabriel · CJ · Xen ☕
 </footer>
 
-<!-- ============================================================ -->
-<!-- 🧠 JAVASCRIPT - 1.500+ BARIS (logika unik, tidak berulang) -->
-<!-- ============================================================ -->
+<!-- JavaScript -->
 <script>
-    // ============================================================
-    // 🔥 FIX LOADING - Hilang setelah semua konten siap
-    // ============================================================
+    // Loading Screen - Hilang setelah halaman siap
     window.addEventListener('load', function() {
         const loader = document.getElementById('loader');
         setTimeout(function() {
             loader.classList.add('hidden');
-            setTimeout(function() {
-                loader.style.display = 'none';
-            }, 600);
+            setTimeout(function() { loader.style.display = 'none'; }, 600);
         }, 800);
     });
 
-    // ============================================================
-    // 🔄 TOGGLE SECTION
-    // ============================================================
+    // Toggle Section
     function toggleSection(header) {
         const content = header.nextElementSibling;
         const icon = header.querySelector('.icon');
@@ -930,47 +857,27 @@
         icon.classList.toggle('rotated');
     }
 
-    // ============================================================
-    // 🎵 DATA PLAYLIST (8 LAGU)
-    // ============================================================
+    // Data Playlist dengan Cover
     const songs = [
-        { no: 1, title: "Multo", year: "2023", dur: "3:45", src: "multo (1).mp3" },
-        { no: 2, title: "Bagyo", year: "2024", dur: "4:02", src: "bagyo.mp3" },
-        { no: 3, title: "Misteryoso", year: "2022", dur: "3:58", src: "misteryoso.mp3" },
-        { no: 4, title: "Sagada", year: "2023", dur: "4:15", src: "sagada.mp3" },
-        { no: 5, title: "Pahina", year: "2023", dur: "3:50", src: "pahina.mp3" },
-        { no: 6, title: "Sandali", year: "2022", dur: "4:08", src: "sandali.mp3" },
-        { no: 7, title: "Ikaw Parin Ang Pipilin Ko", year: "2023", dur: "4:20", src: "ikawparin.mp3" },
-        { no: 8, title: "Sinderela", year: "2022", dur: "3:32", src: "sinderela.mp3" }
+        { no: 1, title: "Multo", year: "2023", dur: "3:45", src: "multo (1).mp3", cover: "cover-multo.jpg" },
+        { no: 2, title: "Bagyo", year: "2024", dur: "4:02", src: "bagyo.mp3", cover: "cover-bagyo.jpg" },
+        { no: 3, title: "Misteryoso", year: "2022", dur: "3:58", src: "misteryoso.mp3", cover: "cover-misteryoso.jpg" },
+        { no: 4, title: "Sagada", year: "2023", dur: "4:15", src: "sagada.mp3", cover: "cover-sagada.jpg" },
+        { no: 5, title: "Pahina", year: "2023", dur: "3:50", src: "pahina.mp3", cover: "cover-pahina.jpg" },
+        { no: 6, title: "Sandali", year: "2022", dur: "4:08", src: "sandali.mp3", cover: "cover-sandali.jpg" },
+        { no: 7, title: "Ikaw Parin Ang Pipilin Ko", year: "2023", dur: "4:20", src: "ikawparin.mp3", cover: "cover-ikawparin.jpg" },
+        { no: 8, title: "Sinderela", year: "2022", dur: "3:32", src: "sinderela.mp3", cover: "cover-sinderela.jpg" }
     ];
 
-    // ============================================================
-    // 👥 DATA ANGGOTA (5)
-    // ============================================================
-    const members = [
-        { name: "Gian", icon: "fas fa-microphone-alt", img: "gian.jpg" },
-        { name: "Raphael", icon: "fas fa-guitar", img: "raphael.jpg" },
-        { name: "Gabriel", icon: "fas fa-music", img: "gabriel.jpg" },
-        { name: "CJ", icon: "fas fa-drum", img: "cj.jpg" },
-        { name: "Xen", icon: "fas fa-guitar", img: "xen.jpg" }
-    ];
-
-    // ============================================================
-    // 📊 DATA STATISTIKA
-    // ============================================================
-    const raw = [35, 42, 28, 50, 31, 47, 53, 22, 49, 36, 55, 38, 47, 60, 44, 33, 39, 41, 58, 45];
-    const labels = ["22-29", "30-37", "38-45", "46-53", "54-61"];
-    const freqs = [2, 4, 6, 5, 3];
-
-    // ============================================================
-    // 🎨 RENDER PLAYLIST
-    // ============================================================
     const plContainer = document.getElementById('playlistContainer');
     songs.forEach((s, i) => {
         const div = document.createElement('div');
         div.className = 'song';
         const aid = 'a' + i;
+        // Jika cover tidak ada, tampilkan placeholder
+        const coverHtml = s.cover ? `<img src="${s.cover}" alt="${s.title}">` : `<i class="fas fa-music" style="font-size:2rem;color:#c28a4e;display:flex;align-items:center;justify-content:center;width:100%;height:100%;"></i>`;
         div.innerHTML = `
+            <div class="cover">${coverHtml}</div>
             <div class="info">
                 <div class="number">${s.no}</div>
                 <div>
@@ -987,9 +894,7 @@
         plContainer.appendChild(div);
     });
 
-    // ============================================================
-    // 🔊 FUNGSI PLAY/PAUSE
-    // ============================================================
+    // Fungsi Play/Pause
     function togglePlay(id) {
         const audio = document.getElementById(id);
         const btn = audio.parentElement.querySelector('.play');
@@ -1013,9 +918,14 @@
         }
     }
 
-    // ============================================================
-    // 🖼️ RENDER MEMBERS
-    // ============================================================
+    // Data Anggota
+    const members = [
+        { name: "Gian", icon: "fas fa-microphone-alt", img: "gian.jpg" },
+        { name: "Raphael", icon: "fas fa-guitar", img: "raphael.jpg" },
+        { name: "Gabriel", icon: "fas fa-music", img: "gabriel.jpg" },
+        { name: "CJ", icon: "fas fa-drum", img: "cj.jpg" },
+        { name: "Xen", icon: "fas fa-guitar", img: "xen.jpg" }
+    ];
     const mc = document.getElementById('memberContainer');
     members.forEach(m => {
         const div = document.createElement('div');
@@ -1028,15 +938,16 @@
         mc.appendChild(div);
     });
 
-    // ============================================================
-    // 🧮 RENDER DATA MENTAH
-    // ============================================================
+    // Data Statistika
+    const raw = [35, 42, 28, 50, 31, 47, 53, 22, 49, 36, 55, 38, 47, 60, 44, 33, 39, 41, 58, 45];
+    const labels = ["22-29", "30-37", "38-45", "46-53", "54-61"];
+    const freqs = [2, 4, 6, 5, 3];
+
+    // Render Data Mentah
     const dg = document.getElementById('dataGrid');
     raw.forEach(d => { dg.innerHTML += `<span class="data-item">${d}</span>`; });
 
-    // ============================================================
-    // 📋 RENDER TABEL FREKUENSI
-    // ============================================================
+    // Render Tabel Frekuensi
     const ft = document.getElementById('freqTable');
     const midpoints = [25.5, 33.5, 41.5, 49.5, 57.5];
     const fx = [51, 134, 249, 247.5, 172.5];
@@ -1047,9 +958,7 @@
     tbody += `<tr style="background:rgba(20,16,12,0.4);"><th>Jumlah</th><th>20</th><th>-</th><th>854</th></tr></tbody></table>`;
     ft.innerHTML = tbody;
 
-    // ============================================================
-    // 📊 RENDER STAT BOXES
-    // ============================================================
+    // Render Stat Boxes
     const sb = document.getElementById('statBoxes');
     sb.innerHTML = `
         <div class="stat-box"><div class="num">42.7</div><p>Mean (Rata-rata)</p></div>
@@ -1057,9 +966,7 @@
         <div class="stat-box"><div class="num">47</div><p>Modus</p></div>
     `;
 
-    // ============================================================
-    // 📈 CHARTS
-    // ============================================================
+    // Charts
     new Chart(document.getElementById('barChart'), {
         type: 'bar',
         data: { labels, datasets: [{ label: 'Responden', data: freqs, backgroundColor: '#c28a4e', borderRadius: 8, borderColor: '#e6b06e', borderWidth: 2 }] },
@@ -1072,18 +979,14 @@
             }
         }
     });
-
     new Chart(document.getElementById('pieChart'), {
         type: 'pie',
         data: { labels, datasets: [{ data: freqs, backgroundColor: ['#c28a4e','#b5723a','#9f5e2c','#8a4e21','#6a3c18'], borderColor: '#050505', borderWidth: 2 }] },
         options: {
             responsive: true,
-            plugins: {
-                legend: { position: 'right', labels: { color: '#f0ece8', boxWidth: 12, padding: 12 } }
-            }
+            plugins: { legend: { position: 'right', labels: { color: '#f0ece8', boxWidth: 12, padding: 12 } } }
         }
     });
-
     new Chart(document.getElementById('histogramChart'), {
         type: 'bar',
         data: { labels, datasets: [{ label: 'Frekuensi', data: freqs, backgroundColor: '#9b673c', barPercentage: 1.0, borderColor: '#c28a4e', borderWidth: 1 }] },
@@ -1098,4 +1001,4 @@
     });
 </script>
 </body>
-</html>
+                                        </html>
