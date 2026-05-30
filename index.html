@@ -38,6 +38,7 @@
             background: rgba(13, 13, 13, 0.95);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(200, 150, 80, 0.2);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
         }
 
         .navbar-toggle {
@@ -550,20 +551,6 @@
             border-top-color: #c28a4e;
         }
 
-        .guide-note {
-            background: #1e1914;
-            border-left: 4px solid #c28a4e;
-            padding: 12px 20px;
-            border-radius: 16px;
-            margin-bottom: 20px;
-            font-size: 0.85rem;
-            transition: all 0.3s ease;
-        }
-        .guide-note:hover {
-            border-left-color: #e6b06e;
-            transform: translateX(5px);
-        }
-
         @media (max-width: 700px) {
             .hero { padding: 32px 20px; }
             .container { padding: 24px 16px; }
@@ -628,12 +615,6 @@
             <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
         </div>
         <div class="section-content" id="content-playlist">
-            <div class="guide-note">
-                <i class="fas fa-edit"></i> <strong>File MP3 asli:</strong> Masukkan file MP3 dengan nama berikut ke folder yang sama:
-                <br>
-                <code>multo.mp3</code> · <code>bagyo.mp3</code> · <code>misteryoso.mp3</code> · <code>sagada.mp3</code> · 
-                <code>pahina.mp3</code> · <code>sandali.mp3</code> · <code>ikawparin.mp3</code> · <code>sinderela.mp3</code>
-            </div>
             <div class="card">
                 <div class="playlist-grid" id="playlist-container"></div>
             </div>
@@ -758,7 +739,7 @@
     // 🎵 DATA PLAYLIST - SUDAH DIUBAH SESUAI REQUEST
     // ============================================================
     // ✅ ANDA TINGGAL MASUKKAN FILE MP3 DENGAN NAMA BERIKUT:
-    //    multo.mp3, bagyo.mp3, misteryoso.mp3, sagada.mp3, 
+    //    multo (1).mp3, bagyo.mp3, misteryoso.mp3, sagada.mp3, 
     //    pahina.mp3, sandali.mp3, ikawparin.mp3, sinderela.mp3
     // ============================================================
     const playlistData = [
