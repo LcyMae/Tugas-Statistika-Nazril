@@ -118,34 +118,47 @@
         .student-info p { color: #d4b48c; }
         .cup-badge { background: #c28a4e; padding: 8px 24px; border-radius: 60px; font-weight: 700; }
 
+        .card {
+            background: #16120e;
+            border-radius: 32px;
+            padding: 32px;
+            margin: 40px 0;
+            border: 1px solid #2a241e;
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-3px); border-color: #c28a4e40; }
+
         /* ============================================================ */
-        /* 🆕 ACCORDION STYLE - TOMBOL BUKA/TUTUP */
+        /* 🆕 ACCORDION STYLE - TOMBOL BUKA/TUTUP PADA JUDUL (h2) */
         /* ============================================================ */
         .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             cursor: pointer;
-            padding: 12px 20px;
-            background: #1e1914;
-            border-radius: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             margin: 40px 0 28px;
-            border: 1px solid #3a2e22;
+            border-left: 8px solid #c28a4e;
+            padding-left: 20px;
             transition: 0.2s;
         }
         .section-header:hover {
-            border-color: #c28a4e;
-            background: #2a241e;
+            opacity: 0.8;
         }
         .section-header h2 {
             margin: 0;
             border-left: none;
             padding-left: 0;
+            color: #f0dfca;
+        }
+        .section-header h2 i { 
+            color: #c28a4e; 
+            margin-right: 12px; 
         }
         .toggle-icon {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             color: #c28a4e;
             transition: transform 0.3s;
+            margin-left: 16px;
         }
         .section-content {
             overflow: hidden;
@@ -158,16 +171,6 @@
             padding-bottom: 0;
         }
         /* ============================================================ */
-
-        .card {
-            background: #16120e;
-            border-radius: 32px;
-            padding: 32px;
-            margin: 40px 0;
-            border: 1px solid #2a241e;
-            transition: transform 0.2s;
-        }
-        .card:hover { transform: translateY(-3px); border-color: #c28a4e40; }
 
         h2 {
             font-family: 'Playfair Display', serif;
@@ -607,4 +610,4 @@
     });
 </script>
 </body>
-</html>
+    </html>
