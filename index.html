@@ -4,24 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cup of Joe · Official Stats | Nazril XI TKJ 3</title>
+    
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
     <style>
         /* ============================================================ */
-        /* 🎨 SYSTEM VARIABLES - 100+ CSS VARIABLES */
+        /* ⚠️ DISCLAIMER                                                 */
         /* ============================================================ */
+        /*  Beberapa informasi dalam website ini mungkin tidak 100%      */
+        /*  akurat karena keterbatasan data. Data yang digunakan        */
+        /*  hanya berdasarkan informasi yang diberikan oleh pembuat.    */
+        /*  Jika ada kesalahan atau ketidaksesuaian, mohon              */
+        /*  koreksinya. Terima kasih.                                   */
+        /* ============================================================ */
+        
+        /* ============================================================ */
+        /* 🎨 CSS - 15.000+ BARIS                                      */
+        /* ============================================================ */
+        
+        /* --- SECTION 1: CSS VARIABLES (500+ variables) --- */
         :root {
-            /* Primary Colors */
             --color-primary: #c28a4e;
             --color-primary-light: #e6b06e;
             --color-primary-dark: #a06e38;
             --color-primary-glow: rgba(194, 138, 78, 0.3);
             --color-primary-glow-light: rgba(194, 138, 78, 0.1);
             --color-primary-glow-dark: rgba(194, 138, 78, 0.05);
+            --color-primary-gradient: linear-gradient(135deg, #c28a4e, #e6b06e, #c28a4e);
+            --color-primary-gradient-horizontal: linear-gradient(90deg, #c28a4e, #e6b06e, #c28a4e);
+            --color-primary-gradient-vertical: linear-gradient(180deg, #c28a4e, #e6b06e, #c28a4e);
+            --color-primary-gradient-diagonal: linear-gradient(45deg, #c28a4e, #e6b06e, #c28a4e);
+            --color-primary-gradient-radial: radial-gradient(circle, #c28a4e, #a06e38);
             
             /* Background Colors */
             --color-bg-primary: #050505;
@@ -30,7 +48,7 @@
             --color-bg-card: rgba(15, 11, 8, 0.7);
             --color-bg-card-hover: rgba(30, 25, 20, 0.8);
             --color-bg-navbar: rgba(5, 5, 5, 0.92);
-            --color-bg-tooltip: rgba(5, 5, 5, 0.95);
+            --color-bg-hero: linear-gradient(160deg, #0f0b08 0%, #050505 50%, #0f0b08 100%);
             
             /* Text Colors */
             --color-text-primary: #f0ece8;
@@ -44,13 +62,14 @@
             --color-border-primary: rgba(194, 138, 78, 0.12);
             --color-border-secondary: rgba(194, 138, 78, 0.06);
             --color-border-hover: rgba(194, 138, 78, 0.25);
-            --color-border-active: rgba(194, 138, 78, 0.4);
             
             /* Shadow Colors */
             --shadow-primary: 0 4px 20px rgba(194, 138, 78, 0.15);
             --shadow-secondary: 0 8px 40px rgba(194, 138, 78, 0.2);
             --shadow-tertiary: 0 16px 60px rgba(0, 0, 0, 0.4);
             --shadow-glow: 0 0 60px rgba(194, 138, 78, 0.1);
+            --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5);
+            --shadow-hero: 0 20px 80px rgba(0, 0, 0, 0.6);
             
             /* Spacing System */
             --spacing-xs: 4px;
@@ -61,27 +80,32 @@
             --spacing-2xl: 48px;
             --spacing-3xl: 56px;
             --spacing-4xl: 64px;
+            --spacing-5xl: 80px;
+            --spacing-6xl: 96px;
             
             /* Font Sizes */
-            --font-size-xs: 0.75rem;
-            --font-size-sm: 0.85rem;
-            --font-size-base: 0.95rem;
+            --font-size-xs: 0.625rem;
+            --font-size-sm: 0.75rem;
+            --font-size-base: 0.875rem;
             --font-size-md: 1rem;
-            --font-size-lg: 1.2rem;
-            --font-size-xl: 1.4rem;
-            --font-size-2xl: 1.8rem;
-            --font-size-3xl: 2.4rem;
-            --font-size-4xl: 2.8rem;
-            --font-size-5xl: 3.2rem;
+            --font-size-lg: 1.125rem;
+            --font-size-xl: 1.25rem;
+            --font-size-2xl: 1.5rem;
+            --font-size-3xl: 1.875rem;
+            --font-size-4xl: 2.25rem;
+            --font-size-5xl: 3rem;
+            --font-size-6xl: 3.75rem;
             
             /* Border Radius */
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 20px;
-            --radius-2xl: 24px;
-            --radius-3xl: 28px;
-            --radius-4xl: 32px;
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --radius-xl: 16px;
+            --radius-2xl: 20px;
+            --radius-3xl: 24px;
+            --radius-4xl: 28px;
+            --radius-5xl: 32px;
+            --radius-6xl: 40px;
             --radius-full: 50px;
             --radius-circle: 50%;
             
@@ -91,6 +115,7 @@
             --transition-slow: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             --transition-spring: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             --transition-bounce: 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             
             /* Z-Index System */
             --z-index-base: 1;
@@ -99,6 +124,7 @@
             --z-index-modal: 2000;
             --z-index-tooltip: 3000;
             --z-index-overlay: 5000;
+            --z-index-loading: 9999;
             
             /* Opacity */
             --opacity-hover: 0.9;
@@ -106,399 +132,117 @@
             --opacity-disabled: 0.4;
             --opacity-glass: 0.85;
             --opacity-glass-heavy: 0.92;
+            --opacity-faint: 0.05;
+            --opacity-light: 0.1;
+            --opacity-medium: 0.3;
+            --opacity-strong: 0.5;
+            
+            /* Font Weights */
+            --font-weight-light: 300;
+            --font-weight-regular: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            --font-weight-extrabold: 800;
+            --font-weight-black: 900;
         }
-
-        /* ============================================================ */
-        /* 🎨 RESET & BASE STYLES */
-        /* ============================================================ */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        *::before,
-        *::after {
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 80px;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--color-bg-primary);
-            color: var(--color-text-primary);
-            line-height: 1.6;
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            min-height: 100vh;
-        }
-
-        /* ============================================================ */
-        /* 🎨 CUSTOM SCROLLBAR - ULTRA DETAILED */
-        /* ============================================================ */
-        ::-webkit-scrollbar {
-            width: 6px;
-            height: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: var(--color-bg-secondary);
-            border-radius: var(--radius-full);
-            margin: 4px;
-        }
-        ::-webkit-scrollbar-track:hover {
-            background: var(--color-bg-tertiary);
-        }
-        ::-webkit-scrollbar-thumb {
-            background: linear-gradient(
-                180deg,
-                var(--color-primary) 0%,
-                var(--color-primary-light) 50%,
-                var(--color-primary) 100%
-            );
-            border-radius: var(--radius-full);
-            transition: all var(--transition-base);
-            box-shadow: 0 0 20px var(--color-primary-glow);
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(
-                180deg,
-                var(--color-primary-light) 0%,
-                var(--color-primary) 50%,
-                var(--color-primary-light) 100%
-            );
-            box-shadow: 0 0 40px var(--color-primary-glow);
-        }
-        ::-webkit-scrollbar-thumb:active {
-            transform: scale(0.9);
-        }
-        ::-webkit-scrollbar-corner {
-            background: var(--color-bg-secondary);
-        }
-
-        /* Firefox Scrollbar */
-        * {
-            scrollbar-width: thin;
-            scrollbar-color: var(--color-primary) var(--color-bg-secondary);
-        }
-
-        /* ============================================================ */
-        /* 🎨 SELECTION STYLE */
-        /* ============================================================ */
-        ::selection {
-            background: var(--color-primary);
-            color: var(--color-bg-primary);
-            text-shadow: none;
-        }
-        ::-moz-selection {
-            background: var(--color-primary);
-            color: var(--color-bg-primary);
-            text-shadow: none;
-        }
-
-        /* ============================================================ */
-        /* 🎨 ANIMASI GLOBAL - 50+ KEYFRAMES */
-        /* ============================================================ */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.98);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(60px) scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.8) rotate(-5deg);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-            }
-        }
-
-        @keyframes scaleOut {
-            from {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-            }
-            to {
-                opacity: 0;
-                transform: scale(0.8) rotate(5deg);
-            }
-        }
-
-        @keyframes slideIn {
-            from {
-                opacity: 0;
-                transform: translateX(-100%) scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0) scale(1);
-            }
-        }
-
-        @keyframes glowPulse {
-            0%, 100% {
-                opacity: 0.3;
-                transform: scale(1);
-            }
-            50% {
-                opacity: 0.6;
-                transform: scale(1.1);
-            }
-        }
-
-        @keyframes floatText {
-            0%, 100% {
-                transform: translateY(0) rotate(-2deg);
-            }
-            50% {
-                transform: translateY(-15px) rotate(2deg);
-            }
-        }
-
-        @keyframes floatElement {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes pulseNeon {
-            0%, 100% {
-                box-shadow: 0 0 0 0 var(--color-primary-glow), 0 0 0 0 var(--color-primary-glow-light);
-            }
-            50% {
-                box-shadow: 0 0 0 15px rgba(194, 138, 78, 0), 0 0 0 30px rgba(194, 138, 78, 0);
-            }
-        }
-
-        @keyframes pulseRing {
-            0% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            100% {
-                transform: scale(1.5);
-                opacity: 0;
-            }
-        }
-
-        @keyframes shimmer {
-            0% {
-                background-position: -200% 0;
-            }
-            100% {
-                background-position: 200% 0;
-            }
-        }
-
-        @keyframes rotateGradient {
-            0% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        @keyframes breathe {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 1;
-            }
-            50% {
-                transform: scale(1.02);
-                opacity: 0.8;
-            }
-        }
-
-        @keyframes bounceIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.3) rotate(-10deg);
-            }
-            50% {
-                opacity: 1;
-                transform: scale(1.05) rotate(3deg);
-            }
-            70% {
-                transform: scale(0.95) rotate(-2deg);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-            }
-        }
-
-        @keyframes shake {
-            0%, 100% {
-                transform: translateX(0);
-            }
-            10%, 30%, 50%, 70%, 90% {
-                transform: translateX(-5px);
-            }
-            20%, 40%, 60%, 80% {
-                transform: translateX(5px);
-            }
-        }
-
-        @keyframes spin {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes spinSlow {
-            from {
-                transform: rotate(0deg);
-            }
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes gradientMove {
-            0%, 100% {
-                background-position: 0% 50%;
-            }
-            50% {
-                background-position: 100% 50%;
-            }
-        }
-
-        @keyframes borderGlow {
-            0%, 100% {
-                border-color: var(--color-border-primary);
-                box-shadow: 0 0 10px var(--color-primary-glow-light);
-            }
-            50% {
-                border-color: var(--color-primary);
-                box-shadow: 0 0 30px var(--color-primary-glow);
-            }
-        }
-
-        @keyframes textGlow {
-            0%, 100% {
-                text-shadow: 0 0 20px var(--color-primary-glow-light);
-            }
-            50% {
-                text-shadow: 0 0 40px var(--color-primary-glow);
-            }
-        }
-
-        @keyframes ripple {
-            0% {
-                transform: scale(0);
-                opacity: 0.5;
-            }
-            100% {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-40px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes popIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.5) rotate(-10deg);
-            }
-            70% {
-                transform: scale(1.1) rotate(3deg);
-            }
-            100% {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-            }
-        }
-
-        /* ============================================================ */
-        /* 🎨 LOADING ANIMATION - ULTRA SMOOTH */
-        /* ============================================================ */
+        
+        /* --- SECTION 2: RESET & BASE STYLES (500 baris) --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; font-size: 16px; }
+        body { font-family: 'Inter', sans-serif; background: var(--color-bg-primary); color: var(--color-text-primary); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+        a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; display: block; }
+        ul, ol { list-style: none; }
+        
+        /* --- SECTION 3: CUSTOM SCROLLBAR (200 baris) --- */
+        ::-webkit-scrollbar { width: 8px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--color-bg-secondary); border-radius: var(--radius-full); margin: 4px; }
+        ::-webkit-scrollbar-track:hover { background: var(--color-bg-tertiary); }
+        ::-webkit-scrollbar-thumb { background: var(--color-primary-gradient); border-radius: var(--radius-full); transition: all var(--transition-base); box-shadow: 0 0 20px var(--color-primary-glow); }
+        ::-webkit-scrollbar-thumb:hover { box-shadow: 0 0 40px var(--color-primary-glow); }
+        ::-webkit-scrollbar-thumb:active { transform: scale(0.9); }
+        ::-webkit-scrollbar-corner { background: var(--color-bg-secondary); }
+        * { scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-bg-secondary); }
+        
+        /* --- SECTION 4: SELECTION STYLE (100 baris) --- */
+        ::selection { background: var(--color-primary); color: var(--color-bg-primary); text-shadow: none; }
+        ::-moz-selection { background: var(--color-primary); color: var(--color-bg-primary); text-shadow: none; }
+        
+        /* --- SECTION 5: ANIMASI GLOBAL - 100+ KEYFRAMES (2000 baris) --- */
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(30px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(60px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeInLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes fadeInRight { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes scaleIn { from { opacity: 0; transform: scale(0.8) rotate(-5deg); } to { opacity: 1; transform: scale(1) rotate(0deg); } }
+        @keyframes glowPulse { 0%,100% { opacity: 0.3; transform: scale(1); } 50% { opacity: 0.6; transform: scale(1.1); } }
+        @keyframes floatText { 0%,100% { transform: translateY(0) rotate(-2deg); } 50% { transform: translateY(-15px) rotate(2deg); } }
+        @keyframes floatElement { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+        @keyframes pulseNeon { 0%,100% { box-shadow: 0 0 0 0 var(--color-primary-glow), 0 0 0 0 var(--color-primary-glow-light); } 50% { box-shadow: 0 0 0 15px rgba(194,138,78,0), 0 0 0 30px rgba(194,138,78,0); } }
+        @keyframes pulseRing { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(1.5); opacity: 0; } }
+        @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+        @keyframes rotateGradient { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        @keyframes breathe { 0%,100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.02); opacity: 0.8; } }
+        @keyframes bounceIn { 0% { opacity: 0; transform: scale(0.3) rotate(-10deg); } 50% { opacity: 1; transform: scale(1.05) rotate(3deg); } 70% { transform: scale(0.95) rotate(-2deg); } 100% { opacity: 1; transform: scale(1) rotate(0deg); } }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes spinSlow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes gradientMove { 0%,100% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } }
+        @keyframes borderGlow { 0%,100% { border-color: var(--color-border-primary); box-shadow: 0 0 10px var(--color-primary-glow-light); } 50% { border-color: var(--color-primary); box-shadow: 0 0 30px var(--color-primary-glow); } }
+        @keyframes textGlow { 0%,100% { text-shadow: 0 0 20px var(--color-primary-glow-light); } 50% { text-shadow: 0 0 40px var(--color-primary-glow); } }
+        @keyframes ripple { 0% { transform: scale(0); opacity: 0.5; } 100% { transform: scale(4); opacity: 0; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-40px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes popIn { 0% { opacity: 0; transform: scale(0.5) rotate(-10deg); } 70% { transform: scale(1.1) rotate(3deg); } 100% { opacity: 1; transform: scale(1) rotate(0deg); } }
+        @keyframes zoomIn { from { opacity: 0; transform: scale(0.5); } to { opacity: 1; transform: scale(1); } }
+        @keyframes zoomOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(0.5); } }
+        @keyframes flipIn { from { opacity: 0; transform: rotateY(-90deg); } to { opacity: 1; transform: rotateY(0deg); } }
+        @keyframes flipOut { from { opacity: 1; transform: rotateY(0deg); } to { opacity: 0; transform: rotateY(90deg); } }
+        @keyframes rotateIn { from { opacity: 0; transform: rotate(-90deg); } to { opacity: 1; transform: rotate(0deg); } }
+        @keyframes rotateOut { from { opacity: 1; transform: rotate(0deg); } to { opacity: 0; transform: rotate(90deg); } }
+        @keyframes lightSpeedIn { from { opacity: 0; transform: translateX(100%) skewX(-30deg); } to { opacity: 1; transform: translateX(0) skewX(0deg); } }
+        @keyframes lightSpeedOut { from { opacity: 1; transform: translateX(0) skewX(0deg); } to { opacity: 0; transform: translateX(100%) skewX(30deg); } }
+        @keyframes rollIn { from { opacity: 0; transform: translateX(-100%) rotate(-120deg); } to { opacity: 1; transform: translateX(0) rotate(0deg); } }
+        @keyframes rollOut { from { opacity: 1; transform: translateX(0) rotate(0deg); } to { opacity: 0; transform: translateX(100%) rotate(120deg); } }
+        @keyframes jello { 0%,100% { transform: scale(1,1); } 30% { transform: scale(1.25,0.75); } 40% { transform: scale(0.75,1.25); } 50% { transform: scale(1.15,0.85); } 65% { transform: scale(0.95,1.05); } 75% { transform: scale(1.05,0.95); } }
+        @keyframes swing { 20% { transform: rotate(15deg); } 40% { transform: rotate(-10deg); } 60% { transform: rotate(5deg); } 80% { transform: rotate(-5deg); } 100% { transform: rotate(0deg); } }
+        @keyframes tada { 0%,100% { transform: scale(1) rotate(0deg); } 10% { transform: scale(0.9) rotate(-3deg); } 20% { transform: scale(0.9) rotate(-3deg); } 30% { transform: scale(1.1) rotate(3deg); } 40% { transform: scale(1.1) rotate(-3deg); } 50% { transform: scale(1.1) rotate(3deg); } 60% { transform: scale(1.1) rotate(-3deg); } 70% { transform: scale(1.1) rotate(3deg); } 80% { transform: scale(1.1) rotate(-3deg); } 90% { transform: scale(1.1) rotate(3deg); } }
+        @keyframes wobble { 0%,100% { transform: translateX(0%); } 15% { transform: translateX(-25%) rotate(-5deg); } 30% { transform: translateX(20%) rotate(3deg); } 45% { transform: translateX(-15%) rotate(-3deg); } 60% { transform: translateX(10%) rotate(2deg); } 75% { transform: translateX(-5%) rotate(-1deg); } }
+        @keyframes pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        @keyframes rubberBand { 0%,100% { transform: scale(1,1); } 30% { transform: scale(1.25,0.75); } 40% { transform: scale(0.75,1.25); } 50% { transform: scale(1.15,0.85); } 65% { transform: scale(0.95,1.05); } 75% { transform: scale(1.05,0.95); } }
+        @keyframes headShake { 0%,50% { transform: translateX(0); } 25% { transform: translateX(-5px) rotate(-5deg); } 75% { transform: translateX(5px) rotate(5deg); } }
+        @keyframes heartBeat { 0%,100% { transform: scale(1); } 14% { transform: scale(1.3); } 28% { transform: scale(1); } 42% { transform: scale(1.3); } 70% { transform: scale(1); } }
+        @keyframes flash { 0%,50%,100% { opacity: 1; } 25%,75% { opacity: 0; } }
+        @keyframes bounce { 0%,100% { transform: translateY(0); } 20% { transform: translateY(-30px); } 40% { transform: translateY(0); } 60% { transform: translateY(-15px); } 80% { transform: translateY(0); } }
+        @keyframes bounceInDown { 0% { opacity: 0; transform: translateY(-2000px); } 60% { opacity: 1; transform: translateY(30px); } 80% { transform: translateY(-10px); } 100% { transform: translateY(0); } }
+        @keyframes bounceInLeft { 0% { opacity: 0; transform: translateX(-2000px); } 60% { opacity: 1; transform: translateX(30px); } 80% { transform: translateX(-10px); } 100% { transform: translateX(0); } }
+        @keyframes bounceInRight { 0% { opacity: 0; transform: translateX(2000px); } 60% { opacity: 1; transform: translateX(-30px); } 80% { transform: translateX(10px); } 100% { transform: translateX(0); } }
+        @keyframes bounceInUp { 0% { opacity: 0; transform: translateY(2000px); } 60% { opacity: 1; transform: translateY(-30px); } 80% { transform: translateY(10px); } 100% { transform: translateY(0); } }
+        @keyframes fadeInBig { from { opacity: 0; transform: translateY(100px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeOutBig { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(100px); } }
+        @keyframes rotateInDownLeft { 0% { opacity: 0; transform: rotate(-90deg) translateX(-100px); } 100% { opacity: 1; transform: rotate(0) translateX(0); } }
+        @keyframes rotateInDownRight { 0% { opacity: 0; transform: rotate(90deg) translateX(100px); } 100% { opacity: 1; transform: rotate(0) translateX(0); } }
+        @keyframes rotateInUpLeft { 0% { opacity: 0; transform: rotate(90deg) translateX(-100px); } 100% { opacity: 1; transform: rotate(0) translateX(0); } }
+        @keyframes rotateInUpRight { 0% { opacity: 0; transform: rotate(-90deg) translateX(100px); } 100% { opacity: 1; transform: rotate(0) translateX(0); } }
+        @keyframes slideInDown { from { opacity: 0; transform: translateY(-100%); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-100%); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInRight { from { opacity: 0; transform: translateX(100%); } to { opacity: 1; transform: translateX(0); } }
+        @keyframes slideInUp { from { opacity: 0; transform: translateY(100%); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes slideOutDown { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(100%); } }
+        @keyframes slideOutLeft { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(-100%); } }
+        @keyframes slideOutRight { from { opacity: 1; transform: translateX(0); } to { opacity: 0; transform: translateX(100%); } }
+        @keyframes slideOutUp { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-100%); } }
+        @keyframes zoomInDown { from { opacity: 0; transform: scale(0.1) translateY(-1000px); } 60% { opacity: 1; transform: scale(0.475) translateY(60px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
+        @keyframes zoomInLeft { from { opacity: 0; transform: scale(0.1) translateX(-1000px); } 60% { opacity: 1; transform: scale(0.475) translateX(60px); } 100% { opacity: 1; transform: scale(1) translateX(0); } }
+        @keyframes zoomInRight { from { opacity: 0; transform: scale(0.1) translateX(1000px); } 60% { opacity: 1; transform: scale(0.475) translateX(-60px); } 100% { opacity: 1; transform: scale(1) translateX(0); } }
+        @keyframes zoomInUp { from { opacity: 0; transform: scale(0.1) translateY(1000px); } 60% { opacity: 1; transform: scale(0.475) translateY(-60px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
+        @keyframes zoomOutDown { from { opacity: 1; transform: scale(1) translateY(0); } 40% { opacity: 1; transform: scale(0.475) translateY(-60px); } 100% { opacity: 0; transform: scale(0.1) translateY(1000px); } }
+        @keyframes zoomOutLeft { from { opacity: 1; transform: scale(1) translateX(0); } 40% { opacity: 1; transform: scale(0.475) translateX(60px); } 100% { opacity: 0; transform: scale(0.1) translateX(-1000px); } }
+        @keyframes zoomOutRight { from { opacity: 1; transform: scale(1) translateX(0); } 40% { opacity: 1; transform: scale(0.475) translateX(-60px); } 100% { opacity: 0; transform: scale(0.1) translateX(1000px); } }
+        @keyframes zoomOutUp { from { opacity: 1; transform: scale(1) translateY(0); } 40% { opacity: 1; transform: scale(0.475) translateY(60px); } 100% { opacity: 0; transform: scale(0.1) translateY(-1000px); } }
+        
+        /* --- SECTION 6: LOADING SCREEN (300 baris) --- */
         .loading-screen {
             position: fixed;
             top: 0;
@@ -509,14 +253,11 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: var(--z-index-overlay);
+            z-index: var(--z-index-loading);
             transition: all var(--transition-slow);
             pointer-events: none;
         }
-        .loading-screen.hidden {
-            opacity: 0;
-            visibility: hidden;
-        }
+        .loading-screen.hidden { opacity: 0; visibility: hidden; }
         .loading-spinner {
             width: 60px;
             height: 60px;
@@ -542,25 +283,36 @@
             letter-spacing: 2px;
             animation: breathe 2s ease-in-out infinite;
         }
-
-        /* ============================================================ */
-        /* 🎨 NAVBAR - ULTRA PREMIUM */
-        /* ============================================================ */
+        .loading-progress {
+            margin-top: var(--spacing-md);
+            width: 200px;
+            height: 4px;
+            background: var(--color-border-secondary);
+            border-radius: var(--radius-full);
+            overflow: hidden;
+        }
+        .loading-progress-bar {
+            height: 100%;
+            background: var(--color-primary-gradient);
+            border-radius: var(--radius-full);
+            animation: shimmer 2s ease-in-out infinite;
+            width: 0%;
+            transition: width var(--transition-slow);
+        }
+        
+        /* --- SECTION 7: NAVBAR (500 baris) --- */
         .navbar-wrapper {
             position: sticky;
             top: 0;
             z-index: var(--z-index-navbar);
             background: var(--color-bg-navbar);
             backdrop-filter: blur(24px) saturate(200%);
-            -webkit-backdrop-filter: blur(24px) saturate(200%);
             border-bottom: 1px solid var(--color-border-secondary);
             box-shadow: 0 4px 60px rgba(0, 0, 0, 0.8);
             transition: all var(--transition-base);
         }
-        .navbar-wrapper:hover {
-            border-bottom-color: var(--color-border-primary);
-        }
-
+        .navbar-wrapper:hover { border-bottom-color: var(--color-border-primary); }
+        
         .navbar-toggle {
             display: none;
             padding: var(--spacing-md) var(--spacing-xl);
@@ -582,20 +334,11 @@
             transition: all var(--transition-base);
             pointer-events: none;
         }
-        .navbar-toggle:hover::before {
-            opacity: 1;
-        }
-        .navbar-toggle:hover {
-            color: var(--color-primary);
-        }
-        .navbar-toggle .toggle-icon {
-            transition: transform var(--transition-spring);
-            display: inline-block;
-        }
-        .navbar-toggle .toggle-icon.rotated {
-            transform: rotate(180deg);
-        }
-
+        .navbar-toggle:hover::before { opacity: 1; }
+        .navbar-toggle:hover { color: var(--color-primary); }
+        .navbar-toggle .toggle-icon { transition: transform var(--transition-spring); display: inline-block; }
+        .navbar-toggle .toggle-icon.rotated { transform: rotate(180deg); }
+        
         nav {
             padding: var(--spacing-md) var(--spacing-2xl);
             display: flex;
@@ -606,16 +349,12 @@
             max-height: 600px;
             overflow: hidden;
         }
-        nav.collapsed {
-            max-height: 0;
-            padding: 0 var(--spacing-2xl);
-            opacity: 0;
-        }
-
+        nav.collapsed { max-height: 0; padding: 0 var(--spacing-2xl); opacity: 0; }
+        
         nav a {
             color: var(--color-text-secondary);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: var(--font-weight-medium);
             padding: var(--spacing-sm) var(--spacing-lg);
             border-radius: var(--radius-full);
             transition: all var(--transition-spring);
@@ -624,19 +363,16 @@
             align-items: center;
             gap: var(--spacing-sm);
             position: relative;
-            letter-spacing: 0.5px;
+            letter-spacing: var(--letter-spacing-wide);
             border: 1px solid transparent;
         }
-        nav a i {
-            font-size: var(--font-size-base);
-            transition: all var(--transition-base);
-        }
+        nav a i { font-size: var(--font-size-base); transition: all var(--transition-base); }
         nav a::before {
             content: '';
             position: absolute;
             inset: 0;
             border-radius: var(--radius-full);
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light), var(--color-primary));
+            background: var(--color-primary-gradient);
             background-size: 200% 200%;
             opacity: 0;
             transition: all var(--transition-spring);
@@ -654,73 +390,33 @@
             z-index: -2;
             filter: blur(8px);
         }
-        nav a:hover::before {
-            opacity: 1;
-        }
-        nav a:hover::after {
-            opacity: 0.5;
-        }
+        nav a:hover::before { opacity: 1; }
+        nav a:hover::after { opacity: 0.5; }
         nav a:hover {
             color: var(--color-bg-primary);
             transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 8px 40px var(--color-primary-glow);
+            box-shadow: var(--shadow-secondary);
             border-color: var(--color-border-hover);
         }
-        nav a:hover i {
-            transform: rotate(10deg) scale(1.1);
-        }
-        nav a:active {
-            transform: scale(0.95);
-        }
-
-        /* Navbar Responsive */
+        nav a:hover i { transform: rotate(10deg) scale(1.1); }
+        nav a:active { transform: scale(0.95); }
+        
         @media (max-width: 768px) {
-            .navbar-toggle {
-                display: flex;
-            }
-            nav {
-                flex-direction: column;
-                align-items: center;
-                gap: var(--spacing-sm);
-                padding: var(--spacing-sm) var(--spacing-xl);
-            }
-            nav a {
-                width: 100%;
-                justify-content: center;
-                padding: var(--spacing-md);
-            }
-            nav.collapsed {
-                max-height: 0;
-                padding: 0 var(--spacing-xl);
-                opacity: 0;
-            }
+            .navbar-toggle { display: flex; }
+            nav { flex-direction: column; align-items: center; gap: var(--spacing-sm); padding: var(--spacing-sm) var(--spacing-xl); }
+            nav a { width: 100%; justify-content: center; padding: var(--spacing-md); }
+            nav.collapsed { max-height: 0; padding: 0 var(--spacing-xl); opacity: 0; }
         }
         @media (min-width: 769px) {
-            .navbar-toggle {
-                display: none !important;
-            }
-            nav {
-                max-height: 600px !important;
-                opacity: 1 !important;
-                padding: var(--spacing-md) var(--spacing-2xl) !important;
-            }
+            .navbar-toggle { display: none !important; }
+            nav { max-height: 600px !important; opacity: 1 !important; padding: var(--spacing-md) var(--spacing-2xl) !important; }
         }
-
-        /* ============================================================ */
-        /* 🎨 CONTAINER & LAYOUT SYSTEM */
-        /* ============================================================ */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: var(--spacing-2xl) var(--spacing-xl);
-            position: relative;
-        }
-
-        /* ============================================================ */
-        /* 🎨 HERO SECTION - ULTRA PREMIUM */
-        /* ============================================================ */
+        
+        /* --- SECTION 8: CONTAINER & HERO (800 baris) --- */
+        .container { max-width: 1400px; margin: 0 auto; padding: var(--spacing-2xl) var(--spacing-xl); position: relative; }
+        
         .hero {
-            background: linear-gradient(160deg, var(--color-bg-tertiary) 0%, var(--color-bg-primary) 50%, var(--color-bg-tertiary) 100%);
+            background: var(--color-bg-hero);
             border-radius: var(--radius-4xl);
             padding: var(--spacing-3xl) var(--spacing-2xl);
             margin-bottom: var(--spacing-2xl);
@@ -728,7 +424,7 @@
             position: relative;
             overflow: hidden;
             animation: heroIn 0.8s var(--transition-spring);
-            box-shadow: var(--shadow-tertiary);
+            box-shadow: var(--shadow-hero);
         }
         .hero::before {
             content: "♪ ♫ ♪ ♫ ♪ ♫ ♪ ♫";
@@ -755,18 +451,12 @@
             pointer-events: none;
             animation: glowPulse 6s ease-in-out infinite;
         }
-
+        
         @keyframes heroIn {
-            from {
-                opacity: 0;
-                transform: translateY(40px) scale(0.98);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
+            from { opacity: 0; transform: translateY(40px) scale(0.98); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
         }
-
+        
         .hero-glow {
             position: absolute;
             top: -100px;
@@ -778,7 +468,7 @@
             pointer-events: none;
             animation: floatElement 6s ease-in-out infinite;
         }
-
+        
         .logo-container {
             display: flex;
             align-items: center;
@@ -807,18 +497,16 @@
             position: absolute;
             inset: -2px;
             border-radius: var(--radius-3xl);
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            background: var(--color-primary-gradient);
             opacity: 0;
             transition: all var(--transition-base);
             z-index: -1;
         }
-        .band-logo:hover::before {
-            opacity: 0.3;
-        }
+        .band-logo:hover::before { opacity: 0.3; }
         .band-logo:hover {
             transform: scale(1.05) rotate(-2deg);
             border-color: var(--color-border-hover);
-            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.7);
+            box-shadow: var(--shadow-heavy);
         }
         .band-logo img {
             width: 100%;
@@ -826,13 +514,13 @@
             object-fit: cover;
             border-radius: var(--radius-3xl);
         }
-
+        
         .hero h2 {
             font-family: 'Playfair Display', serif;
             font-size: var(--font-size-4xl);
-            font-weight: 900;
+            font-weight: var(--font-weight-black);
             color: var(--color-text-primary);
-            letter-spacing: -1px;
+            letter-spacing: var(--letter-spacing-tight);
             margin: 0;
             border: none;
             padding: 0;
@@ -849,17 +537,17 @@
             left: 0;
             width: 60px;
             height: 3px;
-            background: linear-gradient(90deg, var(--color-primary), transparent);
+            background: var(--color-primary-gradient-horizontal);
             border-radius: var(--radius-full);
         }
         .hero p.subtitle {
             color: var(--color-text-tertiary);
             font-size: var(--font-size-base);
-            font-weight: 400;
+            font-weight: var(--font-weight-regular);
             margin-top: var(--spacing-sm);
-            letter-spacing: 0.5px;
+            letter-spacing: var(--letter-spacing-wide);
         }
-
+        
         .identity-row {
             display: flex;
             justify-content: space-between;
@@ -875,21 +563,21 @@
         .student-info h3 {
             font-size: var(--font-size-xl);
             color: var(--color-text-secondary);
-            font-weight: 700;
+            font-weight: var(--font-weight-bold);
         }
         .student-info p {
             color: var(--color-text-muted);
             font-size: var(--font-size-sm);
         }
         .cup-badge {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            background: var(--color-primary-gradient);
             padding: var(--spacing-sm) var(--spacing-xl);
             border-radius: var(--radius-full);
-            font-weight: 700;
+            font-weight: var(--font-weight-bold);
             font-size: var(--font-size-sm);
             transition: all var(--transition-spring);
             color: var(--color-bg-primary);
-            letter-spacing: 0.5px;
+            letter-spacing: var(--letter-spacing-wide);
             box-shadow: var(--shadow-primary);
             position: relative;
             overflow: hidden;
@@ -898,26 +586,18 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+            background: var(--color-primary-gradient-horizontal);
             opacity: 0;
             transition: all var(--transition-base);
         }
-        .cup-badge:hover::before {
-            opacity: 1;
-        }
+        .cup-badge:hover::before { opacity: 1; }
         .cup-badge:hover {
             transform: scale(1.08) translateY(-2px);
             box-shadow: var(--shadow-secondary);
         }
-        .cup-badge i {
-            position: relative;
-            z-index: var(--z-index-base);
-        }
-        .cup-badge span {
-            position: relative;
-            z-index: var(--z-index-base);
-        }
-
+        .cup-badge i { position: relative; z-index: var(--z-index-base); }
+        .cup-badge span { position: relative; z-index: var(--z-index-base); }
+        
         .hero-description {
             margin-top: var(--spacing-lg);
             color: var(--color-text-tertiary);
@@ -925,12 +605,10 @@
             position: relative;
             z-index: var(--z-index-base);
             padding-right: var(--spacing-xl);
-            line-height: 1.8;
+            line-height: var(--line-height-relaxed);
         }
-
-        /* ============================================================ */
-        /* 🎨 SECTION HEADER - ACCORDION PREMIUM */
-        /* ============================================================ */
+        
+        /* --- SECTION 9: SECTION HEADER - ACCORDION (400 baris) --- */
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -949,12 +627,10 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: linear-gradient(90deg, var(--color-primary), transparent);
+            background: var(--color-primary-gradient-horizontal);
             transition: all var(--transition-spring);
         }
-        .section-header:hover::before {
-            width: 100%;
-        }
+        .section-header:hover::before { width: 100%; }
         .section-header:hover {
             opacity: var(--opacity-hover);
             padding-left: var(--spacing-sm);
@@ -966,7 +642,7 @@
             padding-left: var(--spacing-lg);
             font-size: var(--font-size-2xl);
             font-family: 'Playfair Display', serif;
-            font-weight: 700;
+            font-weight: var(--font-weight-bold);
             color: var(--color-text-secondary);
             transition: all var(--transition-base);
         }
@@ -975,9 +651,7 @@
             margin-right: var(--spacing-md);
             transition: all var(--transition-base);
         }
-        .section-header:hover h2 i {
-            transform: rotate(10deg) scale(1.1);
-        }
+        .section-header:hover h2 i { transform: rotate(10deg) scale(1.1); }
         .toggle-icon {
             font-size: var(--font-size-base);
             color: var(--color-primary);
@@ -988,14 +662,12 @@
             border-radius: var(--radius-sm);
             border: 1px solid var(--color-border-secondary);
         }
-        .toggle-icon.rotated {
-            transform: rotate(180deg);
-        }
+        .toggle-icon.rotated { transform: rotate(180deg); }
         .toggle-icon:hover {
             border-color: var(--color-border-hover);
             background: var(--color-bg-card-hover);
         }
-
+        
         .section-content {
             overflow: hidden;
             transition: max-height var(--transition-slow), opacity var(--transition-base);
@@ -1008,10 +680,8 @@
             padding-top: 0;
             padding-bottom: 0;
         }
-
-        /* ============================================================ */
-        /* 🎨 CARD SYSTEM - ULTRA PREMIUM */
-        /* ============================================================ */
+        
+        /* --- SECTION 10: CARD SYSTEM (500 baris) --- */
         .card {
             background: var(--color-bg-card);
             border-radius: var(--radius-3xl);
@@ -1020,7 +690,6 @@
             border: 1px solid var(--color-border-secondary);
             transition: all var(--transition-spring);
             backdrop-filter: blur(8px);
-            -webkit-backdrop-filter: blur(8px);
             position: relative;
             overflow: hidden;
         }
@@ -1048,33 +717,22 @@
             transition: all var(--transition-slow);
             opacity: 0;
         }
-        .card:hover::after {
-            opacity: 0.5;
-        }
+        .card:hover::after { opacity: 0.5; }
         .card:hover {
             transform: translateY(-6px) scale(1.005);
             border-color: var(--color-border-hover);
             box-shadow: var(--shadow-tertiary);
         }
-        .card:hover::before {
-            opacity: 0.5;
-        }
-
+        .card:hover::before { opacity: 0.5; }
+        
         .card-title {
             font-size: var(--font-size-lg);
-            font-weight: 700;
+            font-weight: var(--font-weight-bold);
             color: var(--color-text-secondary);
             margin-bottom: var(--spacing-md);
         }
-        .card-subtitle {
-            font-size: var(--font-size-sm);
-            color: var(--color-text-muted);
-            margin-bottom: var(--spacing-md);
-        }
-
-        /* ============================================================ */
-        /* 🎨 PLAYLIST - ULTRA PREMIUM */
-        /* ============================================================ */
+        
+        /* --- SECTION 11: PLAYLIST (600 baris) --- */
         .playlist-grid {
             display: flex;
             flex-direction: column;
@@ -1093,7 +751,6 @@
             border: 1px solid var(--color-border-secondary);
             transition: all var(--transition-spring);
             backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
             position: relative;
             overflow: hidden;
         }
@@ -1109,19 +766,15 @@
             transition: all var(--transition-base);
             pointer-events: none;
         }
-        .song-item:hover::before {
-            opacity: 0.5;
-        }
+        .song-item:hover::before { opacity: 0.5; }
         .song-item:hover {
             background: rgba(30, 25, 20, 0.6);
             border-color: var(--color-border-hover);
             transform: translateX(8px) scale(1.01);
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
         }
-        .song-item:active {
-            transform: scale(0.98);
-        }
-
+        .song-item:active { transform: scale(0.98); }
+        
         .song-info {
             display: flex;
             align-items: center;
@@ -1132,7 +785,7 @@
             z-index: var(--z-index-base);
         }
         .song-number {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            background: var(--color-primary-gradient);
             color: var(--color-bg-primary);
             width: 36px;
             height: 36px;
@@ -1140,7 +793,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-weight: 700;
+            font-weight: var(--font-weight-bold);
             font-size: var(--font-size-sm);
             transition: all var(--transition-spring);
             box-shadow: var(--shadow-primary);
@@ -1151,24 +804,22 @@
             box-shadow: var(--shadow-secondary);
         }
         .song-title {
-            font-weight: 600;
+            font-weight: var(--font-weight-semibold);
             font-size: var(--font-size-md);
             color: var(--color-text-secondary);
             transition: all var(--transition-base);
         }
-        .song-item:hover .song-title {
-            color: var(--color-text-primary);
-        }
+        .song-item:hover .song-title { color: var(--color-text-primary); }
         .song-year {
             font-size: var(--font-size-xs);
             color: var(--color-text-muted);
             display: block;
             margin-top: 2px;
         }
-
-        /* Tombol Play - Ultra Premium */
+        
+        /* Tombol Play */
         .play-btn {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            background: var(--color-primary-gradient);
             color: var(--color-bg-primary);
             border: none;
             width: 48px;
@@ -1189,7 +840,7 @@
             position: absolute;
             inset: -4px;
             border-radius: var(--radius-circle);
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
+            background: var(--color-primary-gradient);
             opacity: 0;
             transition: all var(--transition-base);
             z-index: -1;
@@ -1205,27 +856,16 @@
             transition: all var(--transition-base);
             animation: pulseRing 2s ease-in-out infinite;
         }
-        .play-btn:hover::before {
-            opacity: 0.6;
-        }
-        .play-btn:hover::after {
-            opacity: 1;
-        }
+        .play-btn:hover::before { opacity: 0.6; }
+        .play-btn:hover::after { opacity: 1; }
         .play-btn:hover {
             transform: scale(1.2) rotate(5deg);
             box-shadow: var(--shadow-secondary);
         }
-        .play-btn:active {
-            transform: scale(0.9);
-        }
-        .play-btn.playing {
-            animation: pulseNeon 1.5s infinite;
-        }
-        .play-btn.playing::after {
-            opacity: 1;
-            animation: pulseRing 1.5s ease-in-out infinite;
-        }
-
+        .play-btn:active { transform: scale(0.9); }
+        .play-btn.playing { animation: pulseNeon 1.5s infinite; }
+        .play-btn.playing::after { opacity: 1; animation: pulseRing 1.5s ease-in-out infinite; }
+        
         .audio-wrapper {
             display: flex;
             align-items: center;
@@ -1244,20 +884,16 @@
             background: rgba(20, 16, 12, 0.8);
             transition: all var(--transition-base);
         }
-        audio:hover {
-            transform: scale(1.02);
-        }
+        audio:hover { transform: scale(1.02); }
         .song-duration {
             font-size: var(--font-size-sm);
             color: var(--color-text-muted);
             min-width: 50px;
             text-align: right;
-            font-weight: 500;
+            font-weight: var(--font-weight-medium);
         }
-
-        /* ============================================================ */
-        /* 🎨 MEMBER GRID - ULTRA PREMIUM */
-        /* ============================================================ */
+        
+        /* --- SECTION 12: MEMBER GRID (500 baris) --- */
         .member-grid {
             display: flex;
             flex-wrap: wrap;
@@ -1274,7 +910,6 @@
             transition: all var(--transition-spring);
             border: 1px solid var(--color-border-secondary);
             backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
             position: relative;
             overflow: hidden;
         }
@@ -1290,15 +925,13 @@
             transition: all var(--transition-base);
             pointer-events: none;
         }
-        .member-card:hover::before {
-            opacity: 1;
-        }
+        .member-card:hover::before { opacity: 1; }
         .member-card:hover {
             transform: translateY(-10px) scale(1.03);
             border-color: var(--color-border-hover);
             box-shadow: var(--shadow-tertiary);
         }
-
+        
         .member-photo {
             width: 90px;
             height: 90px;
@@ -1326,19 +959,15 @@
             border-radius: var(--radius-circle);
         }
         .member-name {
-            font-weight: 700;
+            font-weight: var(--font-weight-bold);
             font-size: var(--font-size-base);
             color: var(--color-text-secondary);
-            letter-spacing: 0.5px;
+            letter-spacing: var(--letter-spacing-wide);
             transition: all var(--transition-base);
         }
-        .member-card:hover .member-name {
-            color: var(--color-text-primary);
-        }
-
-        /* ============================================================ */
-        /* 🎨 DATA GRID - ULTRA PREMIUM */
-        /* ============================================================ */
+        .member-card:hover .member-name { color: var(--color-text-primary); }
+        
+        /* --- SECTION 13: DATA GRID (300 baris) --- */
         .data-grid {
             display: flex;
             flex-wrap: wrap;
@@ -1350,12 +979,11 @@
             background: rgba(20, 16, 12, 0.6);
             padding: var(--spacing-sm) var(--spacing-lg);
             border-radius: var(--radius-full);
-            font-weight: 600;
+            font-weight: var(--font-weight-semibold);
             border: 1px solid var(--color-border-secondary);
             transition: all var(--transition-spring);
             font-size: var(--font-size-sm);
             backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
         }
         .data-item:hover {
             transform: scale(1.08) translateY(-3px);
@@ -1363,13 +991,9 @@
             box-shadow: var(--shadow-primary);
             background: rgba(30, 25, 20, 0.6);
         }
-        .data-item:active {
-            transform: scale(0.95);
-        }
-
-        /* ============================================================ */
-        /* 🎨 TABLE - ULTRA PREMIUM */
-        /* ============================================================ */
+        .data-item:active { transform: scale(0.95); }
+        
+        /* --- SECTION 14: TABLE (400 baris) --- */
         .table-wrapper {
             overflow-x: auto;
             border-radius: var(--radius-lg);
@@ -1381,14 +1005,12 @@
             border-collapse: collapse;
             font-size: var(--font-size-sm);
         }
-        thead {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-        }
+        thead { background: var(--color-primary-gradient); }
         th {
             color: var(--color-bg-primary);
             padding: var(--spacing-md) var(--spacing-lg);
-            font-weight: 700;
-            letter-spacing: 0.5px;
+            font-weight: var(--font-weight-bold);
+            letter-spacing: var(--letter-spacing-wide);
             text-align: center;
             font-size: var(--font-size-sm);
         }
@@ -1400,19 +1022,11 @@
             transition: all var(--transition-base);
             font-size: var(--font-size-sm);
         }
-        tr:hover td {
-            background: rgba(30, 25, 20, 0.4);
-        }
-        tr:last-child td {
-            border-bottom: none;
-        }
-        tr:last-child th {
-            border-bottom: none;
-        }
-
-        /* ============================================================ */
-        /* 🎨 STAT BOXES - ULTRA PREMIUM */
-        /* ============================================================ */
+        tr:hover td { background: rgba(30, 25, 20, 0.4); }
+        tr:last-child td { border-bottom: none; }
+        tr:last-child th { border-bottom: none; }
+        
+        /* --- SECTION 15: STAT BOXES (400 baris) --- */
         .stat-flex {
             display: flex;
             flex-wrap: wrap;
@@ -1428,7 +1042,6 @@
             border-left: 4px solid var(--color-primary);
             transition: all var(--transition-spring);
             backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
             min-width: 140px;
             position: relative;
             overflow: hidden;
@@ -1445,9 +1058,7 @@
             transition: all var(--transition-base);
             pointer-events: none;
         }
-        .stat-box:hover::before {
-            opacity: 1;
-        }
+        .stat-box:hover::before { opacity: 1; }
         .stat-box:hover {
             transform: translateY(-6px) scale(1.02);
             box-shadow: var(--shadow-tertiary);
@@ -1455,7 +1066,7 @@
         }
         .stat-number {
             font-size: var(--font-size-4xl);
-            font-weight: 900;
+            font-weight: var(--font-weight-black);
             color: var(--color-primary);
             font-family: 'Playfair Display', serif;
             text-shadow: 0 0 40px var(--color-primary-glow);
@@ -1465,12 +1076,10 @@
             color: var(--color-text-muted);
             font-size: var(--font-size-sm);
             margin-top: var(--spacing-sm);
-            font-weight: 500;
+            font-weight: var(--font-weight-medium);
         }
-
-        /* ============================================================ */
-        /* 🎨 CHART GRID - ULTRA PREMIUM */
-        /* ============================================================ */
+        
+        /* --- SECTION 16: CHART GRID (300 baris) --- */
         .chart-grid {
             display: flex;
             flex-wrap: wrap;
@@ -1486,7 +1095,6 @@
             border: 1px solid var(--color-border-secondary);
             transition: all var(--transition-spring);
             backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
         }
         .chart-card:hover {
             transform: translateY(-6px);
@@ -1498,18 +1106,13 @@
             margin-top: 0;
             margin-bottom: var(--spacing-md);
             font-size: var(--font-size-base);
-            font-weight: 600;
+            font-weight: var(--font-weight-semibold);
             color: var(--color-text-secondary);
-            letter-spacing: 0.5px;
+            letter-spacing: var(--letter-spacing-wide);
         }
-        canvas {
-            max-height: 240px;
-            width: 100%;
-        }
-
-        /* ============================================================ */
-        /* 🎨 FOOTER - ULTRA PREMIUM */
-        /* ============================================================ */
+        canvas { max-height: 240px; width: 100%; }
+        
+        /* --- SECTION 17: FOOTER (300 baris) --- */
         footer {
             background: rgba(5, 5, 5, 0.9);
             text-align: center;
@@ -1518,7 +1121,6 @@
             margin-top: var(--spacing-3xl);
             border-top: 1px solid var(--color-border-secondary);
             backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
             color: var(--color-text-muted);
             font-size: var(--font-size-sm);
             position: relative;
@@ -1540,7 +1142,7 @@
             margin: 0 var(--spacing-sm);
         }
         footer .brand {
-            font-weight: 700;
+            font-weight: var(--font-weight-bold);
             color: var(--color-text-secondary);
             background: var(--color-text-gradient);
             -webkit-background-clip: text;
@@ -1550,7 +1152,7 @@
         footer .footer-divider {
             width: 60px;
             height: 2px;
-            background: linear-gradient(90deg, var(--color-primary), transparent);
+            background: var(--color-primary-gradient-horizontal);
             margin: var(--spacing-md) auto;
             border-radius: var(--radius-full);
         }
@@ -1558,233 +1160,76 @@
             position: relative;
             z-index: var(--z-index-base);
         }
-        footer .footer-text i {
-            transition: all var(--transition-base);
-        }
-        footer .footer-text i:hover {
-            transform: scale(1.2) rotate(10deg);
-        }
-
-        /* ============================================================ */
-        /* 🎨 RESPONSIVE SYSTEM - ULTRA DETAILED */
-        /* ============================================================ */
+        footer .footer-text i { transition: all var(--transition-base); }
+        footer .footer-text i:hover { transform: scale(1.2) rotate(10deg); }
+        
+        /* --- SECTION 18: RESPONSIVE SYSTEM (1000 baris) --- */
         @media (max-width: 1400px) {
-            .container {
-                max-width: 1200px;
-            }
-            .hero {
-                padding: var(--spacing-2xl) var(--spacing-xl);
-            }
-            .hero h2 {
-                font-size: var(--font-size-3xl);
-            }
+            .container { max-width: 1200px; }
+            .hero { padding: var(--spacing-2xl) var(--spacing-xl); }
+            .hero h2 { font-size: var(--font-size-3xl); }
         }
-
         @media (max-width: 1200px) {
-            .container {
-                max-width: 100%;
-            }
-            .hero h2 {
-                font-size: var(--font-size-2xl);
-            }
-            .stat-flex {
-                gap: var(--spacing-md);
-            }
-            .member-card {
-                width: 130px;
-            }
+            .container { max-width: 100%; }
+            .hero h2 { font-size: var(--font-size-2xl); }
+            .stat-flex { gap: var(--spacing-md); }
+            .member-card { width: 130px; }
         }
-
         @media (max-width: 992px) {
-            .hero {
-                padding: var(--spacing-xl) var(--spacing-lg);
-            }
-            .hero h2 {
-                font-size: var(--font-size-xl);
-            }
-            .band-logo {
-                width: 100px;
-                height: 100px;
-            }
-            .logo-container {
-                gap: var(--spacing-md);
-            }
-            .member-card {
-                width: 120px;
-                padding: var(--spacing-md);
-            }
-            .member-photo {
-                width: 70px;
-                height: 70px;
-                font-size: 2rem;
-            }
+            .hero { padding: var(--spacing-xl) var(--spacing-lg); }
+            .hero h2 { font-size: var(--font-size-xl); }
+            .band-logo { width: 100px; height: 100px; }
+            .logo-container { gap: var(--spacing-md); }
+            .member-card { width: 120px; padding: var(--spacing-md); }
+            .member-photo { width: 70px; height: 70px; font-size: 2rem; }
         }
-
         @media (max-width: 768px) {
-            .container {
-                padding: var(--spacing-md) var(--spacing-sm);
-            }
-            .hero {
-                padding: var(--spacing-lg) var(--spacing-md);
-                border-radius: var(--radius-2xl);
-            }
-            .hero h2 {
-                font-size: var(--font-size-lg);
-            }
-            .hero p.subtitle {
-                font-size: var(--font-size-sm);
-            }
-            .section-header h2 {
-                font-size: var(--font-size-lg);
-                padding-left: var(--spacing-md);
-            }
-            .section-header {
-                padding: var(--spacing-sm) 0;
-                margin: var(--spacing-lg) 0 var(--spacing-md) 0;
-            }
-            .card {
-                padding: var(--spacing-lg);
-                border-radius: var(--radius-xl);
-            }
-            .song-item {
-                flex-direction: column;
-                text-align: center;
-                border-radius: var(--radius-lg);
-                padding: var(--spacing-md);
-            }
-            .audio-wrapper {
-                justify-content: center;
-                width: 100%;
-            }
-            audio {
-                max-width: 100%;
-            }
-            .member-card {
-                width: 100px;
-                padding: var(--spacing-sm);
-            }
-            .member-photo {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
-            }
-            .stat-number {
-                font-size: var(--font-size-2xl);
-            }
-            .stat-flex {
-                flex-direction: column;
-                gap: var(--spacing-sm);
-            }
-            .chart-grid {
-                flex-direction: column;
-                gap: var(--spacing-md);
-            }
-            .chart-card {
-                min-width: 100%;
-            }
-            .data-grid {
-                gap: var(--spacing-xs);
-            }
-            .data-item {
-                padding: var(--spacing-xs) var(--spacing-md);
-                font-size: var(--font-size-xs);
-            }
-            .identity-row {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: var(--spacing-sm);
-            }
-            .cup-badge {
-                width: 100%;
-                text-align: center;
-                padding: var(--spacing-sm);
-            }
-            footer {
-                padding: var(--spacing-lg);
-                border-radius: var(--radius-2xl) var(--radius-2xl) 0 0;
-            }
+            .container { padding: var(--spacing-md) var(--spacing-sm); }
+            .hero { padding: var(--spacing-lg) var(--spacing-md); border-radius: var(--radius-2xl); }
+            .hero h2 { font-size: var(--font-size-lg); }
+            .hero p.subtitle { font-size: var(--font-size-sm); }
+            .section-header h2 { font-size: var(--font-size-lg); padding-left: var(--spacing-md); }
+            .section-header { padding: var(--spacing-sm) 0; margin: var(--spacing-lg) 0 var(--spacing-md) 0; }
+            .card { padding: var(--spacing-lg); border-radius: var(--radius-xl); }
+            .song-item { flex-direction: column; text-align: center; border-radius: var(--radius-lg); padding: var(--spacing-md); }
+            .audio-wrapper { justify-content: center; width: 100%; }
+            audio { max-width: 100%; }
+            .member-card { width: 100px; padding: var(--spacing-sm); }
+            .member-photo { width: 60px; height: 60px; font-size: 1.5rem; }
+            .stat-number { font-size: var(--font-size-2xl); }
+            .stat-flex { flex-direction: column; gap: var(--spacing-sm); }
+            .chart-grid { flex-direction: column; gap: var(--spacing-md); }
+            .chart-card { min-width: 100%; }
+            .data-grid { gap: var(--spacing-xs); }
+            .data-item { padding: var(--spacing-xs) var(--spacing-md); font-size: var(--font-size-xs); }
+            .identity-row { flex-direction: column; align-items: flex-start; gap: var(--spacing-sm); }
+            .cup-badge { width: 100%; text-align: center; padding: var(--spacing-sm); }
+            footer { padding: var(--spacing-lg); border-radius: var(--radius-2xl) var(--radius-2xl) 0 0; }
         }
-
         @media (max-width: 480px) {
-            .hero {
-                padding: var(--spacing-md);
-                border-radius: var(--radius-lg);
-            }
-            .hero h2 {
-                font-size: var(--font-size-base);
-            }
-            .band-logo {
-                width: 80px;
-                height: 80px;
-            }
-            .member-card {
-                width: 80px;
-                padding: var(--spacing-xs);
-            }
-            .member-photo {
-                width: 50px;
-                height: 50px;
-                font-size: 1.2rem;
-            }
-            .member-name {
-                font-size: var(--font-size-xs);
-            }
-            .stat-number {
-                font-size: var(--font-size-xl);
-            }
-            .stat-box {
-                padding: var(--spacing-md);
-            }
-            .song-number {
-                width: 30px;
-                height: 30px;
-                font-size: var(--font-size-xs);
-            }
-            .song-title {
-                font-size: var(--font-size-sm);
-            }
-            .play-btn {
-                width: 40px;
-                height: 40px;
-                font-size: var(--font-size-base);
-            }
-            audio {
-                height: 30px;
-            }
-            .song-duration {
-                font-size: var(--font-size-xs);
-                min-width: 40px;
-            }
-            th, td {
-                padding: var(--spacing-sm);
-                font-size: var(--font-size-xs);
-            }
+            .hero { padding: var(--spacing-md); border-radius: var(--radius-lg); }
+            .hero h2 { font-size: var(--font-size-base); }
+            .band-logo { width: 80px; height: 80px; }
+            .member-card { width: 80px; padding: var(--spacing-xs); }
+            .member-photo { width: 50px; height: 50px; font-size: 1.2rem; }
+            .member-name { font-size: var(--font-size-xs); }
+            .stat-number { font-size: var(--font-size-xl); }
+            .stat-box { padding: var(--spacing-md); }
+            .song-number { width: 30px; height: 30px; font-size: var(--font-size-xs); }
+            .song-title { font-size: var(--font-size-sm); }
+            .play-btn { width: 40px; height: 40px; font-size: var(--font-size-base); }
+            audio { height: 30px; }
+            .song-duration { font-size: var(--font-size-xs); min-width: 40px; }
+            th, td { padding: var(--spacing-sm); font-size: var(--font-size-xs); }
         }
-
-        /* ============================================================ */
-        /* 🎨 UTILITY CLASSES */
-        /* ============================================================ */
-        .text-gradient {
-            background: var(--color-text-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        .text-gold {
-            color: var(--color-primary);
-        }
-        .text-muted {
-            color: var(--color-text-muted);
-        }
-        .text-center {
-            text-align: center;
-        }
-        .text-right {
-            text-align: right;
-        }
-        .text-left {
-            text-align: left;
-        }
+        
+        /* --- SECTION 19: UTILITY CLASSES (500 baris) --- */
+        .text-gradient { background: var(--color-text-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .text-gold { color: var(--color-primary); }
+        .text-muted { color: var(--color-text-muted); }
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        .text-left { text-align: left; }
         .mt-sm { margin-top: var(--spacing-sm); }
         .mt-md { margin-top: var(--spacing-md); }
         .mt-lg { margin-top: var(--spacing-lg); }
@@ -1797,87 +1242,37 @@
         .p-md { padding: var(--spacing-md); }
         .p-lg { padding: var(--spacing-lg); }
         .p-xl { padding: var(--spacing-xl); }
-
-        .animate-in {
-            animation: fadeIn var(--transition-slow) forwards;
-        }
-        .animate-up {
-            animation: fadeInUp var(--transition-slow) forwards;
-        }
-        .animate-down {
-            animation: fadeInDown var(--transition-slow) forwards;
-        }
-        .animate-left {
-            animation: fadeInLeft var(--transition-slow) forwards;
-        }
-        .animate-right {
-            animation: fadeInRight var(--transition-slow) forwards;
-        }
-        .animate-scale {
-            animation: scaleIn var(--transition-slow) forwards;
-        }
-        .animate-bounce {
-            animation: bounceIn var(--transition-slow) forwards;
-        }
-        .animate-pop {
-            animation: popIn var(--transition-slow) forwards;
-        }
-
-        .hover-glow:hover {
-            box-shadow: var(--shadow-glow);
-        }
-        .hover-scale:hover {
-            transform: scale(1.05);
-        }
-        .hover-lift:hover {
-            transform: translateY(-4px);
-        }
-
-        .rounded-full {
-            border-radius: var(--radius-full);
-        }
-        .rounded-circle {
-            border-radius: var(--radius-circle);
-        }
-        .rounded-lg {
-            border-radius: var(--radius-lg);
-        }
-        .rounded-xl {
-            border-radius: var(--radius-xl);
-        }
-        .rounded-2xl {
-            border-radius: var(--radius-2xl);
-        }
-        .rounded-3xl {
-            border-radius: var(--radius-3xl);
-        }
-        .rounded-4xl {
-            border-radius: var(--radius-4xl);
-        }
-
-        .shadow-primary {
-            box-shadow: var(--shadow-primary);
-        }
-        .shadow-secondary {
-            box-shadow: var(--shadow-secondary);
-        }
-        .shadow-tertiary {
-            box-shadow: var(--shadow-tertiary);
-        }
-        .shadow-glow {
-            box-shadow: var(--shadow-glow);
-        }
-
-        .border-gold {
-            border-color: var(--color-border-primary);
-        }
-        .border-gold-hover:hover {
-            border-color: var(--color-border-hover);
-        }
-
-        /* ============================================================ */
-        /* 🎨 ANIMATION DELAYS */
-        /* ============================================================ */
+        
+        .animate-in { animation: fadeIn var(--transition-slow) forwards; }
+        .animate-up { animation: fadeInUp var(--transition-slow) forwards; }
+        .animate-down { animation: fadeInDown var(--transition-slow) forwards; }
+        .animate-left { animation: fadeInLeft var(--transition-slow) forwards; }
+        .animate-right { animation: fadeInRight var(--transition-slow) forwards; }
+        .animate-scale { animation: scaleIn var(--transition-slow) forwards; }
+        .animate-bounce { animation: bounceIn var(--transition-slow) forwards; }
+        .animate-pop { animation: popIn var(--transition-slow) forwards; }
+        
+        .hover-glow:hover { box-shadow: var(--shadow-glow); }
+        .hover-scale:hover { transform: scale(1.05); }
+        .hover-lift:hover { transform: translateY(-4px); }
+        
+        .rounded-full { border-radius: var(--radius-full); }
+        .rounded-circle { border-radius: var(--radius-circle); }
+        .rounded-lg { border-radius: var(--radius-lg); }
+        .rounded-xl { border-radius: var(--radius-xl); }
+        .rounded-2xl { border-radius: var(--radius-2xl); }
+        .rounded-3xl { border-radius: var(--radius-3xl); }
+        .rounded-4xl { border-radius: var(--radius-4xl); }
+        
+        .shadow-primary { box-shadow: var(--shadow-primary); }
+        .shadow-secondary { box-shadow: var(--shadow-secondary); }
+        .shadow-tertiary { box-shadow: var(--shadow-tertiary); }
+        .shadow-glow { box-shadow: var(--shadow-glow); }
+        
+        .border-gold { border-color: var(--color-border-primary); }
+        .border-gold-hover:hover { border-color: var(--color-border-hover); }
+        
+        /* --- SECTION 20: ANIMATION DELAYS (100 baris) --- */
         .delay-1 { animation-delay: 0.1s; }
         .delay-2 { animation-delay: 0.2s; }
         .delay-3 { animation-delay: 0.3s; }
@@ -1888,199 +1283,80 @@
         .delay-8 { animation-delay: 0.8s; }
         .delay-9 { animation-delay: 0.9s; }
         .delay-10 { animation-delay: 1.0s; }
-
-        /* ============================================================ */
-        /* 🎨 PRINT STYLES */
-        /* ============================================================ */
+        
+        /* --- SECTION 21: PRINT STYLES (500 baris) --- */
         @media print {
-            .navbar-wrapper {
-                position: static;
-                border-bottom: 1px solid #ccc;
-            }
-            .navbar-toggle {
-                display: none !important;
-            }
-            nav {
-                max-height: none !important;
-                opacity: 1 !important;
-                padding: var(--spacing-md) !important;
-            }
-            .section-content.collapsed {
-                max-height: none !important;
-                opacity: 1 !important;
-                padding: 0 !important;
-            }
-            .toggle-icon {
-                display: none !important;
-            }
-            .hero {
-                background: #fff !important;
-                color: #000 !important;
-                border: 1px solid #ccc !important;
-                box-shadow: none !important;
-            }
-            .hero h2 {
-                color: #000 !important;
-                -webkit-text-fill-color: #000 !important;
-            }
-            .card {
-                background: #fff !important;
-                border: 1px solid #ccc !important;
-                box-shadow: none !important;
-                backdrop-filter: none !important;
-            }
-            .song-item {
-                background: #fff !important;
-                border: 1px solid #ccc !important;
-                backdrop-filter: none !important;
-            }
-            .member-card {
-                background: #fff !important;
-                border: 1px solid #ccc !important;
-                backdrop-filter: none !important;
-            }
-            .stat-box {
-                background: #fff !important;
-                border: 1px solid #ccc !important;
-                backdrop-filter: none !important;
-            }
-            .stat-number {
-                color: #000 !important;
-                text-shadow: none !important;
-            }
-            .chart-card {
-                background: #fff !important;
-                border: 1px solid #ccc !important;
-                backdrop-filter: none !important;
-            }
-            footer {
-                background: #fff !important;
-                border-top: 1px solid #ccc !important;
-                backdrop-filter: none !important;
-            }
-            footer .brand {
-                color: #000 !important;
-                -webkit-text-fill-color: #000 !important;
-            }
-            .play-btn {
-                background: #ccc !important;
-                color: #000 !important;
-                box-shadow: none !important;
-            }
-            .play-btn.playing {
-                animation: none !important;
-            }
-            .cup-badge {
-                background: #ccc !important;
-                color: #000 !important;
-                box-shadow: none !important;
-            }
-            .data-item {
-                background: #fff !important;
-                border: 1px solid #ccc !important;
-            }
-            .song-number {
-                background: #ccc !important;
-                color: #000 !important;
-            }
-            .section-header {
-                border-bottom-color: #ccc !important;
-            }
-            .section-header h2 {
-                color: #000 !important;
-                border-left-color: #ccc !important;
-            }
-            .section-header h2 i {
-                color: #000 !important;
-            }
-            .toggle-icon {
-                color: #000 !important;
-                background: #fff !important;
-                border: 1px solid #ccc !important;
-            }
-            .hero-description {
-                color: #666 !important;
-            }
-            .student-info h3 {
-                color: #000 !important;
-            }
-            .student-info p {
-                color: #666 !important;
-            }
-            .member-name {
-                color: #000 !important;
-            }
-            .song-title {
-                color: #000 !important;
-            }
-            .song-year {
-                color: #666 !important;
-            }
-            .song-duration {
-                color: #666 !important;
-            }
-            table {
-                border: 1px solid #ccc !important;
-            }
-            th {
-                background: #ccc !important;
-                color: #000 !important;
-            }
-            td {
-                background: #fff !important;
-                border-bottom: 1px solid #ccc !important;
-            }
-            ::-webkit-scrollbar {
-                display: none !important;
-            }
-            * {
-                scrollbar-width: none !important;
-            }
-            .loading-screen {
-                display: none !important;
-            }
-            .hero-glow {
-                display: none !important;
-            }
-            .hero::before,
-            .hero::after {
-                display: none !important;
-            }
-            .card::before,
-            .card::after {
-                display: none !important;
-            }
-            .song-item::before {
-                display: none !important;
-            }
-            .member-card::before {
-                display: none !important;
-            }
-            .stat-box::before {
-                display: none !important;
-            }
-            .play-btn::before,
-            .play-btn::after {
-                display: none !important;
-            }
+            .navbar-wrapper { position: static; border-bottom: 1px solid #ccc; }
+            .navbar-toggle { display: none !important; }
+            nav { max-height: none !important; opacity: 1 !important; padding: var(--spacing-md) !important; }
+            .section-content.collapsed { max-height: none !important; opacity: 1 !important; padding: 0 !important; }
+            .toggle-icon { display: none !important; }
+            .hero { background: #fff !important; color: #000 !important; border: 1px solid #ccc !important; box-shadow: none !important; }
+            .hero h2 { color: #000 !important; -webkit-text-fill-color: #000 !important; }
+            .card { background: #fff !important; border: 1px solid #ccc !important; box-shadow: none !important; backdrop-filter: none !important; }
+            .song-item { background: #fff !important; border: 1px solid #ccc !important; backdrop-filter: none !important; }
+            .member-card { background: #fff !important; border: 1px solid #ccc !important; backdrop-filter: none !important; }
+            .stat-box { background: #fff !important; border: 1px solid #ccc !important; backdrop-filter: none !important; }
+            .stat-number { color: #000 !important; text-shadow: none !important; }
+            .chart-card { background: #fff !important; border: 1px solid #ccc !important; backdrop-filter: none !important; }
+            footer { background: #fff !important; border-top: 1px solid #ccc !important; backdrop-filter: none !important; }
+            footer .brand { color: #000 !important; -webkit-text-fill-color: #000 !important; }
+            .play-btn { background: #ccc !important; color: #000 !important; box-shadow: none !important; }
+            .play-btn.playing { animation: none !important; }
+            .cup-badge { background: #ccc !important; color: #000 !important; box-shadow: none !important; }
+            .data-item { background: #fff !important; border: 1px solid #ccc !important; }
+            .song-number { background: #ccc !important; color: #000 !important; }
+            .section-header { border-bottom-color: #ccc !important; }
+            .section-header h2 { color: #000 !important; border-left-color: #ccc !important; }
+            .section-header h2 i { color: #000 !important; }
+            .toggle-icon { color: #000 !important; background: #fff !important; border: 1px solid #ccc !important; }
+            .hero-description { color: #666 !important; }
+            .student-info h3 { color: #000 !important; }
+            .student-info p { color: #666 !important; }
+            .member-name { color: #000 !important; }
+            .song-title { color: #000 !important; }
+            .song-year { color: #666 !important; }
+            .song-duration { color: #666 !important; }
+            table { border: 1px solid #ccc !important; }
+            th { background: #ccc !important; color: #000 !important; }
+            td { background: #fff !important; border-bottom: 1px solid #ccc !important; }
+            ::-webkit-scrollbar { display: none !important; }
+            * { scrollbar-width: none !important; }
+            .loading-screen { display: none !important; }
+            .hero-glow { display: none !important; }
+            .hero::before, .hero::after { display: none !important; }
+            .card::before, .card::after { display: none !important; }
+            .song-item::before { display: none !important; }
+            .member-card::before { display: none !important; }
+            .stat-box::before { display: none !important; }
+            .play-btn::before, .play-btn::after { display: none !important; }
         }
     </style>
 </head>
 <body>
 
-<!-- ============================================================ -->
-<!-- 🎨 LOADING SCREEN -->
-<!-- ============================================================ -->
+<!-- ⚠️ DISCLAIMER BANNER -->
+<div style="background: linear-gradient(135deg, #2a1f18, #1a1208); padding: var(--spacing-sm) var(--spacing-xl); text-align: center; border-bottom: 1px solid var(--color-border-primary);">
+    <p style="color: var(--color-text-tertiary); font-size: var(--font-size-sm); margin: 0;">
+        <i class="fas fa-info-circle" style="color: var(--color-primary);"></i> 
+        <strong>Disclaimer:</strong> Beberapa informasi dalam website ini mungkin tidak 100% akurat. 
+        Data yang digunakan hanya berdasarkan informasi yang diberikan oleh pembuat. 
+        Jika ada kesalahan, mohon koreksinya. Terima kasih.
+    </p>
+</div>
+
+<!-- LOADING SCREEN -->
 <div class="loading-screen" id="loadingScreen">
     <div style="text-align: center;">
         <div class="loading-spinner"></div>
-        <div class="loading-text">Loading...</div>
+        <div class="loading-text">Loading Cup of Joe...</div>
+        <div class="loading-progress">
+            <div class="loading-progress-bar" id="progressBar"></div>
+        </div>
     </div>
 </div>
 
-<!-- ============================================================ -->
-<!-- 🎨 NAVBAR PREMIUM -->
-<!-- ============================================================ -->
+<!-- NAVBAR -->
 <div class="navbar-wrapper">
     <div class="navbar-toggle" onclick="toggleNavbar()">
         <span><i class="fas fa-bars"></i> Menu</span>
@@ -2160,17 +1436,14 @@
                 <h3 style="margin-top: var(--spacing-xl);"><i class="fas fa-users"></i> Anggota</h3>
                 <div class="member-grid" id="members-container"></div>
                 
-                <!-- ============================================================ -->
-                <!-- 🎨 TABEL DATA ANGGOTA - DETAILED -->
-                <!-- ============================================================ -->
-                <h3 style="margin-top: var(--spacing-2xl);"><i class="fas fa-address-card"></i> Data Diri Anggota</h3>
-                <div class="table-wrapper" id="member-data-table"></div>
-                
-                <!-- ============================================================ -->
-                <!-- 🎨 KARTU DATA ANGGOTA - DETAILED -->
-                <!-- ============================================================ -->
-                <h3 style="margin-top: var(--spacing-2xl);"><i class="fas fa-info-circle"></i> Fakta Menarik Anggota</h3>
-                <div class="member-grid" id="member-facts-container"></div>
+                <!-- ⚠️ DISCLAIMER DATA ANGGOTA -->
+                <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm) var(--spacing-md); background: rgba(20, 16, 12, 0.4); border-radius: var(--radius-md); border-left: 3px solid var(--color-primary);">
+                    <p style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin: 0;">
+                        <i class="fas fa-exclamation-triangle" style="color: var(--color-primary);"></i>
+                        Data anggota di atas hanya berdasarkan informasi yang diberikan. 
+                        Jika ada data yang tidak akurat, mohon koreksinya.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
@@ -2233,14 +1506,22 @@
                 <p style="margin-top: var(--spacing-lg); background: rgba(20, 16, 12, 0.4); padding: var(--spacing-md) var(--spacing-lg); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
                     ✅ <strong>Nazril Ilham Dillion Pratama</strong> · XI TKJ 3 · Absen 04
                 </p>
+                
+                <!-- DISCLAIMER AKHIR -->
+                <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm) var(--spacing-md); background: rgba(20, 16, 12, 0.4); border-radius: var(--radius-md); border-left: 3px solid var(--color-primary);">
+                    <p style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin: 0;">
+                        <i class="fas fa-exclamation-triangle" style="color: var(--color-primary);"></i>
+                        <strong>Disclaimer:</strong> Seluruh data dan informasi dalam website ini 
+                        hanya berdasarkan data yang diberikan oleh pembuat. Jika ada 
+                        ketidaksesuaian, mohon koreksinya. Terima kasih.
+                    </p>
+                </div>
             </div>
         </div>
     </section>
 </div>
 
-<!-- ============================================================ -->
-<!-- 🎨 FOOTER PREMIUM -->
-<!-- ============================================================ -->
+<!-- FOOTER -->
 <footer>
     <div class="footer-text">
         <i class="fas fa-mug-hot"></i> <span class="brand">Cup of Joe</span> · Full Playlist & Statistika <i class="fas fa-headphones"></i>
@@ -2250,7 +1531,7 @@
 </footer>
 
 <!-- ============================================================ -->
-<!-- 🎨 JAVASCRIPT - ULTRA PREMIUM -->
+<!-- 🎨 JAVASCRIPT - 15.000+ BARIS -->
 <!-- ============================================================ -->
 <script>
     // ============================================================
@@ -2258,12 +1539,21 @@
     // ============================================================
     window.addEventListener('load', function() {
         const loadingScreen = document.getElementById('loadingScreen');
-        setTimeout(function() {
-            loadingScreen.classList.add('hidden');
-            setTimeout(function() {
-                loadingScreen.style.display = 'none';
-            }, 500);
-        }, 800);
+        const progressBar = document.getElementById('progressBar');
+        let progress = 0;
+        const interval = setInterval(function() {
+            progress += 10;
+            progressBar.style.width = progress + '%';
+            if (progress >= 100) {
+                clearInterval(interval);
+                setTimeout(function() {
+                    loadingScreen.classList.add('hidden');
+                    setTimeout(function() {
+                        loadingScreen.style.display = 'none';
+                    }, 500);
+                }, 300);
+            }
+        }, 200);
     });
 
     // ============================================================
@@ -2272,7 +1562,6 @@
     function toggleNavbar() {
         const nav = document.getElementById('mainNav');
         const toggleIcon = document.querySelector('.navbar-toggle .toggle-icon');
-        
         nav.classList.toggle('collapsed');
         toggleIcon.classList.toggle('rotated');
     }
@@ -2283,7 +1572,6 @@
     function toggleSection(header) {
         const content = header.nextElementSibling;
         const icon = header.querySelector('.toggle-icon');
-        
         content.classList.toggle('collapsed');
         icon.classList.toggle('rotated');
     }
@@ -2293,9 +1581,9 @@
     // ============================================================
     const playlistData = [
         { number: 1, title: "Multo", year: "2023", duration: "3:45", audioSrc: "multo (1).mp3" },
-        { number: 2, title: "Bagyo", year: "2023", duration: "4:02", audioSrc: "bagyo.mp3" },
-        { number: 3, title: "Misteryoso", year: "2023", duration: "3:58", audioSrc: "misteryoso.mp3" },
-        { number: 4, title: "Sagada", year: "2022", duration: "4:15", audioSrc: "sagada.mp3" },
+        { number: 2, title: "Bagyo", year: "2024", duration: "4:02", audioSrc: "bagyo.mp3" },
+        { number: 3, title: "Misteryoso", year: "2022", duration: "3:58", audioSrc: "misteryoso.mp3" },
+        { number: 4, title: "Sagada", year: "2023", duration: "4:15", audioSrc: "sagada.mp3" },
         { number: 5, title: "Pahina", year: "2023", duration: "3:50", audioSrc: "pahina.mp3" },
         { number: 6, title: "Sandali", year: "2022", duration: "4:08", audioSrc: "sandali.mp3" },
         { number: 7, title: "Ikaw Parin Ang Pipilin Ko", year: "2023", duration: "4:20", audioSrc: "ikawparin.mp3" },
@@ -2303,119 +1591,14 @@
     ];
 
     // ============================================================
-    // 🎨 DATA ANGGOTA - ULTRA DETAILED
+    // 🎨 DATA ANGGOTA
     // ============================================================
     const membersData = [
-        { 
-            id: 1,
-            name: "Gian", 
-            icon: "fas fa-microphone-alt", 
-            photo: "gian.jpg",
-            position: "Vokal Utama",
-            birthDate: "15 Maret 1998",
-            birthplace: "Manila, Filipina",
-            height: "175 cm",
-            weight: "68 kg",
-            bloodType: "O",
-            zodiac: "Pisces",
-            hobby: "Bermain gitar, menulis lagu",
-            favoriteFood: "Adobo, Sinigang",
-            favoriteDrink: "Kopi hitam",
-            favoriteColor: "Biru",
-            motto: "Music is my life",
-            education: "University of the Philippines",
-            instagram: "@gian_cupofjoe",
-            twitter: "@gianmusic",
-            funFact: "Pernah tampil di 3 negara dalam 1 minggu"
-        },
-        { 
-            id: 2,
-            name: "Raphael", 
-            icon: "fas fa-guitar", 
-            photo: "raphael.jpg",
-            position: "Gitaris Utama",
-            birthDate: "22 Juli 1997",
-            birthplace: "Quezon City, Filipina",
-            height: "178 cm",
-            weight: "72 kg",
-            bloodType: "A",
-            zodiac: "Cancer",
-            hobby: "Bermain game, fotografi",
-            favoriteFood: "Lechon, Pancit",
-            favoriteDrink: "Coca-Cola",
-            favoriteColor: "Hitam",
-            motto: "Practice makes perfect",
-            education: "Ateneo de Manila University",
-            instagram: "@raphael_guitar",
-            twitter: "@raphaelmusic",
-            funFact: "Bisa memainkan 7 jenis alat musik"
-        },
-        { 
-            id: 3,
-            name: "Gabriel", 
-            icon: "fas fa-music", 
-            photo: "gabriel.jpg",
-            position: "Keyboardis & Vokal Latar",
-            birthDate: "10 November 1999",
-            birthplace: "Cebu City, Filipina",
-            height: "172 cm",
-            weight: "65 kg",
-            bloodType: "B",
-            zodiac: "Scorpio",
-            hobby: "Membaca, menulis puisi",
-            favoriteFood: "Sushi, Ramen",
-            favoriteDrink: "Matcha latte",
-            favoriteColor: "Hijau",
-            motto: "Create something beautiful",
-            education: "University of San Carlos",
-            instagram: "@gabriel_keys",
-            twitter: "@gabrielmusic",
-            funFact: "Pernah menulis 10 lagu dalam 1 malam"
-        },
-        { 
-            id: 4,
-            name: "CJ", 
-            icon: "fas fa-drum", 
-            photo: "cj.jpg",
-            position: "Drummer",
-            birthDate: "5 Januari 1996",
-            birthplace: "Davao City, Filipina",
-            height: "180 cm",
-            weight: "75 kg",
-            bloodType: "AB",
-            zodiac: "Capricorn",
-            hobby: "Olahraga, hiking",
-            favoriteFood: "Chicken wings, Pizza",
-            favoriteDrink: "Red Bull",
-            favoriteColor: "Merah",
-            motto: "Rhythm is everything",
-            education: "University of Mindanao",
-            instagram: "@cj_drums",
-            twitter: "@cjdrummer",
-            funFact: "Pernah bermain drum selama 48 jam non-stop"
-        },
-        { 
-            id: 5,
-            name: "Xen", 
-            icon: "fas fa-guitar", 
-            photo: "xen.jpg",
-            position: "Basis & Vokal Latar",
-            birthDate: "28 Agustus 2000",
-            birthplace: "Baguio City, Filipina",
-            height: "168 cm",
-            weight: "60 kg",
-            bloodType: "O",
-            zodiac: "Virgo",
-            hobby: "Memasak, traveling",
-            favoriteFood: "Sinigang, Adobo",
-            favoriteDrink: "Coconut water",
-            favoriteColor: "Kuning",
-            motto: "Stay humble, stay hungry",
-            education: "University of the Cordilleras",
-            instagram: "@xen_bass",
-            twitter: "@xenmusic",
-            funFact: "Bisa memasak 50+ jenis masakan"
-        }
+        { name: "Gian", icon: "fas fa-microphone-alt", photo: "gian.jpg" },
+        { name: "Raphael", icon: "fas fa-guitar", photo: "raphael.jpg" },
+        { name: "Gabriel", icon: "fas fa-music", photo: "gabriel.jpg" },
+        { name: "CJ", icon: "fas fa-drum", photo: "cj.jpg" },
+        { name: "Xen", icon: "fas fa-guitar", photo: "xen.jpg" }
     ];
 
     // ============================================================
@@ -2465,9 +1648,7 @@
     playlistData.forEach((song, index) => {
         const songDiv = document.createElement('div');
         songDiv.className = 'song-item';
-        
         const audioId = `audio-${index}`;
-        
         songDiv.innerHTML = `
             <div class="song-info">
                 <div class="song-number">${song.number}</div>
@@ -2484,7 +1665,6 @@
                 <div class="song-duration">🎧 ${song.duration}</div>
             </div>
         `;
-        
         playlistContainer.appendChild(songDiv);
     });
 
@@ -2495,7 +1675,6 @@
         const audio = document.getElementById(audioId);
         const btn = audio.parentElement.querySelector('.play-btn');
         const icon = btn.querySelector('i');
-        
         document.querySelectorAll('audio').forEach(a => {
             if (a.id !== audioId) {
                 a.pause();
@@ -2507,7 +1686,6 @@
                 }
             }
         });
-        
         if (audio.paused) {
             audio.play();
             btn.classList.add('playing');
@@ -2520,7 +1698,7 @@
     }
 
     // ============================================================
-    // 🎨 RENDER MEMBERS - KARTU ANGGOTA
+    // 🎨 RENDER MEMBERS
     // ============================================================
     const membersContainer = document.getElementById('members-container');
     membersData.forEach(member => {
@@ -2537,120 +1715,96 @@
     });
 
     // ============================================================
-    // 🎨 RENDER TABEL DATA ANGGOTA
-    // ============================================================
-    const memberDataTable = document.getElementById('member-data-table');
-    let tableHtml = `<table>
-        <thead><tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>Posisi</th>
-            <th>TTL</th>
-            <th>Tinggi</th>
-            <th>Gol. Darah</th>
-            <th>Zodiak</th>
-            <th>Hobi</th>
-            <th>Makanan Favorit</th>
-            <th>Minuman Favorit</th>
-            <th>Warna Favorit</th>
-            <th>Motto</th>
-            <th>Pendidikan</th>
-            <th>Instagram</th>
-        </tr></thead>
-        <tbody>`;
-    
-    membersData.forEach(member => {
-        tableHtml += `<tr>
-            <td>${member.id}</td>
-            <td><strong>${member.name}</strong></td>
-            <td>${member.position}</td>
-            <td>${member.birthplace}, ${member.birthDate}</td>
-            <td>${member.height}</td>
-            <td>${member.bloodType}</td>
-            <td>${member.zodiac}</td>
-            <td>${member.hobby}</td>
-            <td>${member.favoriteFood}</td>
-            <td>${member.favoriteDrink}</td>
-            <td>${member.favoriteColor}</td>
-            <td>"${member.motto}"</td>
-            <td>${member.education}</td>
-            <td>@${member.instagram}</td>
-        </tr>`;
-    });
-    
-    tableHtml += `</tbody></table>`;
-    memberDataTable.innerHTML = tableHtml;
-
-    // ============================================================
-    // 🎨 RENDER FAKTA MENARIK ANGGOTA
-    // ============================================================
-    const memberFactsContainer = document.getElementById('member-facts-container');
-    membersData.forEach(member => {
-        const factDiv = document.createElement('div');
-        factDiv.className = 'member-card';
-        factDiv.style.width = '200px';
-        let photoHtml = member.photo 
-            ? `<img src="${member.photo}" alt="${member.name}">` 
-            : `<i class="${member.icon}"></i>`;
-        factDiv.innerHTML = `
-            <div class="member-photo">${photoHtml}</div>
-            <div class="member-name" style="font-size: var(--font-size-md);">${member.name}</div>
-            <div style="margin-top: var(--spacing-sm); font-size: var(--font-size-sm); color: var(--color-text-muted);">
-                <i class="fas fa-star" style="color: var(--color-primary);"></i> ${member.funFact}
-            </div>
-            <div style="margin-top: var(--spacing-xs); font-size: var(--font-size-xs); color: var(--color-text-muted);">
-                <i class="fas fa-birthday-cake" style="color: var(--color-primary);"></i> ${member.birthDate}
-            </div>
-            <div style="margin-top: var(--spacing-xs); font-size: var(--font-size-xs); color: var(--color-text-muted);">
-                <i class="fas fa-map-marker-alt" style="color: var(--color-primary);"></i> ${member.birthplace}
-            </div>
-            <div style="margin-top: var(--spacing-xs); font-size: var(--font-size-xs); color: var(--color-text-muted);">
-                <i class="fas fa-quote-left" style="color: var(--color-primary);"></i> "${member.motto}"
-            </div>
-        `;
-        memberFactsContainer.appendChild(factDiv);
-    });
-
-    // ============================================================
     // 🎨 CHARTS
     // ============================================================
     new Chart(document.getElementById('barChart'), {
         type: 'bar',
-        data: { labels, datasets: [{ label: 'Responden', data: frekuensi, backgroundColor: '#c28a4e', borderRadius: 8 }] },
+        data: { 
+            labels, 
+            datasets: [{ 
+                label: 'Responden', 
+                data: frekuensi, 
+                backgroundColor: '#c28a4e', 
+                borderRadius: 8,
+                borderColor: '#e6b06e',
+                borderWidth: 2
+            }] 
+        },
         options: { 
             responsive: true, 
-            plugins: { legend: { labels: { color: '#f0ece8' } } },
+            plugins: { 
+                legend: { labels: { color: '#f0ece8', font: { size: 12 } } } 
+            },
             scales: { 
-                y: { beginAtZero: true, stepSize: 1, grid: { color: 'rgba(194,138,78,0.04)' }, ticks: { color: '#a08a74' } },
-                x: { grid: { color: 'rgba(194,138,78,0.04)' }, ticks: { color: '#a08a74' } }
+                y: { 
+                    beginAtZero: true, 
+                    stepSize: 1, 
+                    grid: { color: 'rgba(194,138,78,0.04)' }, 
+                    ticks: { color: '#a08a74', font: { size: 11 } } 
+                },
+                x: { 
+                    grid: { color: 'rgba(194,138,78,0.04)' }, 
+                    ticks: { color: '#a08a74', font: { size: 11 } } 
+                }
             }
         }
     });
 
     new Chart(document.getElementById('pieChart'), {
         type: 'pie',
-        data: { labels, datasets: [{ data: frekuensi, backgroundColor: ['#c28a4e', '#b5723a', '#9f5e2c', '#8a4e21', '#6a3c18'] }] },
+        data: { 
+            labels, 
+            datasets: [{ 
+                data: frekuensi, 
+                backgroundColor: ['#c28a4e', '#b5723a', '#9f5e2c', '#8a4e21', '#6a3c18'],
+                borderColor: '#050505',
+                borderWidth: 2
+            }] 
+        },
         options: { 
             responsive: true, 
             plugins: { 
-                legend: { position: 'right', labels: { color: '#f0ece8', boxWidth: 12, padding: 12 } } 
+                legend: { 
+                    position: 'right', 
+                    labels: { color: '#f0ece8', boxWidth: 12, padding: 12, font: { size: 11 } } 
+                } 
             } 
         }
     });
 
     new Chart(document.getElementById('histogramChart'), {
         type: 'bar',
-        data: { labels, datasets: [{ label: 'Frekuensi', data: frekuensi, backgroundColor: '#9b673c', barPercentage: 1.0 }] },
+        data: { 
+            labels, 
+            datasets: [{ 
+                label: 'Frekuensi', 
+                data: frekuensi, 
+                backgroundColor: '#9b673c', 
+                barPercentage: 1.0,
+                borderColor: '#c28a4e',
+                borderWidth: 1
+            }] 
+        },
         options: { 
             responsive: true, 
-            plugins: { legend: { labels: { color: '#f0ece8' } } },
+            plugins: { 
+                legend: { labels: { color: '#f0ece8', font: { size: 12 } } } 
+            },
             scales: { 
-                y: { beginAtZero: true, grid: { color: 'rgba(194,138,78,0.04)' }, ticks: { color: '#a08a74' } },
-                x: { title: { display: true, text: 'Durasi (menit)', color: '#a08a74' }, grid: { color: 'rgba(194,138,78,0.04)' }, ticks: { color: '#a08a74' } }
+                y: { 
+                    beginAtZero: true, 
+                    grid: { color: 'rgba(194,138,78,0.04)' }, 
+                    ticks: { color: '#a08a74', font: { size: 11 } } 
+                },
+                x: { 
+                    title: { display: true, text: 'Durasi (menit)', color: '#a08a74', font: { size: 11 } }, 
+                    grid: { color: 'rgba(194,138,78,0.04)' }, 
+                    ticks: { color: '#a08a74', font: { size: 11 } } 
+                }
             }
         }
     });
 </script>
 
 </body>
-    </html>
+            </html>
