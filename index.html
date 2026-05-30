@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         /* ============================================================ */
-        /* 🎨 5000+ BARIS - REDESIGN TOTAL + LYRIC POPUP PREMIUM        */
+        /* 🎨 5000+ BARIS - REDESIGN TOTAL + LYRIC POPUP DRAGGABLE     */
         /* ============================================================ */
         
         /* ---------- RESET & BASE ---------- */
@@ -556,7 +556,7 @@
         .chart-card h3 { text-align: center; margin-bottom: 1rem; font-size: 0.95rem; color: #f0ece8; }
         canvas { max-height: 220px; width: 100%; }
 
-        /* ---------- LYRIC POPUP PREMIUM ---------- */
+        /* ---------- LYRIC POPUP (DRAGGABLE + HIDEABLE) ---------- */
         .lyric-popup {
             position: fixed;
             bottom: 90px;
@@ -574,11 +574,15 @@
             opacity: 0;
             transform: translateY(24px) scale(0.96);
             pointer-events: none;
+            cursor: grab; /* Indicates draggable */
         }
         .lyric-popup.active {
             opacity: 1;
             transform: translateY(0) scale(1);
             pointer-events: auto;
+        }
+        .lyric-popup:active {
+            cursor: grabbing;
         }
         .lyric-popup .close-btn {
             position: absolute;
@@ -593,6 +597,22 @@
             color: #f0ece8;
             transform: rotate(90deg);
         }
+        /* New permanent hide button */
+        .lyric-popup .hide-btn {
+            position: absolute;
+            top: 8px;
+            left: 12px;
+            cursor: pointer;
+            color: #8a7a6a;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            background: transparent;
+            border: none;
+        }
+        .lyric-popup .hide-btn:hover {
+            color: #ff6b6b;
+            transform: scale(1.2);
+        }
         .lyric-popup .song-title {
             font-weight: 700;
             color: #c28a4e;
@@ -603,6 +623,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            padding-right: 40px; /* Space for buttons */
         }
         .lyric-popup .song-title i { font-size: 1rem; }
         .lyric-popup .lyrics-text {
@@ -618,12 +639,46 @@
         .lyric-popup .lyrics-text::-webkit-scrollbar { width: 4px; }
         .lyric-popup .lyrics-text::-webkit-scrollbar-thumb { background: #c28a4e; border-radius: 50px; }
         .lyric-popup .lyrics-text::-webkit-scrollbar-track { background: transparent; }
+
+        /* Toggle button to show hidden lyrics */
+        .lyric-toggle-btn {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            background: rgba(10,10,10,0.9);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(194,138,78,0.15);
+            border-radius: 50px;
+            padding: 10px 16px;
+            color: #c28a4e;
+            font-size: 0.85rem;
+            cursor: pointer;
+            z-index: 9998;
+            display: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        .lyric-toggle-btn:hover {
+            background: #c28a4e;
+            color: #0a0a0a;
+            transform: scale(1.05);
+        }
+        .lyric-toggle-btn.visible {
+            display: block;
+        }
+
         @media (max-width: 480px) {
             .lyric-popup {
                 width: 260px;
                 bottom: 70px;
                 right: 10px;
                 padding: 14px 16px;
+            }
+            .lyric-toggle-btn {
+                bottom: 70px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 0.75rem;
             }
         }
 
@@ -680,7 +735,7 @@
 <!-- Navbar -->
 <nav class="navbar">
     <div class="brand">
-        <img src="logo.jpg" alt="Logo Cup of Joe">
+        <img src="logo.png" alt="Logo Cup of Joe">
         <span>Cup of Joe</span>
     </div>
     <div class="toggle" onclick="document.querySelector('.navbar .links').classList.toggle('active')"><i class="fas fa-bars"></i></div>
@@ -707,7 +762,7 @@
             <div class="overlay"></div>
             <div class="content">
                 <div class="logo-badge">
-                    <img src="logo.jpg" alt="Logo">
+                    <img src="logo.png" alt="Logo">
                 </div>
                 <div class="text">
                     <h1>Cup of Joe</h1>
@@ -828,7 +883,7 @@
             <div class="card">
                 <div class="profile-container" style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
                     <div style="width:80px;height:80px;border-radius:16px;overflow:hidden;background:#0a0a0a;border:1px solid rgba(194,138,78,0.1);flex-shrink:0;">
-                        <img src="logo.jpg" alt="Logo" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="logo.png" alt="Logo" style="width:100%;height:100%;object-fit:cover;">
                     </div>
                     <div style="flex:1;min-width:200px;">
                         <h3 style="margin:0 0 0.3rem 0;font-size:1.4rem;">Cup of Joe</h3>
@@ -917,11 +972,17 @@
 
 </div>
 
-<!-- Lyric Popup -->
+<!-- Lyric Popup (Draggable + Hideable) -->
 <div id="lyricPopup" class="lyric-popup">
+    <button class="hide-btn" onclick="hideLyricsPermanent()" title="Sembunyikan pop-up lirik"><i class="fas fa-eye-slash"></i></button>
     <span class="close-btn" onclick="closeLyrics()"><i class="fas fa-times"></i></span>
     <div class="song-title"><i class="fas fa-music"></i> <span id="lyricSongTitle">Lirik Lagu</span></div>
     <div class="lyrics-text" id="lyricText">Lirik akan muncul saat lagu diputar...</div>
+</div>
+
+<!-- Toggle button to re-enable hidden lyrics -->
+<div id="lyricToggle" class="lyric-toggle-btn" onclick="showLyricsAgain()">
+    <i class="fas fa-comment-dots"></i> Tampilkan Lirik
 </div>
 
 <!-- Footer -->
@@ -1380,7 +1441,10 @@ Ikaw pa rin ang pipiliin ko`
     }
 
     // ---------- FUNGSI LIRIK ----------
+    let lyricsHidden = false;
+
     function showLyrics(title) {
+        if (lyricsHidden) return;
         const popup = document.getElementById('lyricPopup');
         const titleEl = document.getElementById('lyricSongTitle');
         const textEl = document.getElementById('lyricText');
@@ -1402,6 +1466,24 @@ Ikaw pa rin ang pipiliin ko`
         popup.classList.remove('active');
     }
 
+    function hideLyricsPermanent() {
+        const popup = document.getElementById('lyricPopup');
+        popup.classList.remove('active');
+        lyricsHidden = true;
+        document.getElementById('lyricToggle').classList.add('visible');
+    }
+
+    function showLyricsAgain() {
+        lyricsHidden = false;
+        document.getElementById('lyricToggle').classList.remove('visible');
+        // If a song is playing, show lyrics again
+        if (currentAudioId) {
+            const audio = document.getElementById(currentAudioId);
+            const songTitle = audio.parentElement.parentElement.querySelector('.title').innerText;
+            showLyrics(songTitle);
+        }
+    }
+
     // Tutup lirik jika audio berakhir
     document.querySelectorAll('audio').forEach(audio => {
         audio.addEventListener('ended', function() {
@@ -1412,6 +1494,63 @@ Ikaw pa rin ang pipiliin ko`
             }
             closeLyrics();
         });
+    });
+
+    // ---------- DRAGGABLE POPUP ----------
+    const popup = document.getElementById('lyricPopup');
+    let isDragging = false;
+    let offsetX, offsetY;
+
+    popup.addEventListener('mousedown', function(e) {
+        // Only drag if not clicking on a button
+        if (e.target.closest('.close-btn') || e.target.closest('.hide-btn')) return;
+        isDragging = true;
+        offsetX = e.clientX - this.getBoundingClientRect().left;
+        offsetY = e.clientY - this.getBoundingClientRect().top;
+        this.style.transition = 'none';
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        if (isDragging) {
+            popup.style.left = (e.clientX - offsetX) + 'px';
+            popup.style.top = (e.clientY - offsetY) + 'px';
+            popup.style.right = 'auto';
+            popup.style.bottom = 'auto';
+        }
+    });
+
+    document.addEventListener('mouseup', function() {
+        if (isDragging) {
+            isDragging = false;
+            popup.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        }
+    });
+
+    // Touch support for mobile
+    popup.addEventListener('touchstart', function(e) {
+        if (e.target.closest('.close-btn') || e.target.closest('.hide-btn')) return;
+        const touch = e.touches[0];
+        isDragging = true;
+        offsetX = touch.clientX - this.getBoundingClientRect().left;
+        offsetY = touch.clientY - this.getBoundingClientRect().top;
+        this.style.transition = 'none';
+    });
+
+    document.addEventListener('touchmove', function(e) {
+        if (isDragging) {
+            const touch = e.touches[0];
+            popup.style.left = (touch.clientX - offsetX) + 'px';
+            popup.style.top = (touch.clientY - offsetY) + 'px';
+            popup.style.right = 'auto';
+            popup.style.bottom = 'auto';
+        }
+    });
+
+    document.addEventListener('touchend', function() {
+        if (isDragging) {
+            isDragging = false;
+            popup.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        }
     });
 
     // ---------- DATA ANGGOTA ----------
@@ -1483,4 +1622,4 @@ Ikaw pa rin ang pipiliin ko`
     });
 </script>
 </body>
-</html>
+    </html>
