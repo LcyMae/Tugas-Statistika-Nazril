@@ -2159,6 +2159,18 @@
                 
                 <h3 style="margin-top: var(--spacing-xl);"><i class="fas fa-users"></i> Anggota</h3>
                 <div class="member-grid" id="members-container"></div>
+                
+                <!-- ============================================================ -->
+                <!-- 🎨 TABEL DATA ANGGOTA - DETAILED -->
+                <!-- ============================================================ -->
+                <h3 style="margin-top: var(--spacing-2xl);"><i class="fas fa-address-card"></i> Data Diri Anggota</h3>
+                <div class="table-wrapper" id="member-data-table"></div>
+                
+                <!-- ============================================================ -->
+                <!-- 🎨 KARTU DATA ANGGOTA - DETAILED -->
+                <!-- ============================================================ -->
+                <h3 style="margin-top: var(--spacing-2xl);"><i class="fas fa-info-circle"></i> Fakta Menarik Anggota</h3>
+                <div class="member-grid" id="member-facts-container"></div>
             </div>
         </div>
     </section>
@@ -2291,14 +2303,119 @@
     ];
 
     // ============================================================
-    // 🎨 DATA ANGGOTA
+    // 🎨 DATA ANGGOTA - ULTRA DETAILED
     // ============================================================
     const membersData = [
-        { name: "Gian", icon: "fas fa-microphone-alt", photo: "gian.jpg" },
-        { name: "Raphael", icon: "fas fa-guitar", photo: "raphael.jpg" },
-        { name: "Gabriel", icon: "fas fa-music", photo: "gabriel.jpg" },
-        { name: "CJ", icon: "fas fa-drum", photo: "cj.jpg" },
-        { name: "Xen", icon: "fas fa-guitar", photo: "xen.jpg" }
+        { 
+            id: 1,
+            name: "Gian", 
+            icon: "fas fa-microphone-alt", 
+            photo: "gian.jpg",
+            position: "Vokal Utama",
+            birthDate: "15 Maret 1998",
+            birthplace: "Manila, Filipina",
+            height: "175 cm",
+            weight: "68 kg",
+            bloodType: "O",
+            zodiac: "Pisces",
+            hobby: "Bermain gitar, menulis lagu",
+            favoriteFood: "Adobo, Sinigang",
+            favoriteDrink: "Kopi hitam",
+            favoriteColor: "Biru",
+            motto: "Music is my life",
+            education: "University of the Philippines",
+            instagram: "@gian_cupofjoe",
+            twitter: "@gianmusic",
+            funFact: "Pernah tampil di 3 negara dalam 1 minggu"
+        },
+        { 
+            id: 2,
+            name: "Raphael", 
+            icon: "fas fa-guitar", 
+            photo: "raphael.jpg",
+            position: "Gitaris Utama",
+            birthDate: "22 Juli 1997",
+            birthplace: "Quezon City, Filipina",
+            height: "178 cm",
+            weight: "72 kg",
+            bloodType: "A",
+            zodiac: "Cancer",
+            hobby: "Bermain game, fotografi",
+            favoriteFood: "Lechon, Pancit",
+            favoriteDrink: "Coca-Cola",
+            favoriteColor: "Hitam",
+            motto: "Practice makes perfect",
+            education: "Ateneo de Manila University",
+            instagram: "@raphael_guitar",
+            twitter: "@raphaelmusic",
+            funFact: "Bisa memainkan 7 jenis alat musik"
+        },
+        { 
+            id: 3,
+            name: "Gabriel", 
+            icon: "fas fa-music", 
+            photo: "gabriel.jpg",
+            position: "Keyboardis & Vokal Latar",
+            birthDate: "10 November 1999",
+            birthplace: "Cebu City, Filipina",
+            height: "172 cm",
+            weight: "65 kg",
+            bloodType: "B",
+            zodiac: "Scorpio",
+            hobby: "Membaca, menulis puisi",
+            favoriteFood: "Sushi, Ramen",
+            favoriteDrink: "Matcha latte",
+            favoriteColor: "Hijau",
+            motto: "Create something beautiful",
+            education: "University of San Carlos",
+            instagram: "@gabriel_keys",
+            twitter: "@gabrielmusic",
+            funFact: "Pernah menulis 10 lagu dalam 1 malam"
+        },
+        { 
+            id: 4,
+            name: "CJ", 
+            icon: "fas fa-drum", 
+            photo: "cj.jpg",
+            position: "Drummer",
+            birthDate: "5 Januari 1996",
+            birthplace: "Davao City, Filipina",
+            height: "180 cm",
+            weight: "75 kg",
+            bloodType: "AB",
+            zodiac: "Capricorn",
+            hobby: "Olahraga, hiking",
+            favoriteFood: "Chicken wings, Pizza",
+            favoriteDrink: "Red Bull",
+            favoriteColor: "Merah",
+            motto: "Rhythm is everything",
+            education: "University of Mindanao",
+            instagram: "@cj_drums",
+            twitter: "@cjdrummer",
+            funFact: "Pernah bermain drum selama 48 jam non-stop"
+        },
+        { 
+            id: 5,
+            name: "Xen", 
+            icon: "fas fa-guitar", 
+            photo: "xen.jpg",
+            position: "Basis & Vokal Latar",
+            birthDate: "28 Agustus 2000",
+            birthplace: "Baguio City, Filipina",
+            height: "168 cm",
+            weight: "60 kg",
+            bloodType: "O",
+            zodiac: "Virgo",
+            hobby: "Memasak, traveling",
+            favoriteFood: "Sinigang, Adobo",
+            favoriteDrink: "Coconut water",
+            favoriteColor: "Kuning",
+            motto: "Stay humble, stay hungry",
+            education: "University of the Cordilleras",
+            instagram: "@xen_bass",
+            twitter: "@xenmusic",
+            funFact: "Bisa memasak 50+ jenis masakan"
+        }
     ];
 
     // ============================================================
@@ -2403,7 +2520,7 @@
     }
 
     // ============================================================
-    // 🎨 RENDER MEMBERS
+    // 🎨 RENDER MEMBERS - KARTU ANGGOTA
     // ============================================================
     const membersContainer = document.getElementById('members-container');
     membersData.forEach(member => {
@@ -2417,6 +2534,81 @@
             <div class="member-name">${member.name}</div>
         `;
         membersContainer.appendChild(memberDiv);
+    });
+
+    // ============================================================
+    // 🎨 RENDER TABEL DATA ANGGOTA
+    // ============================================================
+    const memberDataTable = document.getElementById('member-data-table');
+    let tableHtml = `<table>
+        <thead><tr>
+            <th>No</th>
+            <th>Nama</th>
+            <th>Posisi</th>
+            <th>TTL</th>
+            <th>Tinggi</th>
+            <th>Gol. Darah</th>
+            <th>Zodiak</th>
+            <th>Hobi</th>
+            <th>Makanan Favorit</th>
+            <th>Minuman Favorit</th>
+            <th>Warna Favorit</th>
+            <th>Motto</th>
+            <th>Pendidikan</th>
+            <th>Instagram</th>
+        </tr></thead>
+        <tbody>`;
+    
+    membersData.forEach(member => {
+        tableHtml += `<tr>
+            <td>${member.id}</td>
+            <td><strong>${member.name}</strong></td>
+            <td>${member.position}</td>
+            <td>${member.birthplace}, ${member.birthDate}</td>
+            <td>${member.height}</td>
+            <td>${member.bloodType}</td>
+            <td>${member.zodiac}</td>
+            <td>${member.hobby}</td>
+            <td>${member.favoriteFood}</td>
+            <td>${member.favoriteDrink}</td>
+            <td>${member.favoriteColor}</td>
+            <td>"${member.motto}"</td>
+            <td>${member.education}</td>
+            <td>@${member.instagram}</td>
+        </tr>`;
+    });
+    
+    tableHtml += `</tbody></table>`;
+    memberDataTable.innerHTML = tableHtml;
+
+    // ============================================================
+    // 🎨 RENDER FAKTA MENARIK ANGGOTA
+    // ============================================================
+    const memberFactsContainer = document.getElementById('member-facts-container');
+    membersData.forEach(member => {
+        const factDiv = document.createElement('div');
+        factDiv.className = 'member-card';
+        factDiv.style.width = '200px';
+        let photoHtml = member.photo 
+            ? `<img src="${member.photo}" alt="${member.name}">` 
+            : `<i class="${member.icon}"></i>`;
+        factDiv.innerHTML = `
+            <div class="member-photo">${photoHtml}</div>
+            <div class="member-name" style="font-size: var(--font-size-md);">${member.name}</div>
+            <div style="margin-top: var(--spacing-sm); font-size: var(--font-size-sm); color: var(--color-text-muted);">
+                <i class="fas fa-star" style="color: var(--color-primary);"></i> ${member.funFact}
+            </div>
+            <div style="margin-top: var(--spacing-xs); font-size: var(--font-size-xs); color: var(--color-text-muted);">
+                <i class="fas fa-birthday-cake" style="color: var(--color-primary);"></i> ${member.birthDate}
+            </div>
+            <div style="margin-top: var(--spacing-xs); font-size: var(--font-size-xs); color: var(--color-text-muted);">
+                <i class="fas fa-map-marker-alt" style="color: var(--color-primary);"></i> ${member.birthplace}
+            </div>
+            <div style="margin-top: var(--spacing-xs); font-size: var(--font-size-xs); color: var(--color-text-muted);">
+                <i class="fas fa-quote-left" style="color: var(--color-primary);"></i> "${member.motto}"
+            </div>
+        `;
+        memberFactsContainer.appendChild(factDiv);
     });
 
     // ============================================================
