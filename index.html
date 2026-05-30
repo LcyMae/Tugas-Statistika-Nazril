@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         /* ============================================================ */
-        /* 🎨 5000+ BARIS - REDESIGN TOTAL + LYRIC POPUP DRAGGABLE     */
+        /* 🎨 REDESIGN TOTAL - BAGUS, UNIK, KREATIF, KEREN, SMOOTH      */
         /* ============================================================ */
         
         /* ---------- RESET & BASE ---------- */
@@ -35,7 +35,7 @@
         ::-webkit-scrollbar-track { background: #1a1a1a; border-radius: 50px; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #c28a4e, #e6b06e); border-radius: 50px; }
 
-        /* ---------- LOADING SCREEN ---------- */
+        /* ---------- LOADING SCREEN (FIXED) ---------- */
         #loader {
             position: fixed;
             top: 0; left: 0;
@@ -46,40 +46,96 @@
             align-items: center;
             justify-content: center;
             z-index: 99999;
-            transition: opacity 0.6s ease;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
         }
-        #loader.hidden { opacity: 0; pointer-events: none; }
+        #loader.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+        #loader .container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         #loader .ring {
-            width: 60px; height: 60px;
+            width: 80px;
+            height: 80px;
             border-radius: 50%;
-            border: 4px solid rgba(194,138,78,0.15);
-            border-top: 4px solid #c28a4e;
-            animation: spin 1s linear infinite;
+            background: conic-gradient(from 0deg, #c28a4e, #e6b06e, #c28a4e, #e6b06e, #c28a4e);
+            animation: spin 1.5s linear infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        #loader .ring::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            border-radius: 50%;
+            background: #0a0a0a;
+        }
+        #loader .ring::after {
+            content: '☕';
+            font-size: 2rem;
+            position: relative;
+            z-index: 1;
+            animation: breathe 2s ease-in-out infinite;
         }
         @keyframes spin { 100% { transform: rotate(360deg); } }
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.1); opacity: 1; }
+        }
         #loader .text {
             margin-top: 24px;
-            color: #8a7a6a;
-            font-size: 14px;
+            color: #c28a4e;
+            font-size: 1.2rem;
+            font-weight: 600;
+            font-family: 'Playfair Display', serif;
             letter-spacing: 2px;
         }
+        #loader .text span {
+            display: inline-block;
+            animation: shimmer 2s ease-in-out infinite;
+            background: linear-gradient(90deg, #c28a4e, #f0ece8, #c28a4e);
+            background-size: 200% 100%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
         #loader .bar {
-            margin-top: 16px;
-            width: 200px;
-            height: 3px;
+            margin-top: 20px;
+            width: 240px;
+            height: 4px;
             background: rgba(194,138,78,0.1);
             border-radius: 50px;
             overflow: hidden;
+            position: relative;
         }
         #loader .bar::after {
             content: '';
-            display: block;
+            position: absolute;
+            top: 0; left: 0;
             height: 100%;
             width: 0%;
-            background: linear-gradient(90deg, #c28a4e, #e6b06e);
-            animation: progress 1.5s ease-in-out forwards;
+            background: linear-gradient(90deg, #c28a4e, #e6b06e, #c28a4e);
+            background-size: 200% 100%;
+            animation: progress 2s ease-in-out forwards, shimmer 1.5s ease-in-out infinite;
+            border-radius: 50px;
         }
-        @keyframes progress { 0% { width: 0%; } 100% { width: 100%; } }
+        @keyframes progress {
+            0% { width: 0%; }
+            100% { width: 100%; }
+        }
+        #loader .sub {
+            margin-top: 12px;
+            color: #8a7a6a;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+        }
 
         /* ---------- NAVBAR ---------- */
         .navbar {
@@ -127,11 +183,12 @@
             font-size: 0.85rem;
             padding: 0.4rem 1rem;
             border-radius: 50px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
         .navbar .links a:hover {
             background: linear-gradient(135deg, #c28a4e, #e6b06e);
             color: #0a0a0a;
+            transform: translateY(-2px);
         }
         .navbar .toggle {
             display: none;
@@ -158,7 +215,7 @@
             cursor: pointer;
             padding: 1rem 0;
             border-bottom: 2px solid rgba(194,138,78,0.06);
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
         .section-header:hover { border-bottom-color: rgba(194,138,78,0.15); padding-left: 4px; }
         .section-header h2 {
@@ -172,7 +229,7 @@
         .section-header h2 i { color: #c28a4e; margin-right: 10px; }
         .section-header .icon {
             color: #c28a4e;
-            transition: transform 0.4s;
+            transition: transform 0.4s ease;
             font-size: 1.2rem;
         }
         .section-header .icon.rotated { transform: rotate(180deg); }
@@ -198,6 +255,7 @@
             display: flex;
             align-items: center;
             background: #1a1a1a;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
         }
         .hero .bg-image {
             position: absolute;
@@ -205,13 +263,13 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.6;
+            opacity: 0.5;
             z-index: 1;
         }
         .hero .overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(180deg, rgba(10,10,10,0.2), rgba(10,10,10,0.8));
+            background: linear-gradient(180deg, rgba(10,10,10,0.3), rgba(10,10,10,0.8));
             z-index: 2;
         }
         .hero .content {
@@ -232,7 +290,9 @@
             border: 1px solid rgba(194,138,78,0.2);
             box-shadow: 0 16px 60px rgba(0,0,0,0.6);
             flex-shrink: 0;
+            transition: transform 0.3s ease;
         }
+        .hero .logo-badge:hover { transform: scale(1.05) rotate(-2deg); }
         .hero .logo-badge img { width: 100%; height: 100%; object-fit: cover; }
         .hero .text h1 {
             font-family: 'Playfair Display', serif;
@@ -242,6 +302,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            line-height: 1.2;
         }
         .hero .text p { color: #b8a694; font-size: 0.95rem; }
         .hero .meta {
@@ -262,7 +323,9 @@
             border-radius: 50px;
             font-size: 0.8rem;
             white-space: nowrap;
+            transition: transform 0.3s ease;
         }
+        .hero .meta .badge:hover { transform: scale(1.05); }
         .hero .desc {
             position: relative;
             z-index: 3;
@@ -288,7 +351,7 @@
             margin: 1rem 0 2rem 0;
             border: 1px solid rgba(194,138,78,0.06);
             backdrop-filter: blur(8px);
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
         .card:hover {
             transform: translateY(-4px);
@@ -354,6 +417,7 @@
             padding: 1.5rem;
             text-align: center;
             border: 1px solid rgba(194,138,78,0.04);
+            transition: all 0.3s ease;
         }
         .achievement:hover { transform: translateY(-4px); border-color: rgba(194,138,78,0.15); }
         .achievement i {
@@ -384,6 +448,7 @@
             align-items: center;
             gap: 1.2rem;
             border: 1px solid rgba(194,138,78,0.04);
+            transition: all 0.3s ease;
             flex-wrap: wrap;
         }
         .song:hover {
@@ -433,6 +498,7 @@
             border-radius: 50%;
             cursor: pointer;
             font-size: 1rem;
+            transition: all 0.3s ease;
             box-shadow: 0 2px 12px rgba(194,138,78,0.15);
         }
         .song .play:hover { transform: scale(1.1); }
@@ -465,6 +531,7 @@
             text-align: center;
             width: 140px;
             border: 1px solid rgba(194,138,78,0.04);
+            transition: all 0.3s ease;
         }
         .member:hover { transform: translateY(-8px) scale(1.03); border-color: rgba(194,138,78,0.15); }
         .member .photo {
@@ -474,6 +541,7 @@
             margin: 0 auto 0.5rem;
             overflow: hidden;
             border: 2px solid rgba(194,138,78,0.08);
+            transition: all 0.3s ease;
         }
         .member .photo img { width: 100%; height: 100%; object-fit: cover; }
         .member .name { font-weight: 700; color: #f0ece8; font-size: 0.95rem; }
@@ -494,6 +562,7 @@
             font-weight: 600;
             font-size: 0.85rem;
             border: 1px solid rgba(194,138,78,0.04);
+            transition: all 0.3s ease;
         }
         .data-item:hover { transform: scale(1.06); border-color: rgba(194,138,78,0.15); }
 
@@ -527,6 +596,7 @@
             border-radius: 20px;
             text-align: center;
             border-left: 4px solid #c28a4e;
+            transition: all 0.3s ease;
         }
         .stat-box:hover { transform: translateY(-4px); border-left-color: #e6b06e; }
         .stat-box .num {
@@ -551,18 +621,19 @@
             border-radius: 20px;
             padding: 1.5rem;
             border: 1px solid rgba(194,138,78,0.04);
+            transition: all 0.3s ease;
         }
         .chart-card:hover { transform: translateY(-4px); border-color: rgba(194,138,78,0.12); }
         .chart-card h3 { text-align: center; margin-bottom: 1rem; font-size: 0.95rem; color: #f0ece8; }
         canvas { max-height: 220px; width: 100%; }
 
-        /* ---------- LYRIC POPUP (DRAGGABLE + HIDEABLE) ---------- */
+        /* ---------- LYRIC POPUP (DRAGGABLE + ZOOMABLE) ---------- */
         .lyric-popup {
             position: fixed;
             bottom: 90px;
             right: 20px;
             width: 340px;
-            max-height: 300px;
+            max-height: 400px;
             background: rgba(10, 10, 10, 0.92);
             backdrop-filter: blur(16px);
             border: 1px solid rgba(194, 138, 78, 0.15);
@@ -576,6 +647,9 @@
             pointer-events: none;
             touch-action: none;
             will-change: transform;
+            min-width: 200px;
+            min-height: 150px;
+            transform-origin: center center;
         }
         .lyric-popup.active {
             opacity: 1;
@@ -589,7 +663,7 @@
             cursor: pointer;
             color: #8a7a6a;
             font-size: 0.9rem;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
         }
         .lyric-popup .close-btn:hover {
             color: #f0ece8;
@@ -602,13 +676,42 @@
             cursor: pointer;
             color: #8a7a6a;
             font-size: 0.9rem;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             background: transparent;
             border: none;
         }
         .lyric-popup .hide-btn:hover {
             color: #ff6b6b;
             transform: scale(1.2);
+        }
+        .lyric-popup .resize-btn {
+            position: absolute;
+            bottom: 8px;
+            right: 12px;
+            cursor: pointer;
+            color: #8a7a6a;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            background: transparent;
+            border: none;
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+        .lyric-popup .resize-btn button {
+            background: rgba(194,138,78,0.2);
+            border: none;
+            color: #f0ece8;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.3s ease;
+        }
+        .lyric-popup .resize-btn button:hover {
+            background: #c28a4e;
+            color: #0a0a0a;
         }
         .lyric-popup .song-title {
             font-weight: 700;
@@ -627,7 +730,7 @@
             font-size: 0.85rem;
             color: #d4c8b8;
             line-height: 1.7;
-            max-height: 200px;
+            max-height: 250px;
             overflow-y: auto;
             padding-right: 4px;
             white-space: pre-line;
@@ -651,7 +754,7 @@
             cursor: pointer;
             z-index: 9998;
             display: none;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
             box-shadow: 0 4px 20px rgba(0,0,0,0.5);
         }
         .lyric-toggle-btn:hover {
@@ -700,30 +803,20 @@
             margin: 0.8rem auto;
             border-radius: 50px;
         }
-
-        /* ---------- RESPONSIVE ---------- */
-        @media (max-width: 768px) {
-            .container { padding: 1rem; }
-            .member { width: 100px; padding: 1rem; }
-            .member .photo { width: 60px; height: 60px; }
-            .stat-flex { flex-direction: column; }
-            .chart-grid { flex-direction: column; }
-            .chart-card { min-width: 100%; }
-        }
-        @media (max-width: 480px) {
-            .member { width: 80px; }
-            .member .photo { width: 50px; height: 50px; }
-            .stat-box .num { font-size: 2rem; }
-        }
+        footer .footer-text i { transition: all 0.3s ease; }
+        footer .footer-text i:hover { transform: scale(1.2) rotate(10deg); }
     </style>
 </head>
 <body>
 
-<!-- Loading Screen -->
+<!-- Loading Screen (FIXED) -->
 <div id="loader">
-    <div class="ring"></div>
-    <div class="text">Loading Cup of Joe...</div>
-    <div class="bar"></div>
+    <div class="container">
+        <div class="ring"></div>
+        <div class="text"><span>Cup of Joe</span></div>
+        <div class="bar"></div>
+        <div class="sub">Loading stats &amp; playlist...</div>
+    </div>
 </div>
 
 <!-- Navbar -->
@@ -805,14 +898,14 @@
             <div class="card">
                 <div class="timeline">
                     <div class="timeline-item">
-                        <div class="date">November 2018</div>
+                        <div class="date">2018</div>
                         <div class="title">Terbentuk</div>
-                        <div class="desc">Cup of Joe terbentuk di Baguio, Filipina, oleh sekelompok sahabat dari Saint Louis University Laboratory High School.</div>
+                        <div class="desc">Cup of Joe terbentuk pada November 2018 di Baguio, Filipina, oleh sekelompok sahabat dari Saint Louis University Laboratory High School.</div>
                     </div>
                     <div class="timeline-item">
                         <div class="date">2019</div>
                         <div class="title">Viva Records</div>
-                        <div class="desc">Kurang dari setahun setelah terbentuk, mereka ditandatangani oleh Viva Records setelah lagu awal mereka "Nag-iisang Muli" mulai menarik perhatian.</div>
+                        <div class="desc">Kurang dari setahun setelah terbentuk, mereka ditandatangani oleh Viva Records setelah lagu awal mereka "Nag-iisang Muli" mulai menarik perhatian pendengar online.</div>
                     </div>
                     <div class="timeline-item">
                         <div class="date">2022 – 2023</div>
@@ -866,7 +959,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- PROFIL                                                        -->
+    <!-- PROFIL (DARI WIKIPEDIA)                                       -->
     <!-- ============================================================ -->
     <section class="section" id="profil">
         <div class="section-header" onclick="toggleSection(this)">
@@ -883,8 +976,14 @@
                         <h3 style="margin:0 0 0.3rem 0;font-size:1.4rem;">Cup of Joe</h3>
                         <p style="color:#8a7a6a;font-size:0.85rem;margin-bottom:0.8rem;">Indie Pop / Alternative Rock</p>
                         <p style="color:#b8a694;">
-                            <strong>Cup of Joe</strong> adalah grup musik indie pop/alternative rock asal Filipina yang dikenal dengan lirik puitis, aransemen lembut, dan tema introspektif seperti patah hati, kehilangan, dan pertumbuhan personal.
-                            Nama mereka terinspirasi dari secangkir kopi — simbol kehangatan dan persahabatan.
+                            <strong>Cup of Joe</strong> adalah grup musik indie pop/alternative rock asal Filipina yang terbentuk pada November 2018 di Baguio. 
+                            Mereka mulai dikenal luas setelah lagu <strong>"Multo"</strong> masuk <strong>Billboard Global 200</strong>. 
+                            Secara musikal, Cup of Joe mengusung tempo medium hingga lambat, dengan vokal lembut dan emosional, lirik puitis, serta tema introspektif seperti patah hati, kehilangan, jarak, dan pertumbuhan personal. 
+                            Pendekatan ini membuat musik mereka sering diasosiasikan dengan suasana melankolis namun menenangkan.
+                        </p>
+                        <br>
+                        <p style="color:#b8a694;">
+                            Nama <strong>"Cup of Joe"</strong> dipilih sebagai metafora atas musik mereka yang dimaksudkan untuk menjadi teman dalam keseharian sederhana, hangat, dan menemani pendengar di momen sepi, layaknya secangkir kopi.
                         </p>
                     </div>
                 </div>
@@ -966,10 +1065,14 @@
 
 </div>
 
-<!-- Lyric Popup (Draggable + Hideable) -->
+<!-- Lyric Popup (Draggable + Zoomable) -->
 <div id="lyricPopup" class="lyric-popup">
     <button class="hide-btn" onclick="hideLyricsPermanent()" title="Sembunyikan pop-up lirik"><i class="fas fa-eye-slash"></i></button>
     <span class="close-btn" onclick="closeLyrics()"><i class="fas fa-times"></i></span>
+    <div class="resize-btn">
+        <button onclick="resizeLyrics(-0.1)" title="Perkecil">−</button>
+        <button onclick="resizeLyrics(0.1)" title="Perbesar">+</button>
+    </div>
     <div class="song-title"><i class="fas fa-music"></i> <span id="lyricSongTitle">Lirik Lagu</span></div>
     <div class="lyrics-text" id="lyricText">Lirik akan muncul saat lagu diputar...</div>
 </div>
@@ -986,11 +1089,8 @@
     8 Lagu Hits · Semua Bisa Diputar · Gian · Raphaell · Gabriel · CJ · Xen ☕
 </footer>
 
-<!-- ============================================================ -->
-<!-- 🧠 JAVASCRIPT - 1500+ BARIS                                    -->
-<!-- ============================================================ -->
 <script>
-    // ---------- LOADING SCREEN ----------
+    // ---------- LOADING SCREEN (FIXED) ----------
     window.addEventListener('load', function() {
         const loader = document.getElementById('loader');
         setTimeout(function() {
@@ -1436,6 +1536,7 @@ Ikaw pa rin ang pipiliin ko`
 
     // ---------- FUNGSI LIRIK ----------
     let lyricsHidden = false;
+    let currentScale = 1;
 
     function showLyrics(title) {
         if (lyricsHidden) return;
@@ -1477,26 +1578,57 @@ Ikaw pa rin ang pipiliin ko`
         }
     }
 
-    // Tutup lirik jika audio berakhir
-    document.querySelectorAll('audio').forEach(audio => {
-        audio.addEventListener('ended', function() {
-            const btn = this.parentElement.querySelector('.play');
-            if (btn) {
-                btn.classList.remove('playing');
-                btn.querySelector('i').className = 'fas fa-play';
-            }
-            closeLyrics();
-        });
-    });
+    // ---------- RESIZE ZOOM (Pinch + Buttons) ----------
+    function resizeLyrics(delta) {
+        const popup = document.getElementById('lyricPopup');
+        currentScale = Math.min(Math.max(0.7, currentScale + delta), 1.8);
+        popup.style.transform = `scale(${currentScale})`;
+        popup.style.transformOrigin = 'center center';
+    }
 
-    // ---------- DRAGGABLE POPUP (SMOOTH & NO PAGE SCROLL) ----------
+    // Pinch to zoom (two fingers)
+    let initialPinchDistance = 0;
+    let initialScale = 1;
+
+    document.addEventListener('touchstart', function(e) {
+        if (e.touches.length === 2 && e.target.closest('.lyric-popup')) {
+            const touch1 = e.touches[0];
+            const touch2 = e.touches[1];
+            initialPinchDistance = Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+            );
+            initialScale = currentScale;
+        }
+    }, { passive: true });
+
+    document.addEventListener('touchmove', function(e) {
+        if (e.touches.length === 2 && e.target.closest('.lyric-popup')) {
+            const touch1 = e.touches[0];
+            const touch2 = e.touches[1];
+            const distance = Math.hypot(
+                touch2.clientX - touch1.clientX,
+                touch2.clientY - touch1.clientY
+            );
+            const delta = (distance - initialPinchDistance) / 200;
+            const newScale = Math.min(Math.max(0.7, initialScale + delta), 1.8);
+            
+            const popup = document.getElementById('lyricPopup');
+            currentScale = newScale;
+            popup.style.transform = `scale(${newScale})`;
+            popup.style.transformOrigin = 'center center';
+            
+            e.preventDefault();
+        }
+    }, { passive: false });
+
+    // ---------- DRAGGABLE POPUP (SMOOTH) ----------
     const popup = document.getElementById('lyricPopup');
     let isDragging = false;
     let startX, startY, currentX = 0, currentY = 0;
 
-    // Mouse Events (Desktop)
     popup.addEventListener('mousedown', function(e) {
-        if (e.target.closest('.close-btn') || e.target.closest('.hide-btn')) return;
+        if (e.target.closest('.close-btn') || e.target.closest('.hide-btn') || e.target.closest('.resize-btn')) return;
         isDragging = true;
         startX = e.clientX - currentX;
         startY = e.clientY - currentY;
@@ -1507,7 +1639,7 @@ Ikaw pa rin ang pipiliin ko`
         if (!isDragging) return;
         currentX = e.clientX - startX;
         currentY = e.clientY - startY;
-        popup.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        popup.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
         e.preventDefault();
     });
 
@@ -1518,22 +1650,23 @@ Ikaw pa rin ang pipiliin ko`
         }
     });
 
-    // Touch Events (Mobile)
     popup.addEventListener('touchstart', function(e) {
-        if (e.target.closest('.close-btn') || e.target.closest('.hide-btn')) return;
-        const touch = e.touches[0];
-        isDragging = true;
-        startX = touch.clientX - currentX;
-        startY = touch.clientY - currentY;
-        this.style.transition = 'none';
+        if (e.target.closest('.close-btn') || e.target.closest('.hide-btn') || e.target.closest('.resize-btn')) return;
+        if (e.touches.length === 1) {
+            const touch = e.touches[0];
+            isDragging = true;
+            startX = touch.clientX - currentX;
+            startY = touch.clientY - currentY;
+            this.style.transition = 'none';
+        }
     }, { passive: true });
 
     document.addEventListener('touchmove', function(e) {
-        if (!isDragging) return;
+        if (!isDragging || e.touches.length !== 1) return;
         const touch = e.touches[0];
         currentX = touch.clientX - startX;
         currentY = touch.clientY - startY;
-        popup.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        popup.style.transform = `translate(${currentX}px, ${currentY}px) scale(${currentScale})`;
         e.preventDefault();
     }, { passive: false });
 
