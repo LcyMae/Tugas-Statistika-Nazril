@@ -28,32 +28,45 @@
         ::-webkit-scrollbar-track { background: #1e1914; }
         ::-webkit-scrollbar-thumb { background: #c28a4e; border-radius: 10px; }
 
+        /* ============================================================ */
+        /* 🆕 NAVBAR YANG LEBIH RAPI DAN RINGKAS */
+        /* ============================================================ */
         nav {
             background: rgba(13, 13, 13, 0.95);
             backdrop-filter: blur(12px);
-            padding: 0.9rem 2rem;
+            padding: 0.7rem 2rem;
             position: sticky;
             top: 0;
             z-index: 1000;
             display: flex;
             justify-content: center;
-            gap: 1.5rem;
+            align-items: center;
+            gap: 0.8rem;
             flex-wrap: wrap;
-            border-bottom: 1px solid rgba(200, 150, 80, 0.3);
+            border-bottom: 1px solid rgba(200, 150, 80, 0.2);
         }
 
         nav a {
             color: #faeedb;
             text-decoration: none;
-            font-weight: 600;
-            padding: 0.5rem 1rem;
-            border-radius: 40px;
+            font-weight: 500;
+            padding: 0.4rem 0.8rem;
+            border-radius: 30px;
             transition: all 0.3s;
-            font-size: 0.9rem;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
-        nav a i { margin-right: 8px; }
-        nav a:hover { background: #c28a4e; color: #0d0d0d; transform: translateY(-2px); }
+        nav a i { font-size: 0.9rem; }
+        nav a:hover { 
+            background: #c28a4e; 
+            color: #0d0d0d; 
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(194, 138, 78, 0.3);
+        }
+        /* ============================================================ */
 
         .container { max-width: 1300px; margin: 0 auto; padding: 40px 24px; }
 
@@ -222,6 +235,9 @@
         }
         .member-name { font-weight: 800; font-size: 1.1rem; }
 
+        /* ============================================================ */
+        /* 🆕 PLAYLIST YANG DIPERBAIKI - TOMBOL PLAY LEBIH JELAS */
+        /* ============================================================ */
         .playlist-grid {
             display: flex;
             flex-direction: column;
@@ -231,7 +247,7 @@
         .song-item {
             background: #1e1914;
             border-radius: 60px;
-            padding: 12px 20px;
+            padding: 12px 24px;
             display: flex;
             flex-wrap: wrap;
             align-items: center;
@@ -240,8 +256,18 @@
             border: 1px solid #3a2e22;
             transition: 0.2s;
         }
-        .song-item:hover { background: #2a241e; border-color: #c28a4e; }
-        .song-info { display: flex; align-items: center; gap: 15px; flex: 2; min-width: 160px; }
+        .song-item:hover { 
+            background: #2a241e; 
+            border-color: #c28a4e; 
+            box-shadow: 0 4px 20px rgba(194, 138, 78, 0.15);
+        }
+        .song-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex: 2;
+            min-width: 160px;
+        }
         .song-number {
             background: #c28a4e;
             color: #0d0d0d;
@@ -252,11 +278,70 @@
             align-items: center;
             justify-content: center;
             font-weight: bold;
+            font-size: 0.85rem;
         }
-        .song-title { font-weight: 700; font-size: 1rem; }
-        .song-year { font-size: 0.7rem; color: #b87b44; }
-        audio { height: 40px; border-radius: 40px; max-width: 260px; width: 100%; }
-        .song-duration { font-size: 0.75rem; color: #b87b44; min-width: 60px; }
+        .song-title { 
+            font-weight: 700; 
+            font-size: 1rem; 
+        }
+        .song-year { 
+            font-size: 0.7rem; 
+            color: #b87b44; 
+        }
+        
+        /* Tombol play yang lebih jelas */
+        .play-btn {
+            background: #c28a4e;
+            color: #0d0d0d;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .play-btn:hover {
+            background: #e6b06e;
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(194, 138, 78, 0.4);
+        }
+        .play-btn.playing {
+            background: #e6b06e;
+            animation: pulse 1.5s infinite;
+        }
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(194, 138, 78, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(194, 138, 78, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(194, 138, 78, 0); }
+        }
+        
+        .audio-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+            min-width: 200px;
+            justify-content: flex-end;
+        }
+        audio { 
+            height: 36px; 
+            border-radius: 40px; 
+            max-width: 200px; 
+            width: 100%;
+            background: #1e1914;
+        }
+        .song-duration { 
+            font-size: 0.75rem; 
+            color: #b87b44; 
+            min-width: 60px;
+            text-align: right;
+        }
+        /* ============================================================ */
 
         .table-wrapper { overflow-x: auto; }
         table { width: 100%; border-collapse: collapse; }
@@ -330,11 +415,14 @@
         }
 
         @media (max-width: 700px) {
+            nav { padding: 0.5rem 1rem; gap: 0.4rem; }
+            nav a { font-size: 0.7rem; padding: 0.3rem 0.5rem; }
             .hero { padding: 32px 20px; }
             .container { padding: 24px 16px; }
             h2 { font-size: 1.4rem; }
             .section-header h2 { font-size: 1.4rem; }
             .song-item { flex-direction: column; text-align: center; border-radius: 28px; }
+            .audio-wrapper { justify-content: center; width: 100%; }
             audio { max-width: 100%; }
         }
     </style>
@@ -343,12 +431,12 @@
 
 <nav>
     <a href="#beranda"><i class="fas fa-home"></i> Beranda</a>
-    <a href="#playlist"><i class="fas fa-music"></i> Playlist</a>
+    <a href="#playlist"><i class="fas fa-headphones"></i> Playlist</a>
     <a href="#profil"><i class="fas fa-users"></i> Profil</a>
-    <a href="#data"><i class="fas fa-table"></i> Data</a>
-    <a href="#pengolahan"><i class="fas fa-calculator"></i> Pengolahan</a>
+    <a href="#data"><i class="fas fa-database"></i> Data</a>
+    <a href="#pengolahan"><i class="fas fa-chart-line"></i> Olah</a>
     <a href="#diagram"><i class="fas fa-chart-pie"></i> Diagram</a>
-    <a href="#kesimpulan"><i class="fas fa-clipboard-list"></i> Kesimpulan</a>
+    <a href="#kesimpulan"><i class="fas fa-check-circle"></i> Kesimpulan</a>
 </nav>
 
 <div class="container">
@@ -391,7 +479,6 @@
             </div>
             <div class="card">
                 <div class="playlist-grid" id="playlist-container"></div>
-                <p style="margin-top: 20px; font-size:0.8rem; text-align:center;"><i class="fas fa-sync-alt"></i> Ganti file MP3 asli Cup of Joe untuk pengalaman penuh</p>
             </div>
         </div>
     </section>
@@ -514,7 +601,7 @@
     //    pahina.mp3, sandali.mp3, ikawparin.mp3, sinderela.mp3
     // ============================================================
     const playlistData = [
-        { number: 1, title: "Multo", year: "2023", duration: "3:45", audioSrc: "multo (1).mp3" },
+        { number: 1, title: "Multo", year: "2023", duration: "3:45", audioSrc: "multo.mp3" },
         { number: 2, title: "Bagyo", year: "2023", duration: "4:02", audioSrc: "bagyo.mp3" },
         { number: 3, title: "Misteryoso", year: "2023", duration: "3:58", audioSrc: "misteryoso.mp3" },
         { number: 4, title: "Sagada", year: "2022", duration: "4:15", audioSrc: "sagada.mp3" },
@@ -568,23 +655,73 @@
         <div class="stat-box"><div class="stat-number">47</div><p>Modus</p></div>
     `;
 
-    // Render playlist
+    // ============================================================
+    // 🆕 RENDER PLAYLIST DENGAN TOMBOL PLAY
+    // ============================================================
     const playlistContainer = document.getElementById('playlist-container');
-    playlistData.forEach(song => {
+    
+    playlistData.forEach((song, index) => {
         const songDiv = document.createElement('div');
         songDiv.className = 'song-item';
+        
+        // Buat audio element dengan ID unik
+        const audioId = `audio-${index}`;
+        
         songDiv.innerHTML = `
             <div class="song-info">
                 <div class="song-number">${song.number}</div>
-                <div><div class="song-title">${song.title}</div><div class="song-year">${song.year} · Cup of Joe</div></div>
+                <div>
+                    <div class="song-title">${song.title}</div>
+                    <div class="song-year">${song.year} · Cup of Joe</div>
+                </div>
             </div>
-            <div class="audio-control"><audio controls><source src="${song.audioSrc}" type="audio/mpeg">Browser tidak support</audio></div>
-            <div class="song-duration">🎧 ${song.duration}</div>
+            <div class="audio-wrapper">
+                <button class="play-btn" onclick="togglePlay('${audioId}')">
+                    <i class="fas fa-play"></i>
+                </button>
+                <audio id="${audioId}" src="${song.audioSrc}" preload="metadata"></audio>
+                <div class="song-duration">🎧 ${song.duration}</div>
+            </div>
         `;
+        
         playlistContainer.appendChild(songDiv);
     });
 
+    // ============================================================
+    // 🆕 FUNGSI PLAY/PAUSE
+    // ============================================================
+    function togglePlay(audioId) {
+        const audio = document.getElementById(audioId);
+        const btn = audio.parentElement.querySelector('.play-btn');
+        const icon = btn.querySelector('i');
+        
+        // Hentikan semua audio lain
+        document.querySelectorAll('audio').forEach(a => {
+            if (a.id !== audioId) {
+                a.pause();
+                a.currentTime = 0;
+                const otherBtn = a.parentElement.querySelector('.play-btn');
+                if (otherBtn) {
+                    otherBtn.classList.remove('playing');
+                    otherBtn.querySelector('i').className = 'fas fa-play';
+                }
+            }
+        });
+        
+        if (audio.paused) {
+            audio.play();
+            btn.classList.add('playing');
+            icon.className = 'fas fa-pause';
+        } else {
+            audio.pause();
+            btn.classList.remove('playing');
+            icon.className = 'fas fa-play';
+        }
+    }
+
+    // ============================================================
     // Render members (DENGAN FOTO)
+    // ============================================================
     const membersContainer = document.getElementById('members-container');
     membersData.forEach(member => {
         const memberDiv = document.createElement('div');
@@ -619,4 +756,4 @@
     });
 </script>
 </body>
-</html>
+    </html>
