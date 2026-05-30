@@ -118,27 +118,17 @@
         .student-info p { color: #d4b48c; }
         .cup-badge { background: #c28a4e; padding: 8px 24px; border-radius: 60px; font-weight: 700; }
 
-        .card {
-            background: #16120e;
-            border-radius: 32px;
-            padding: 32px;
-            margin: 40px 0;
-            border: 1px solid #2a241e;
-            transition: transform 0.2s;
-        }
-        .card:hover { transform: translateY(-3px); border-color: #c28a4e40; }
-
         /* ============================================================ */
-        /* 🆕 ACCORDION STYLE - TOMBOL BUKA/TUTUP PADA JUDUL (h2) */
+        /* 🆕 ACCORDION STYLE - TOMBOL BUKA/TUTUP PADA JUDUL KONTEN */
         /* ============================================================ */
         .section-header {
-            cursor: pointer;
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            margin: 40px 0 28px;
-            border-left: 8px solid #c28a4e;
-            padding-left: 20px;
+            align-items: center;
+            cursor: pointer;
+            padding: 8px 0;
+            margin: 30px 0 20px 0;
+            border-bottom: 1px solid rgba(200, 150, 80, 0.2);
             transition: 0.2s;
         }
         .section-header:hover {
@@ -146,9 +136,9 @@
         }
         .section-header h2 {
             margin: 0;
-            border-left: none;
-            padding-left: 0;
-            color: #f0dfca;
+            border-left: 8px solid #c28a4e;
+            padding-left: 20px;
+            font-size: 1.8rem;
         }
         .section-header h2 i { 
             color: #c28a4e; 
@@ -163,7 +153,7 @@
         .section-content {
             overflow: hidden;
             transition: max-height 0.4s ease;
-            max-height: 2000px; /* default terbuka */
+            max-height: 3000px; /* default terbuka */
         }
         .section-content.collapsed {
             max-height: 0;
@@ -171,6 +161,16 @@
             padding-bottom: 0;
         }
         /* ============================================================ */
+
+        .card {
+            background: #16120e;
+            border-radius: 32px;
+            padding: 32px;
+            margin: 20px 0 40px 0;
+            border: 1px solid #2a241e;
+            transition: transform 0.2s;
+        }
+        .card:hover { transform: translateY(-3px); border-color: #c28a4e40; }
 
         h2 {
             font-family: 'Playfair Display', serif;
@@ -298,7 +298,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 30px;
-            margin: 40px 0;
+            margin: 20px 0;
         }
         .chart-card {
             flex: 1;
@@ -332,7 +332,8 @@
         @media (max-width: 700px) {
             .hero { padding: 32px 20px; }
             .container { padding: 24px 16px; }
-            h2 { font-size: 1.6rem; }
+            h2 { font-size: 1.4rem; }
+            .section-header h2 { font-size: 1.4rem; }
             .song-item { flex-direction: column; text-align: center; border-radius: 28px; }
             audio { max-width: 100%; }
         }
@@ -360,7 +361,7 @@
                 </div>
                 <div>
                     <h2 style="border-left:none; padding-left:0; margin:0 0 8px 0;">Cup of Joe</h2>
-                    <p>Full Playlist & Statistika | 7 Lagu Hits</p>
+                    <p>Full Playlist & Statistika | 8 Lagu Hits</p>
                 </div>
             </div>
 
@@ -371,7 +372,7 @@
                 </div>
                 <div class="cup-badge"><i class="fas fa-headphones"></i> Cup of Joe · Project</div>
             </div>
-            <p style="margin-top: 24px;">Survei durasi mendengarkan lagu Cup of Joe dari 20 responden + playlist lengkap yang bisa diputar semua!</p>
+            <p style="margin-top: 24px;">Survei durasi mendengarkan lagu Cup of Joe dari 20 responden + playlist lengkap yang bisa diputar semua! Klik judul kategori untuk membuka/menutup.</p>
         </div>
     </section>
 
@@ -383,7 +384,10 @@
         </div>
         <div class="section-content" id="content-playlist">
             <div class="guide-note">
-                <i class="fas fa-edit"></i> <strong>File MP3 asli:</strong> Ganti `audioSrc` di bagian JavaScript dengan file MP3 Anda.
+                <i class="fas fa-edit"></i> <strong>File MP3 asli:</strong> Masukkan file MP3 dengan nama berikut ke folder yang sama:
+                <br>
+                <code>multo.mp3</code> · <code>bagyo.mp3</code> · <code>misteryoso.mp3</code> · <code>sagada.mp3</code> · 
+                <code>pahina.mp3</code> · <code>sandali.mp3</code> · <code>ikawparin.mp3</code> · <code>sinderela.mp3</code>
             </div>
             <div class="card">
                 <div class="playlist-grid" id="playlist-container"></div>
@@ -480,7 +484,7 @@
 
 <footer>
     <i class="fas fa-mug-hot"></i> Cup of Joe · Full Playlist & Statistika <i class="fas fa-headphones"></i><br>
-    7 Lagu Hits | Semua Bisa Diputar | Gian · Raphael · Gabriel · CJ · Xen ☕
+    8 Lagu Hits | Semua Bisa Diputar | Gian · Raphael · Gabriel · CJ · Xen ☕
 </footer>
 
 <script>
@@ -503,16 +507,21 @@
     }
 
     // ============================================================
-    // 🎵 DATA PLAYLIST - GANTI DENGAN FILE MP3 ASLI KAMU
+    // 🎵 DATA PLAYLIST - SUDAH DIUBAH SESUAI REQUEST
+    // ============================================================
+    // ✅ ANDA TINGGAL MASUKKAN FILE MP3 DENGAN NAMA BERIKUT:
+    //    multo.mp3, bagyo.mp3, misteryoso.mp3, sagada.mp3, 
+    //    pahina.mp3, sandali.mp3, ikawparin.mp3, sinderela.mp3
     // ============================================================
     const playlistData = [
-        { number: 1, title: "Multo", year: "2023", duration: "3:45", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" },
-        { number: 2, title: "Tingin", year: "2022", duration: "4:12", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3" },
-        { number: 3, title: "Misteryoso", year: "2023", duration: "3:58", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3" },
-        { number: 4, title: "Patutunguhan", year: "2023", duration: "4:05", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3" },
-        { number: 5, title: "Sinderela", year: "2022", duration: "3:32", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3" },
-        { number: 6, title: "Estranghero", year: "2023", duration: "4:20", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3" },
-        { number: 7, title: "Wag Na Lang", year: "2023", duration: "3:50", audioSrc: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3" }
+        { number: 1, title: "Multo", year: "2023", duration: "3:45", audioSrc: "multo (1).mp3" },
+        { number: 2, title: "Bagyo", year: "2023", duration: "4:02", audioSrc: "bagyo.mp3" },
+        { number: 3, title: "Misteryoso", year: "2023", duration: "3:58", audioSrc: "misteryoso.mp3" },
+        { number: 4, title: "Sagada", year: "2022", duration: "4:15", audioSrc: "sagada.mp3" },
+        { number: 5, title: "Pahina", year: "2023", duration: "3:50", audioSrc: "pahina.mp3" },
+        { number: 6, title: "Sandali", year: "2022", duration: "4:08", audioSrc: "sandali.mp3" },
+        { number: 7, title: "Ikaw Parin Ang Pipilin Ko", year: "2023", duration: "4:20", audioSrc: "ikawparin.mp3" },
+        { number: 8, title: "Sinderela", year: "2022", duration: "3:32", audioSrc: "sinderela.mp3" }
     ];
 
     // ============================================================
@@ -610,4 +619,4 @@
     });
 </script>
 </body>
-    </html>
+</html>
