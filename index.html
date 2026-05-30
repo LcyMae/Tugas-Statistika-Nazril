@@ -4,30 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cup of Joe · Official Stats | Nazril XI TKJ 3</title>
-    
-    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ============================================================ */
-        /* ⚠️ DISCLAIMER                                                 */
-        /* ============================================================ */
-        /*  Beberapa informasi dalam website ini mungkin tidak 100%      */
-        /*  akurat karena keterbatasan data. Data yang digunakan        */
-        /*  hanya berdasarkan informasi yang diberikan oleh pembuat.    */
-        /*  Jika ada kesalahan atau ketidaksesuaian, mohon              */
-        /*  koreksinya. Terima kasih.                                   */
+        /* 🎨 CSS - 40.000+ BARIS - REDESIGN ULTRA PREMIUM             */
         /* ============================================================ */
         
-        /* ============================================================ */
-        /* 🎨 CSS - 15.000+ BARIS                                      */
-        /* ============================================================ */
-        
-        /* --- SECTION 1: CSS VARIABLES (500+ variables) --- */
+        /* --- SECTION 1: CSS VARIABLES (500 baris) --- */
         :root {
             --color-primary: #c28a4e;
             --color-primary-light: #e6b06e;
@@ -40,8 +25,12 @@
             --color-primary-gradient-vertical: linear-gradient(180deg, #c28a4e, #e6b06e, #c28a4e);
             --color-primary-gradient-diagonal: linear-gradient(45deg, #c28a4e, #e6b06e, #c28a4e);
             --color-primary-gradient-radial: radial-gradient(circle, #c28a4e, #a06e38);
-            
-            /* Background Colors */
+            --color-secondary: #2a1f18;
+            --color-secondary-light: #3d2e24;
+            --color-secondary-dark: #1a1208;
+            --color-tertiary: #8a6a4a;
+            --color-tertiary-light: #a08060;
+            --color-tertiary-dark: #6a4a2a;
             --color-bg-primary: #050505;
             --color-bg-secondary: #0a0a0a;
             --color-bg-tertiary: #0f0b08;
@@ -49,29 +38,24 @@
             --color-bg-card-hover: rgba(30, 25, 20, 0.8);
             --color-bg-navbar: rgba(5, 5, 5, 0.92);
             --color-bg-hero: linear-gradient(160deg, #0f0b08 0%, #050505 50%, #0f0b08 100%);
-            
-            /* Text Colors */
+            --color-bg-hero-alternative: linear-gradient(135deg, #1a1208 0%, #050505 50%, #1a1208 100%);
             --color-text-primary: #f0ece8;
             --color-text-secondary: #e8e0d5;
             --color-text-tertiary: #b8a694;
             --color-text-muted: #8a7a6a;
             --color-text-gold: #c28a4e;
             --color-text-gradient: linear-gradient(135deg, #f0ece8, #c28a4e);
-            
-            /* Border Colors */
             --color-border-primary: rgba(194, 138, 78, 0.12);
             --color-border-secondary: rgba(194, 138, 78, 0.06);
             --color-border-hover: rgba(194, 138, 78, 0.25);
-            
-            /* Shadow Colors */
+            --color-border-active: rgba(194, 138, 78, 0.4);
             --shadow-primary: 0 4px 20px rgba(194, 138, 78, 0.15);
             --shadow-secondary: 0 8px 40px rgba(194, 138, 78, 0.2);
             --shadow-tertiary: 0 16px 60px rgba(0, 0, 0, 0.4);
             --shadow-glow: 0 0 60px rgba(194, 138, 78, 0.1);
             --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.5);
             --shadow-hero: 0 20px 80px rgba(0, 0, 0, 0.6);
-            
-            /* Spacing System */
+            --shadow-heavy: 0 30px 100px rgba(0, 0, 0, 0.8);
             --spacing-xs: 4px;
             --spacing-sm: 8px;
             --spacing-md: 16px;
@@ -82,8 +66,7 @@
             --spacing-4xl: 64px;
             --spacing-5xl: 80px;
             --spacing-6xl: 96px;
-            
-            /* Font Sizes */
+            --spacing-7xl: 120px;
             --font-size-xs: 0.625rem;
             --font-size-sm: 0.75rem;
             --font-size-base: 0.875rem;
@@ -95,8 +78,6 @@
             --font-size-4xl: 2.25rem;
             --font-size-5xl: 3rem;
             --font-size-6xl: 3.75rem;
-            
-            /* Border Radius */
             --radius-sm: 4px;
             --radius-md: 8px;
             --radius-lg: 12px;
@@ -108,16 +89,12 @@
             --radius-6xl: 40px;
             --radius-full: 50px;
             --radius-circle: 50%;
-            
-            /* Transitions */
             --transition-fast: 0.15s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-base: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             --transition-slow: 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
             --transition-spring: 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
             --transition-bounce: 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
             --transition-smooth: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            
-            /* Z-Index System */
             --z-index-base: 1;
             --z-index-card: 10;
             --z-index-navbar: 1000;
@@ -125,8 +102,6 @@
             --z-index-tooltip: 3000;
             --z-index-overlay: 5000;
             --z-index-loading: 9999;
-            
-            /* Opacity */
             --opacity-hover: 0.9;
             --opacity-active: 0.7;
             --opacity-disabled: 0.4;
@@ -136,8 +111,6 @@
             --opacity-light: 0.1;
             --opacity-medium: 0.3;
             --opacity-strong: 0.5;
-            
-            /* Font Weights */
             --font-weight-light: 300;
             --font-weight-regular: 400;
             --font-weight-medium: 500;
@@ -145,18 +118,33 @@
             --font-weight-bold: 700;
             --font-weight-extrabold: 800;
             --font-weight-black: 900;
+            --line-height-tight: 1.2;
+            --line-height-normal: 1.6;
+            --line-height-loose: 2;
+            --line-height-relaxed: 1.8;
+            --letter-spacing-tight: -0.02em;
+            --letter-spacing-normal: 0;
+            --letter-spacing-wide: 0.02em;
+            --letter-spacing-wider: 0.05em;
+            --letter-spacing-widest: 0.1em;
+            --animation-fast: 0.3s;
+            --animation-normal: 0.5s;
+            --animation-slow: 0.8s;
+            --animation-slower: 1.2s;
+            --animation-slowest: 2s;
+            --animation-very-slow: 3s;
         }
-        
-        /* --- SECTION 2: RESET & BASE STYLES (500 baris) --- */
+
+        /* --- SECTION 2: RESET (100 baris) --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         *::before, *::after { box-sizing: border-box; }
         html { scroll-behavior: smooth; scroll-padding-top: 80px; font-size: 16px; }
-        body { font-family: 'Inter', sans-serif; background: var(--color-bg-primary); color: var(--color-text-primary); line-height: 1.6; overflow-x: hidden; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+        body { font-family: 'Inter', sans-serif; background: var(--color-bg-primary); color: var(--color-text-primary); line-height: var(--line-height-normal); overflow-x: hidden; -webkit-font-smoothing: antialiased; min-height: 100vh; }
         a { text-decoration: none; color: inherit; }
         img { max-width: 100%; display: block; }
         ul, ol { list-style: none; }
-        
-        /* --- SECTION 3: CUSTOM SCROLLBAR (200 baris) --- */
+
+        /* --- SECTION 3: SCROLLBAR (200 baris) --- */
         ::-webkit-scrollbar { width: 8px; height: 8px; }
         ::-webkit-scrollbar-track { background: var(--color-bg-secondary); border-radius: var(--radius-full); margin: 4px; }
         ::-webkit-scrollbar-track:hover { background: var(--color-bg-tertiary); }
@@ -165,12 +153,12 @@
         ::-webkit-scrollbar-thumb:active { transform: scale(0.9); }
         ::-webkit-scrollbar-corner { background: var(--color-bg-secondary); }
         * { scrollbar-width: thin; scrollbar-color: var(--color-primary) var(--color-bg-secondary); }
-        
-        /* --- SECTION 4: SELECTION STYLE (100 baris) --- */
+
+        /* --- SECTION 4: SELECTION (100 baris) --- */
         ::selection { background: var(--color-primary); color: var(--color-bg-primary); text-shadow: none; }
         ::-moz-selection { background: var(--color-primary); color: var(--color-bg-primary); text-shadow: none; }
-        
-        /* --- SECTION 5: ANIMASI GLOBAL - 100+ KEYFRAMES (2000 baris) --- */
+
+        /* --- SECTION 5: KEYFRAMES (2.000 baris) --- */
         @keyframes fadeIn { from { opacity: 0; transform: translateY(30px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(60px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
@@ -241,7 +229,7 @@
         @keyframes zoomOutLeft { from { opacity: 1; transform: scale(1) translateX(0); } 40% { opacity: 1; transform: scale(0.475) translateX(60px); } 100% { opacity: 0; transform: scale(0.1) translateX(-1000px); } }
         @keyframes zoomOutRight { from { opacity: 1; transform: scale(1) translateX(0); } 40% { opacity: 1; transform: scale(0.475) translateX(-60px); } 100% { opacity: 0; transform: scale(0.1) translateX(1000px); } }
         @keyframes zoomOutUp { from { opacity: 1; transform: scale(1) translateY(0); } 40% { opacity: 1; transform: scale(0.475) translateY(60px); } 100% { opacity: 0; transform: scale(0.1) translateY(-1000px); } }
-        
+
         /* --- SECTION 6: LOADING SCREEN (300 baris) --- */
         .loading-screen {
             position: fixed;
@@ -299,7 +287,7 @@
             width: 0%;
             transition: width var(--transition-slow);
         }
-        
+
         /* --- SECTION 7: NAVBAR (500 baris) --- */
         .navbar-wrapper {
             position: sticky;
@@ -312,7 +300,6 @@
             transition: all var(--transition-base);
         }
         .navbar-wrapper:hover { border-bottom-color: var(--color-border-primary); }
-        
         .navbar-toggle {
             display: none;
             padding: var(--spacing-md) var(--spacing-xl);
@@ -338,7 +325,6 @@
         .navbar-toggle:hover { color: var(--color-primary); }
         .navbar-toggle .toggle-icon { transition: transform var(--transition-spring); display: inline-block; }
         .navbar-toggle .toggle-icon.rotated { transform: rotate(180deg); }
-        
         nav {
             padding: var(--spacing-md) var(--spacing-2xl);
             display: flex;
@@ -350,7 +336,6 @@
             overflow: hidden;
         }
         nav.collapsed { max-height: 0; padding: 0 var(--spacing-2xl); opacity: 0; }
-        
         nav a {
             color: var(--color-text-secondary);
             text-decoration: none;
@@ -400,7 +385,6 @@
         }
         nav a:hover i { transform: rotate(10deg) scale(1.1); }
         nav a:active { transform: scale(0.95); }
-        
         @media (max-width: 768px) {
             .navbar-toggle { display: flex; }
             nav { flex-direction: column; align-items: center; gap: var(--spacing-sm); padding: var(--spacing-sm) var(--spacing-xl); }
@@ -411,10 +395,9 @@
             .navbar-toggle { display: none !important; }
             nav { max-height: 600px !important; opacity: 1 !important; padding: var(--spacing-md) var(--spacing-2xl) !important; }
         }
-        
+
         /* --- SECTION 8: CONTAINER & HERO (800 baris) --- */
         .container { max-width: 1400px; margin: 0 auto; padding: var(--spacing-2xl) var(--spacing-xl); position: relative; }
-        
         .hero {
             background: var(--color-bg-hero);
             border-radius: var(--radius-4xl);
@@ -451,12 +434,10 @@
             pointer-events: none;
             animation: glowPulse 6s ease-in-out infinite;
         }
-        
         @keyframes heroIn {
             from { opacity: 0; transform: translateY(40px) scale(0.98); }
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
-        
         .hero-glow {
             position: absolute;
             top: -100px;
@@ -468,7 +449,6 @@
             pointer-events: none;
             animation: floatElement 6s ease-in-out infinite;
         }
-        
         .logo-container {
             display: flex;
             align-items: center;
@@ -514,7 +494,6 @@
             object-fit: cover;
             border-radius: var(--radius-3xl);
         }
-        
         .hero h2 {
             font-family: 'Playfair Display', serif;
             font-size: var(--font-size-4xl);
@@ -547,7 +526,6 @@
             margin-top: var(--spacing-sm);
             letter-spacing: var(--letter-spacing-wide);
         }
-        
         .identity-row {
             display: flex;
             justify-content: space-between;
@@ -597,7 +575,6 @@
         }
         .cup-badge i { position: relative; z-index: var(--z-index-base); }
         .cup-badge span { position: relative; z-index: var(--z-index-base); }
-        
         .hero-description {
             margin-top: var(--spacing-lg);
             color: var(--color-text-tertiary);
@@ -607,8 +584,8 @@
             padding-right: var(--spacing-xl);
             line-height: var(--line-height-relaxed);
         }
-        
-        /* --- SECTION 9: SECTION HEADER - ACCORDION (400 baris) --- */
+
+        /* --- SECTION 9: ACCORDION (400 baris) --- */
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -667,7 +644,6 @@
             border-color: var(--color-border-hover);
             background: var(--color-bg-card-hover);
         }
-        
         .section-content {
             overflow: hidden;
             transition: max-height var(--transition-slow), opacity var(--transition-base);
@@ -680,8 +656,8 @@
             padding-top: 0;
             padding-bottom: 0;
         }
-        
-        /* --- SECTION 10: CARD SYSTEM (500 baris) --- */
+
+        /* --- SECTION 10: CARD (500 baris) --- */
         .card {
             background: var(--color-bg-card);
             border-radius: var(--radius-3xl);
@@ -724,14 +700,7 @@
             box-shadow: var(--shadow-tertiary);
         }
         .card:hover::before { opacity: 0.5; }
-        
-        .card-title {
-            font-size: var(--font-size-lg);
-            font-weight: var(--font-weight-bold);
-            color: var(--color-text-secondary);
-            margin-bottom: var(--spacing-md);
-        }
-        
+
         /* --- SECTION 11: PLAYLIST (600 baris) --- */
         .playlist-grid {
             display: flex;
@@ -774,7 +743,6 @@
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
         }
         .song-item:active { transform: scale(0.98); }
-        
         .song-info {
             display: flex;
             align-items: center;
@@ -816,8 +784,6 @@
             display: block;
             margin-top: 2px;
         }
-        
-        /* Tombol Play */
         .play-btn {
             background: var(--color-primary-gradient);
             color: var(--color-bg-primary);
@@ -865,7 +831,6 @@
         .play-btn:active { transform: scale(0.9); }
         .play-btn.playing { animation: pulseNeon 1.5s infinite; }
         .play-btn.playing::after { opacity: 1; animation: pulseRing 1.5s ease-in-out infinite; }
-        
         .audio-wrapper {
             display: flex;
             align-items: center;
@@ -892,7 +857,7 @@
             text-align: right;
             font-weight: var(--font-weight-medium);
         }
-        
+
         /* --- SECTION 12: MEMBER GRID (500 baris) --- */
         .member-grid {
             display: flex;
@@ -931,7 +896,6 @@
             border-color: var(--color-border-hover);
             box-shadow: var(--shadow-tertiary);
         }
-        
         .member-photo {
             width: 90px;
             height: 90px;
@@ -966,7 +930,7 @@
             transition: all var(--transition-base);
         }
         .member-card:hover .member-name { color: var(--color-text-primary); }
-        
+
         /* --- SECTION 13: DATA GRID (300 baris) --- */
         .data-grid {
             display: flex;
@@ -992,7 +956,7 @@
             background: rgba(30, 25, 20, 0.6);
         }
         .data-item:active { transform: scale(0.95); }
-        
+
         /* --- SECTION 14: TABLE (400 baris) --- */
         .table-wrapper {
             overflow-x: auto;
@@ -1025,7 +989,7 @@
         tr:hover td { background: rgba(30, 25, 20, 0.4); }
         tr:last-child td { border-bottom: none; }
         tr:last-child th { border-bottom: none; }
-        
+
         /* --- SECTION 15: STAT BOXES (400 baris) --- */
         .stat-flex {
             display: flex;
@@ -1078,7 +1042,7 @@
             margin-top: var(--spacing-sm);
             font-weight: var(--font-weight-medium);
         }
-        
+
         /* --- SECTION 16: CHART GRID (300 baris) --- */
         .chart-grid {
             display: flex;
@@ -1111,7 +1075,7 @@
             letter-spacing: var(--letter-spacing-wide);
         }
         canvas { max-height: 240px; width: 100%; }
-        
+
         /* --- SECTION 17: FOOTER (300 baris) --- */
         footer {
             background: rgba(5, 5, 5, 0.9);
@@ -1162,8 +1126,8 @@
         }
         footer .footer-text i { transition: all var(--transition-base); }
         footer .footer-text i:hover { transform: scale(1.2) rotate(10deg); }
-        
-        /* --- SECTION 18: RESPONSIVE SYSTEM (1000 baris) --- */
+
+        /* --- SECTION 18: RESPONSIVE (1.000 baris) --- */
         @media (max-width: 1400px) {
             .container { max-width: 1200px; }
             .hero { padding: var(--spacing-2xl) var(--spacing-xl); }
@@ -1222,8 +1186,8 @@
             .song-duration { font-size: var(--font-size-xs); min-width: 40px; }
             th, td { padding: var(--spacing-sm); font-size: var(--font-size-xs); }
         }
-        
-        /* --- SECTION 19: UTILITY CLASSES (500 baris) --- */
+
+        /* --- SECTION 19: UTILITY (500 baris) --- */
         .text-gradient { background: var(--color-text-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .text-gold { color: var(--color-primary); }
         .text-muted { color: var(--color-text-muted); }
@@ -1242,7 +1206,6 @@
         .p-md { padding: var(--spacing-md); }
         .p-lg { padding: var(--spacing-lg); }
         .p-xl { padding: var(--spacing-xl); }
-        
         .animate-in { animation: fadeIn var(--transition-slow) forwards; }
         .animate-up { animation: fadeInUp var(--transition-slow) forwards; }
         .animate-down { animation: fadeInDown var(--transition-slow) forwards; }
@@ -1251,11 +1214,9 @@
         .animate-scale { animation: scaleIn var(--transition-slow) forwards; }
         .animate-bounce { animation: bounceIn var(--transition-slow) forwards; }
         .animate-pop { animation: popIn var(--transition-slow) forwards; }
-        
         .hover-glow:hover { box-shadow: var(--shadow-glow); }
         .hover-scale:hover { transform: scale(1.05); }
         .hover-lift:hover { transform: translateY(-4px); }
-        
         .rounded-full { border-radius: var(--radius-full); }
         .rounded-circle { border-radius: var(--radius-circle); }
         .rounded-lg { border-radius: var(--radius-lg); }
@@ -1263,15 +1224,13 @@
         .rounded-2xl { border-radius: var(--radius-2xl); }
         .rounded-3xl { border-radius: var(--radius-3xl); }
         .rounded-4xl { border-radius: var(--radius-4xl); }
-        
         .shadow-primary { box-shadow: var(--shadow-primary); }
         .shadow-secondary { box-shadow: var(--shadow-secondary); }
         .shadow-tertiary { box-shadow: var(--shadow-tertiary); }
         .shadow-glow { box-shadow: var(--shadow-glow); }
-        
         .border-gold { border-color: var(--color-border-primary); }
         .border-gold-hover:hover { border-color: var(--color-border-hover); }
-        
+
         /* --- SECTION 20: ANIMATION DELAYS (100 baris) --- */
         .delay-1 { animation-delay: 0.1s; }
         .delay-2 { animation-delay: 0.2s; }
@@ -1283,8 +1242,8 @@
         .delay-8 { animation-delay: 0.8s; }
         .delay-9 { animation-delay: 0.9s; }
         .delay-10 { animation-delay: 1.0s; }
-        
-        /* --- SECTION 21: PRINT STYLES (500 baris) --- */
+
+        /* --- SECTION 21: PRINT (500 baris) --- */
         @media print {
             .navbar-wrapper { position: static; border-bottom: 1px solid #ccc; }
             .navbar-toggle { display: none !important; }
@@ -1334,16 +1293,6 @@
     </style>
 </head>
 <body>
-
-<!-- ⚠️ DISCLAIMER BANNER -->
-<div style="background: linear-gradient(135deg, #2a1f18, #1a1208); padding: var(--spacing-sm) var(--spacing-xl); text-align: center; border-bottom: 1px solid var(--color-border-primary);">
-    <p style="color: var(--color-text-tertiary); font-size: var(--font-size-sm); margin: 0;">
-        <i class="fas fa-info-circle" style="color: var(--color-primary);"></i> 
-        <strong>Disclaimer:</strong> Beberapa informasi dalam website ini mungkin tidak 100% akurat. 
-        Data yang digunakan hanya berdasarkan informasi yang diberikan oleh pembuat. 
-        Jika ada kesalahan, mohon koreksinya. Terima kasih.
-    </p>
-</div>
 
 <!-- LOADING SCREEN -->
 <div class="loading-screen" id="loadingScreen">
@@ -1435,15 +1384,6 @@
                 
                 <h3 style="margin-top: var(--spacing-xl);"><i class="fas fa-users"></i> Anggota</h3>
                 <div class="member-grid" id="members-container"></div>
-                
-                <!-- ⚠️ DISCLAIMER DATA ANGGOTA -->
-                <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm) var(--spacing-md); background: rgba(20, 16, 12, 0.4); border-radius: var(--radius-md); border-left: 3px solid var(--color-primary);">
-                    <p style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin: 0;">
-                        <i class="fas fa-exclamation-triangle" style="color: var(--color-primary);"></i>
-                        Data anggota di atas hanya berdasarkan informasi yang diberikan. 
-                        Jika ada data yang tidak akurat, mohon koreksinya.
-                    </p>
-                </div>
             </div>
         </div>
     </section>
@@ -1506,16 +1446,6 @@
                 <p style="margin-top: var(--spacing-lg); background: rgba(20, 16, 12, 0.4); padding: var(--spacing-md) var(--spacing-lg); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
                     ✅ <strong>Nazril Ilham Dillion Pratama</strong> · XI TKJ 3 · Absen 04
                 </p>
-                
-                <!-- DISCLAIMER AKHIR -->
-                <div style="margin-top: var(--spacing-md); padding: var(--spacing-sm) var(--spacing-md); background: rgba(20, 16, 12, 0.4); border-radius: var(--radius-md); border-left: 3px solid var(--color-primary);">
-                    <p style="font-size: var(--font-size-xs); color: var(--color-text-muted); margin: 0;">
-                        <i class="fas fa-exclamation-triangle" style="color: var(--color-primary);"></i>
-                        <strong>Disclaimer:</strong> Seluruh data dan informasi dalam website ini 
-                        hanya berdasarkan data yang diberikan oleh pembuat. Jika ada 
-                        ketidaksesuaian, mohon koreksinya. Terima kasih.
-                    </p>
-                </div>
             </div>
         </div>
     </section>
@@ -1530,13 +1460,12 @@
     </div>
 </footer>
 
-<!-- ============================================================ -->
-<!-- 🎨 JAVASCRIPT - 15.000+ BARIS -->
-<!-- ============================================================ -->
 <script>
     // ============================================================
-    // 🎨 LOADING SCREEN
+    // 🎨 JAVASCRIPT - 15.000+ BARIS
     // ============================================================
+    
+    // --- LOADING SCREEN ---
     window.addEventListener('load', function() {
         const loadingScreen = document.getElementById('loadingScreen');
         const progressBar = document.getElementById('progressBar');
@@ -1556,9 +1485,7 @@
         }, 200);
     });
 
-    // ============================================================
-    // 🎨 FUNGSI TOGGLE NAVBAR
-    // ============================================================
+    // --- TOGGLE NAVBAR ---
     function toggleNavbar() {
         const nav = document.getElementById('mainNav');
         const toggleIcon = document.querySelector('.navbar-toggle .toggle-icon');
@@ -1566,9 +1493,7 @@
         toggleIcon.classList.toggle('rotated');
     }
 
-    // ============================================================
-    // 🎨 FUNGSI TOGGLE SECTION (BUKA/TUTUP)
-    // ============================================================
+    // --- TOGGLE SECTION ---
     function toggleSection(header) {
         const content = header.nextElementSibling;
         const icon = header.querySelector('.toggle-icon');
@@ -1576,9 +1501,7 @@
         icon.classList.toggle('rotated');
     }
 
-    // ============================================================
-    // 🎨 DATA PLAYLIST - 8 LAGU
-    // ============================================================
+    // --- DATA PLAYLIST ---
     const playlistData = [
         { number: 1, title: "Multo", year: "2023", duration: "3:45", audioSrc: "multo (1).mp3" },
         { number: 2, title: "Bagyo", year: "2024", duration: "4:02", audioSrc: "bagyo.mp3" },
@@ -1590,9 +1513,7 @@
         { number: 8, title: "Sinderela", year: "2022", duration: "3:32", audioSrc: "sinderela.mp3" }
     ];
 
-    // ============================================================
-    // 🎨 DATA ANGGOTA
-    // ============================================================
+    // --- DATA ANGGOTA ---
     const membersData = [
         { name: "Gian", icon: "fas fa-microphone-alt", photo: "gian.jpg" },
         { name: "Raphael", icon: "fas fa-guitar", photo: "raphael.jpg" },
@@ -1601,22 +1522,16 @@
         { name: "Xen", icon: "fas fa-guitar", photo: "xen.jpg" }
     ];
 
-    // ============================================================
-    // 🎨 DATA STATISTIKA
-    // ============================================================
+    // --- DATA STATISTIKA ---
     const rawData = [35, 42, 28, 50, 31, 47, 53, 22, 49, 36, 55, 38, 47, 60, 44, 33, 39, 41, 58, 45];
     const labels = ["22-29", "30-37", "38-45", "46-53", "54-61"];
     const frekuensi = [2, 4, 6, 5, 3];
 
-    // ============================================================
-    // 🎨 RENDER DATA MENTAH
-    // ============================================================
+    // --- RENDER DATA MENTAH ---
     const dataGrid = document.getElementById('data-grid');
     rawData.forEach(d => { dataGrid.innerHTML += `<span class="data-item">${d}</span>`; });
 
-    // ============================================================
-    // 🎨 RENDER TABEL FREKUENSI
-    // ============================================================
+    // --- RENDER TABEL FREKUENSI ---
     const freqTable = document.getElementById('freq-table');
     freqTable.innerHTML = `<table>
         <thead><tr><th>Interval</th><th>Frekuensi (f)</th><th>Titik Tengah (x)</th><th>f·x</th></tr></thead>
@@ -1630,9 +1545,7 @@
         </tbody>
     </table>`;
 
-    // ============================================================
-    // 🎨 RENDER STAT BOXES
-    // ============================================================
+    // --- RENDER STAT BOXES ---
     const statBoxes = document.getElementById('stat-boxes');
     statBoxes.innerHTML = `
         <div class="stat-box"><div class="stat-number">42.7</div><p>Mean (Rata-rata)</p></div>
@@ -1640,11 +1553,8 @@
         <div class="stat-box"><div class="stat-number">47</div><p>Modus</p></div>
     `;
 
-    // ============================================================
-    // 🎨 RENDER PLAYLIST DENGAN TOMBOL PLAY
-    // ============================================================
+    // --- RENDER PLAYLIST ---
     const playlistContainer = document.getElementById('playlist-container');
-    
     playlistData.forEach((song, index) => {
         const songDiv = document.createElement('div');
         songDiv.className = 'song-item';
@@ -1668,9 +1578,7 @@
         playlistContainer.appendChild(songDiv);
     });
 
-    // ============================================================
-    // 🎨 FUNGSI PLAY/PAUSE
-    // ============================================================
+    // --- FUNGSI PLAY/PAUSE ---
     function togglePlay(audioId) {
         const audio = document.getElementById(audioId);
         const btn = audio.parentElement.querySelector('.play-btn');
@@ -1697,9 +1605,7 @@
         }
     }
 
-    // ============================================================
-    // 🎨 RENDER MEMBERS
-    // ============================================================
+    // --- RENDER MEMBERS ---
     const membersContainer = document.getElementById('members-container');
     membersData.forEach(member => {
         const memberDiv = document.createElement('div');
@@ -1714,9 +1620,7 @@
         membersContainer.appendChild(memberDiv);
     });
 
-    // ============================================================
-    // 🎨 CHARTS
-    // ============================================================
+    // --- CHARTS ---
     new Chart(document.getElementById('barChart'), {
         type: 'bar',
         data: { 
@@ -1805,6 +1709,5 @@
         }
     });
 </script>
-
 </body>
-            </html>
+</html>
