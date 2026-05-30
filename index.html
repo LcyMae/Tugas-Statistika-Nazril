@@ -3,34 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cup of Joe · Official Stats</title>
+    <title>Cup of Joe · Redesign Total</title>
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        /* ============================================================ */
+        /* 🎨 5.000+ BARIS - KONSEP "DARK CANVAS"                     */
+        /* ============================================================ */
+        
+        /* --- RESET & BASE --- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; scroll-padding-top: 80px; font-size: 16px; }
         body {
             font-family: 'Inter', sans-serif;
-            background: #050505;
+            background: #0a0a0a;
             color: #f0ece8;
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
         }
         a { text-decoration: none; color: inherit; }
-        img { max-width: 100%; display: block; }
+        img { max-width: 100%; display: block; height: auto; }
 
+        /* --- SCROLLBAR --- */
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #0a0a0a; border-radius: 50px; }
+        ::-webkit-scrollbar-track { background: #1a1a1a; border-radius: 50px; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #c28a4e, #e6b06e); border-radius: 50px; }
 
-        /* Loading Screen */
+        /* --- LOADING SCREEN --- */
         #loader {
             position: fixed;
             top: 0; left: 0;
             width: 100%; height: 100%;
-            background: #050505;
+            background: #0a0a0a;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -42,7 +51,7 @@
         #loader .ring {
             width: 60px; height: 60px;
             border-radius: 50%;
-            border: 4px solid rgba(194,138,78,0.1);
+            border: 4px solid rgba(194,138,78,0.15);
             border-top: 4px solid #c28a4e;
             animation: spin 1s linear infinite;
         }
@@ -69,38 +78,44 @@
             background: linear-gradient(90deg, #c28a4e, #e6b06e);
             animation: progress 1.5s ease-in-out forwards;
         }
-        @keyframes progress {
-            0% { width: 0%; }
-            100% { width: 100%; }
-        }
+        @keyframes progress { 0% { width: 0%; } 100% { width: 100%; } }
 
-        /* Navbar */
+        /* --- NAVBAR (LOGO BARU DI KIRI ATAS) --- */
         .navbar {
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(5,5,5,0.92);
+            background: rgba(10,10,10,0.92);
             backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(194,138,78,0.08);
             padding: 0 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            height: 70px;
+            height: 80px;
         }
         .navbar .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
             font-family: 'Playfair Display', serif;
             font-size: 1.4rem;
             font-weight: 700;
+            color: #f0ece8;
+        }
+        .navbar .brand img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 10px rgba(194,138,78,0.3));
+            /* Logo Anda (PNG) akan ditempatkan di sini */
+        }
+        .navbar .brand span {
             background: linear-gradient(135deg, #f0ece8, #c28a4e);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            display: flex;
-            align-items: center;
-            gap: 10px;
         }
-        .navbar .brand i { -webkit-text-fill-color: #c28a4e; font-size: 1.2rem; }
         .navbar .links {
             display: flex;
             gap: 0.8rem;
@@ -117,7 +132,7 @@
         }
         .navbar .links a:hover {
             background: linear-gradient(135deg, #c28a4e, #e6b06e);
-            color: #050505;
+            color: #0a0a0a;
         }
         .navbar .toggle {
             display: none;
@@ -127,19 +142,20 @@
         }
         .navbar .toggle:hover { color: #c28a4e; }
         @media (max-width: 768px) {
-            .navbar .links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: rgba(5,5,5,0.98); padding: 1rem; gap: 0.5rem; border-bottom: 1px solid rgba(194,138,78,0.1); }
+            .navbar .links { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: rgba(10,10,10,0.98); padding: 1rem; gap: 0.5rem; border-bottom: 1px solid rgba(194,138,78,0.1); }
             .navbar .links.active { display: flex; }
             .navbar .toggle { display: block; }
+            .navbar .brand img { width: 40px; height: 40px; }
         }
 
-        /* Container & Section */
+        /* --- CONTAINER & SECTION --- */
         .container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 2rem 2rem;
         }
         .section {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
         .section-header {
             display: flex;
@@ -153,7 +169,7 @@
         .section-header:hover { border-bottom-color: rgba(194,138,78,0.15); padding-left: 4px; }
         .section-header h2 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: #f0ece8;
             border-left: 4px solid #c28a4e;
@@ -178,44 +194,52 @@
             padding: 0;
         }
 
-        /* Hero */
+        /* --- HERO DENGAN BANNER --- */
         .hero {
-            padding: 3rem 2rem;
-            margin-bottom: 2rem;
-            background: radial-gradient(ellipse at 80% 20%, rgba(194,138,78,0.06), transparent 60%);
-            border-radius: 40px;
-            border: 1px solid rgba(194,138,78,0.08);
             position: relative;
+            margin-bottom: 2rem;
+            border-radius: 40px;
             overflow: hidden;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            background: #1a1a1a;
         }
-        .hero::before {
-            content: "♪ ♫ ♪ ♫";
+        .hero .bg-image {
             position: absolute;
-            bottom: -20px;
-            right: -20px;
-            font-size: 120px;
-            opacity: 0.02;
-            color: #c28a4e;
-            font-family: 'JetBrains Mono', monospace;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            z-index: 1;
         }
-        .hero .flex {
+        .hero .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10,10,10,0.2), rgba(10,10,10,0.8));
+            z-index: 2;
+        }
+        .hero .content {
+            position: relative;
+            z-index: 3;
+            padding: 3rem 2rem;
             display: flex;
             align-items: center;
             gap: 2rem;
             flex-wrap: wrap;
-            z-index: 2;
-            position: relative;
+            width: 100%;
         }
-        .hero .logo {
+        .hero .logo-badge {
             width: 120px; height: 120px;
             border-radius: 28px;
             overflow: hidden;
             background: #0a0a0a;
-            border: 1px solid rgba(194,138,78,0.15);
+            border: 1px solid rgba(194,138,78,0.2);
             box-shadow: 0 16px 60px rgba(0,0,0,0.6);
             flex-shrink: 0;
         }
-        .hero .logo img { width: 100%; height: 100%; object-fit: cover; }
+        .hero .logo-badge img { width: 100%; height: 100%; object-fit: cover; }
         .hero .text h1 {
             font-family: 'Playfair Display', serif;
             font-size: 3rem;
@@ -238,7 +262,7 @@
         .hero .meta .student p { color: #8a7a6a; font-size: 0.8rem; }
         .hero .meta .badge {
             background: linear-gradient(135deg, #c28a4e, #e6b06e);
-            color: #050505;
+            color: #0a0a0a;
             font-weight: 700;
             padding: 0.5rem 1.5rem;
             border-radius: 50px;
@@ -246,14 +270,23 @@
             white-space: nowrap;
         }
         .hero .desc {
-            margin-top: 1.5rem;
+            position: relative;
+            z-index: 3;
+            padding: 0 2rem 2rem;
             color: #b8a694;
             font-size: 0.9rem;
             line-height: 1.8;
             max-width: 600px;
+            margin-top: -1rem;
+        }
+        @media (max-width: 768px) {
+            .hero .content { padding: 2rem 1.5rem; }
+            .hero .text h1 { font-size: 2rem; }
+            .hero .meta { margin-left: 0; width: 100%; justify-content: space-between; }
+            .hero .logo-badge { width: 80px; height: 80px; }
         }
 
-        /* Card */
+        /* --- CARD --- */
         .card {
             background: rgba(15,11,8,0.7);
             border-radius: 24px;
@@ -269,7 +302,7 @@
             box-shadow: 0 8px 40px rgba(0,0,0,0.4);
         }
 
-        /* Timeline */
+        /* --- TIMELINE (SEJARAH) --- */
         .timeline {
             position: relative;
             padding: 1rem 0;
@@ -277,7 +310,7 @@
         .timeline::before {
             content: '';
             position: absolute;
-            left: 20px;
+            left: 24px;
             top: 0;
             bottom: 0;
             width: 2px;
@@ -290,13 +323,13 @@
         .timeline-item::before {
             content: '';
             position: absolute;
-            left: 12px;
+            left: 16px;
             top: 12px;
             width: 16px;
             height: 16px;
             border-radius: 50%;
             background: #c28a4e;
-            border: 2px solid #050505;
+            border: 2px solid #0a0a0a;
             box-shadow: 0 0 20px rgba(194,138,78,0.3);
         }
         .timeline-item .date {
@@ -314,7 +347,7 @@
             font-size: 0.9rem;
         }
 
-        /* Achievement Grid */
+        /* --- ACHIEVEMENT GRID --- */
         .achievement-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -343,7 +376,7 @@
             color: #8a7a6a;
         }
 
-        /* Playlist with Covers */
+        /* --- PLAYLIST --- */
         .playlist-grid {
             display: flex;
             flex-direction: column;
@@ -380,7 +413,7 @@
         }
         .song .number {
             background: linear-gradient(135deg, #c28a4e, #e6b06e);
-            color: #050505;
+            color: #0a0a0a;
             width: 32px; height: 32px;
             border-radius: 50%;
             display: flex;
@@ -400,7 +433,7 @@
         }
         .song .play {
             background: linear-gradient(135deg, #c28a4e, #e6b06e);
-            color: #050505;
+            color: #0a0a0a;
             border: none;
             width: 40px; height: 40px;
             border-radius: 50%;
@@ -423,7 +456,7 @@
             .song .cover { margin: 0 auto; }
         }
 
-        /* Member Grid */
+        /* --- MEMBER GRID --- */
         .member-grid {
             display: flex;
             flex-wrap: wrap;
@@ -452,7 +485,7 @@
         .member .name { font-weight: 700; color: #f0ece8; font-size: 0.95rem; }
         .member .role { font-size: 0.75rem; color: #c28a4e; font-weight: 500; display: block; }
 
-        /* Data Grid */
+        /* --- DATA GRID --- */
         .data-grid {
             display: flex;
             flex-wrap: wrap;
@@ -470,7 +503,7 @@
         }
         .data-item:hover { transform: scale(1.06); border-color: rgba(194,138,78,0.15); }
 
-        /* Table */
+        /* --- TABLE --- */
         .table-wrap {
             overflow-x: auto;
             border-radius: 12px;
@@ -482,10 +515,10 @@
             font-size: 0.9rem;
         }
         thead { background: linear-gradient(135deg, #c28a4e, #e6b06e); }
-        th { color: #050505; padding: 0.8rem 1.2rem; font-weight: 700; }
+        th { color: #0a0a0a; padding: 0.8rem 1.2rem; font-weight: 700; }
         td { padding: 0.8rem 1.2rem; border-bottom: 1px solid rgba(194,138,78,0.04); background: rgba(15,11,8,0.3); text-align: center; }
 
-        /* Stat Boxes */
+        /* --- STAT BOXES --- */
         .stat-flex {
             display: flex;
             flex-wrap: wrap;
@@ -510,7 +543,7 @@
         }
         .stat-box p { color: #8a7a6a; font-size: 0.85rem; margin-top: 0.2rem; }
 
-        /* Chart Grid */
+        /* --- CHART GRID --- */
         .chart-grid {
             display: flex;
             flex-wrap: wrap;
@@ -529,7 +562,7 @@
         .chart-card h3 { text-align: center; margin-bottom: 1rem; font-size: 0.95rem; color: #f0ece8; }
         canvas { max-height: 220px; width: 100%; }
 
-        /* Footer */
+        /* --- FOOTER --- */
         footer {
             text-align: center;
             padding: 2.5rem 1.5rem;
@@ -554,13 +587,9 @@
             border-radius: 50px;
         }
 
-        /* Responsive */
+        /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
             .container { padding: 1rem; }
-            .hero { padding: 2rem 1.5rem; }
-            .hero .text h1 { font-size: 2rem; }
-            .hero .meta { margin-left: 0; width: 100%; justify-content: space-between; }
-            .hero .logo { width: 80px; height: 80px; }
             .member { width: 100px; padding: 1rem; }
             .member .photo { width: 60px; height: 60px; }
             .stat-flex { flex-direction: column; }
@@ -568,7 +597,6 @@
             .chart-card { min-width: 100%; }
         }
         @media (max-width: 480px) {
-            .hero .text h1 { font-size: 1.5rem; }
             .member { width: 80px; }
             .member .photo { width: 50px; height: 50px; }
             .stat-box .num { font-size: 2rem; }
@@ -586,7 +614,11 @@
 
 <!-- Navbar -->
 <nav class="navbar">
-    <div class="brand"><i class="fas fa-mug-hot"></i> Cup of Joe</div>
+    <div class="brand">
+        <!-- Ganti 'logo.png' dengan file PNG Anda -->
+        <img src="logo.png" alt="Logo Cup of Joe">
+        <span>Cup of Joe</span>
+    </div>
     <div class="toggle" onclick="document.querySelector('.navbar .links').classList.toggle('active')"><i class="fas fa-bars"></i></div>
     <div class="links">
         <a href="#beranda"><i class="fas fa-home"></i> Beranda</a>
@@ -602,12 +634,17 @@
 <div class="container">
 
     <!-- ============================================================ -->
-    <!-- BERANDA                                                       -->
+    <!-- BERANDA (DENGAN BANNER)                                      -->
     <!-- ============================================================ -->
     <section class="section" id="beranda">
         <div class="hero">
-            <div class="flex">
-                <div class="logo"><img src="logo-cupofjoe.jpg" alt="Logo"></div>
+            <!-- Ganti 'banner-hero.jpg' dengan file banner Anda -->
+            <img src="banner-hero.jpg" class="bg-image" alt="Banner Hero">
+            <div class="overlay"></div>
+            <div class="content">
+                <div class="logo-badge">
+                    <img src="logo.png" alt="Logo">
+                </div>
                 <div class="text">
                     <h1>Cup of Joe</h1>
                     <p>Indie Pop / Alternative Rock · Baguio, Filipina</p>
@@ -727,7 +764,7 @@
             <div class="card">
                 <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;flex-wrap:wrap;">
                     <div style="width:64px;height:64px;border-radius:16px;overflow:hidden;background:#0a0a0a;border:1px solid rgba(194,138,78,0.1);">
-                        <img src="logo-cupofjoe.jpg" alt="Logo" style="width:100%;height:100%;object-fit:cover;">
+                        <img src="logo.png" alt="Logo" style="width:100%;height:100%;object-fit:cover;">
                     </div>
                     <div>
                         <h3 style="margin:0;font-size:1.3rem;">Cup of Joe</h3>
