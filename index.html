@@ -12,10 +12,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&family=Playfair+Display:wght@400;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         /* ============================================================ */
-        /* 🎨 5.000+ BARIS - KONSEP "DARK CANVAS"                     */
+        /* 🎨 5000+ BARIS - REDESIGN TOTAL + LYRIC POPUP PREMIUM        */
         /* ============================================================ */
         
-        /* --- RESET & BASE --- */
+        /* ---------- RESET & BASE ---------- */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; scroll-padding-top: 80px; font-size: 16px; }
         body {
@@ -25,16 +25,17 @@
             line-height: 1.6;
             overflow-x: hidden;
             -webkit-font-smoothing: antialiased;
+            min-height: 100vh;
         }
         a { text-decoration: none; color: inherit; }
         img { max-width: 100%; display: block; height: auto; }
 
-        /* --- SCROLLBAR --- */
+        /* ---------- SCROLLBAR ---------- */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #1a1a1a; border-radius: 50px; }
         ::-webkit-scrollbar-thumb { background: linear-gradient(135deg, #c28a4e, #e6b06e); border-radius: 50px; }
 
-        /* --- LOADING SCREEN --- */
+        /* ---------- LOADING SCREEN ---------- */
         #loader {
             position: fixed;
             top: 0; left: 0;
@@ -80,7 +81,7 @@
         }
         @keyframes progress { 0% { width: 0%; } 100% { width: 100%; } }
 
-        /* --- NAVBAR (LOGO BARU DI KIRI ATAS) --- */
+        /* ---------- NAVBAR ---------- */
         .navbar {
             position: sticky;
             top: 0;
@@ -104,8 +105,7 @@
             color: #f0ece8;
         }
         .navbar .brand img {
-            width: 50px;
-            height: 50px;
+            width: 50px; height: 50px;
             object-fit: contain;
             filter: drop-shadow(0 0 10px rgba(194,138,78,0.3));
         }
@@ -141,21 +141,16 @@
         }
         .navbar .toggle:hover { color: #c28a4e; }
         @media (max-width: 768px) {
-            .navbar .links { display: none; flex-direction: column; position: absolute; top: 80px; left: 0; width: 100%; background: rgba(10,10,10,0.98); padding: 1rem; gap: 0.5rem; border-bottom: 1px solid rgba(194,138,78,0.1); }
+            .navbar { height: auto; padding: 0.5rem 1rem; flex-wrap: wrap; }
+            .navbar .brand { width: 100%; justify-content: space-between; }
+            .navbar .links { display: none; flex-direction: column; width: 100%; padding-top: 0.5rem; border-top: 1px solid rgba(194,138,78,0.1); }
             .navbar .links.active { display: flex; }
             .navbar .toggle { display: block; }
-            .navbar .brand img { width: 40px; height: 40px; }
         }
 
-        /* --- CONTAINER & SECTION --- */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem 2rem;
-        }
-        .section {
-            margin-bottom: 4rem;
-        }
+        /* ---------- CONTAINER & SECTION ---------- */
+        .container { max-width: 1400px; margin: 0 auto; padding: 2rem; }
+        .section { margin-bottom: 4rem; }
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -193,7 +188,7 @@
             padding: 0;
         }
 
-        /* --- HERO DENGAN BANNER --- */
+        /* ---------- HERO ---------- */
         .hero {
             position: relative;
             margin-bottom: 2rem;
@@ -285,7 +280,7 @@
             .hero .logo-badge { width: 80px; height: 80px; }
         }
 
-        /* --- CARD --- */
+        /* ---------- CARD ---------- */
         .card {
             background: rgba(15,11,8,0.7);
             border-radius: 24px;
@@ -301,7 +296,7 @@
             box-shadow: 0 8px 40px rgba(0,0,0,0.4);
         }
 
-        /* --- TIMELINE (SEJARAH) --- */
+        /* ---------- TIMELINE ---------- */
         .timeline {
             position: relative;
             padding: 1rem 0;
@@ -346,7 +341,7 @@
             font-size: 0.9rem;
         }
 
-        /* --- ACHIEVEMENT GRID --- */
+        /* ---------- ACHIEVEMENT GRID ---------- */
         .achievement-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -375,7 +370,7 @@
             color: #8a7a6a;
         }
 
-        /* --- PLAYLIST --- */
+        /* ---------- PLAYLIST ---------- */
         .playlist-grid {
             display: flex;
             flex-direction: column;
@@ -455,7 +450,7 @@
             .song .cover { margin: 0 auto; }
         }
 
-        /* --- MEMBER GRID --- */
+        /* ---------- MEMBER GRID ---------- */
         .member-grid {
             display: flex;
             flex-wrap: wrap;
@@ -484,7 +479,7 @@
         .member .name { font-weight: 700; color: #f0ece8; font-size: 0.95rem; }
         .member .role { font-size: 0.75rem; color: #c28a4e; font-weight: 500; display: block; }
 
-        /* --- DATA GRID --- */
+        /* ---------- DATA GRID ---------- */
         .data-grid {
             display: flex;
             flex-wrap: wrap;
@@ -502,7 +497,7 @@
         }
         .data-item:hover { transform: scale(1.06); border-color: rgba(194,138,78,0.15); }
 
-        /* --- TABLE --- */
+        /* ---------- TABLE ---------- */
         .table-wrap {
             overflow-x: auto;
             border-radius: 12px;
@@ -517,7 +512,7 @@
         th { color: #0a0a0a; padding: 0.8rem 1.2rem; font-weight: 700; }
         td { padding: 0.8rem 1.2rem; border-bottom: 1px solid rgba(194,138,78,0.04); background: rgba(15,11,8,0.3); text-align: center; }
 
-        /* --- STAT BOXES --- */
+        /* ---------- STAT BOXES ---------- */
         .stat-flex {
             display: flex;
             flex-wrap: wrap;
@@ -542,7 +537,7 @@
         }
         .stat-box p { color: #8a7a6a; font-size: 0.85rem; margin-top: 0.2rem; }
 
-        /* --- CHART GRID --- */
+        /* ---------- CHART GRID ---------- */
         .chart-grid {
             display: flex;
             flex-wrap: wrap;
@@ -561,7 +556,78 @@
         .chart-card h3 { text-align: center; margin-bottom: 1rem; font-size: 0.95rem; color: #f0ece8; }
         canvas { max-height: 220px; width: 100%; }
 
-        /* --- FOOTER --- */
+        /* ---------- LYRIC POPUP PREMIUM ---------- */
+        .lyric-popup {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 340px;
+            max-height: 300px;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(194, 138, 78, 0.15);
+            border-radius: 20px;
+            padding: 18px 20px;
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            transform: translateY(24px) scale(0.96);
+            pointer-events: none;
+        }
+        .lyric-popup.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+        .lyric-popup .close-btn {
+            position: absolute;
+            top: 8px;
+            right: 12px;
+            cursor: pointer;
+            color: #8a7a6a;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .lyric-popup .close-btn:hover {
+            color: #f0ece8;
+            transform: rotate(90deg);
+        }
+        .lyric-popup .song-title {
+            font-weight: 700;
+            color: #c28a4e;
+            font-size: 0.9rem;
+            margin-bottom: 6px;
+            border-bottom: 1px solid rgba(194, 138, 78, 0.1);
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .lyric-popup .song-title i { font-size: 1rem; }
+        .lyric-popup .lyrics-text {
+            font-size: 0.85rem;
+            color: #d4c8b8;
+            line-height: 1.7;
+            max-height: 200px;
+            overflow-y: auto;
+            padding-right: 4px;
+            white-space: pre-line;
+            scroll-behavior: smooth;
+        }
+        .lyric-popup .lyrics-text::-webkit-scrollbar { width: 4px; }
+        .lyric-popup .lyrics-text::-webkit-scrollbar-thumb { background: #c28a4e; border-radius: 50px; }
+        .lyric-popup .lyrics-text::-webkit-scrollbar-track { background: transparent; }
+        @media (max-width: 480px) {
+            .lyric-popup {
+                width: 260px;
+                bottom: 70px;
+                right: 10px;
+                padding: 14px 16px;
+            }
+        }
+
+        /* ---------- FOOTER ---------- */
         footer {
             text-align: center;
             padding: 2.5rem 1.5rem;
@@ -586,7 +652,7 @@
             border-radius: 50px;
         }
 
-        /* --- RESPONSIVE --- */
+        /* ---------- RESPONSIVE ---------- */
         @media (max-width: 768px) {
             .container { padding: 1rem; }
             .member { width: 100px; padding: 1rem; }
@@ -614,17 +680,17 @@
 <!-- Navbar -->
 <nav class="navbar">
     <div class="brand">
-        <!-- Ganti 'logo.png' dengan file PNG Anda -->
-        <img src="logo.png" alt="Logo Cup of Joe">
+        <img src="logo.jpg" alt="Logo Cup of Joe">
         <span>Cup of Joe</span>
     </div>
     <div class="toggle" onclick="document.querySelector('.navbar .links').classList.toggle('active')"><i class="fas fa-bars"></i></div>
     <div class="links">
         <a href="#beranda"><i class="fas fa-home"></i> Beranda</a>
         <a href="#playlist"><i class="fas fa-headphones"></i> Playlist</a>
+        <a href="#sejarah"><i class="fas fa-history"></i> Sejarah</a>
+        <a href="#prestasi"><i class="fas fa-trophy"></i> Prestasi</a>
         <a href="#profil"><i class="fas fa-users"></i> Profil</a>
         <a href="#data"><i class="fas fa-database"></i> Data</a>
-        <a href="#pengolahan"><i class="fas fa-chart-line"></i> Olah</a>
         <a href="#diagram"><i class="fas fa-chart-pie"></i> Diagram</a>
         <a href="#kesimpulan"><i class="fas fa-check-circle"></i> Kesimpulan</a>
     </div>
@@ -633,16 +699,15 @@
 <div class="container">
 
     <!-- ============================================================ -->
-    <!-- BERANDA (DENGAN BANNER)                                      -->
+    <!-- BERANDA                                                       -->
     <!-- ============================================================ -->
     <section class="section" id="beranda">
         <div class="hero">
-            <!-- Ganti 'banner-hero.jpg' dengan file banner Anda -->
             <img src="banner-hero.jpg" class="bg-image" alt="Banner Hero">
             <div class="overlay"></div>
             <div class="content">
                 <div class="logo-badge">
-                    <img src="logo.png" alt="Logo">
+                    <img src="logo.jpg" alt="Logo">
                 </div>
                 <div class="text">
                     <h1>Cup of Joe</h1>
@@ -658,7 +723,7 @@
             </div>
             <div class="desc">
                 <i class="fas fa-info-circle" style="color:#c28a4e;margin-right:6px;"></i>
-                <strong>Survei durasi mendengarkan lagu Cup of Joe dari 20 responden.</strong> 
+                <strong>Survei durasi mendengarkan lagu Cup of Joe dari 20 responden.</strong>
                 Band ini mulai dikenal luas setelah "Multo" masuk Billboard Global 200. Klik judul kategori untuk membuka/menutup.
             </div>
         </div>
@@ -680,7 +745,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- SEJARAH BAND                                                  -->
+    <!-- SEJARAH                                                       -->
     <!-- ============================================================ -->
     <section class="section" id="sejarah">
         <div class="section-header" onclick="toggleSection(this)">
@@ -716,7 +781,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- PRESTASI & PENCAPAIAN                                         -->
+    <!-- PRESTASI                                                      -->
     <!-- ============================================================ -->
     <section class="section" id="prestasi">
         <div class="section-header" onclick="toggleSection(this)">
@@ -752,7 +817,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- PROFIL BAND                                                   -->
+    <!-- PROFIL                                                        -->
     <!-- ============================================================ -->
     <section class="section" id="profil">
         <div class="section-header" onclick="toggleSection(this)">
@@ -761,21 +826,19 @@
         </div>
         <div class="section-content" id="content-profil">
             <div class="card">
-                <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;flex-wrap:wrap;">
-                    <div style="width:64px;height:64px;border-radius:16px;overflow:hidden;background:#0a0a0a;border:1px solid rgba(194,138,78,0.1);">
-                        <img src="logo.png" alt="Logo" style="width:100%;height:100%;object-fit:cover;">
+                <div class="profile-container" style="display:flex;align-items:flex-start;gap:2rem;flex-wrap:wrap;">
+                    <div style="width:80px;height:80px;border-radius:16px;overflow:hidden;background:#0a0a0a;border:1px solid rgba(194,138,78,0.1);flex-shrink:0;">
+                        <img src="logo.jpg" alt="Logo" style="width:100%;height:100%;object-fit:cover;">
                     </div>
-                    <div>
-                        <h3 style="margin:0;font-size:1.3rem;">Cup of Joe</h3>
-                        <p style="color:#8a7a6a;font-size:0.85rem;">Indie Pop / Alternative Rock</p>
+                    <div style="flex:1;min-width:200px;">
+                        <h3 style="margin:0 0 0.3rem 0;font-size:1.4rem;">Cup of Joe</h3>
+                        <p style="color:#8a7a6a;font-size:0.85rem;margin-bottom:0.8rem;">Indie Pop / Alternative Rock</p>
+                        <p style="color:#b8a694;">
+                            <strong>Cup of Joe</strong> adalah grup musik indie pop/alternative rock asal Filipina yang dikenal dengan lirik puitis, aransemen lembut, dan tema introspektif seperti patah hati, kehilangan, dan pertumbuhan personal.
+                            Nama mereka terinspirasi dari secangkir kopi — simbol kehangatan dan persahabatan.
+                        </p>
                     </div>
                 </div>
-
-                <p style="color:#b8a694;">
-                    <strong>Cup of Joe</strong> adalah grup musik indie pop/alternative rock asal Filipina yang dikenal dengan lirik puitis, aransemen lembut, dan tema introspektif seperti patah hati, kehilangan, dan pertumbuhan personal. 
-                    Nama mereka terinspirasi dari secangkir kopi — simbol kehangatan dan persahabatan.
-                </p>
-
                 <h3 style="margin-top:2rem;"><i class="fas fa-users"></i> Anggota</h3>
                 <div class="member-grid" id="memberContainer"></div>
             </div>
@@ -783,7 +846,7 @@
     </section>
 
     <!-- ============================================================ -->
-    <!-- DATA MENTAH                                                   -->
+    <!-- DATA                                                          -->
     <!-- ============================================================ -->
     <section class="section" id="data">
         <div class="section-header" onclick="toggleSection(this)">
@@ -854,6 +917,13 @@
 
 </div>
 
+<!-- Lyric Popup -->
+<div id="lyricPopup" class="lyric-popup">
+    <span class="close-btn" onclick="closeLyrics()"><i class="fas fa-times"></i></span>
+    <div class="song-title"><i class="fas fa-music"></i> <span id="lyricSongTitle">Lirik Lagu</span></div>
+    <div class="lyrics-text" id="lyricText">Lirik akan muncul saat lagu diputar...</div>
+</div>
+
 <!-- Footer -->
 <footer>
     <i class="fas fa-mug-hot"></i> <span class="brand">Cup of Joe</span> · Full Playlist & Statistika <i class="fas fa-headphones"></i>
@@ -861,10 +931,11 @@
     8 Lagu Hits · Semua Bisa Diputar · Gian · Raphaell · Gabriel · CJ · Xen ☕
 </footer>
 
+<!-- ============================================================ -->
+<!-- 🧠 JAVASCRIPT - 1500+ BARIS                                    -->
+<!-- ============================================================ -->
 <script>
-    // ============================================================
-    // LOADING SCREEN
-    // ============================================================
+    // ---------- LOADING SCREEN ----------
     window.addEventListener('load', function() {
         const loader = document.getElementById('loader');
         setTimeout(function() {
@@ -873,9 +944,7 @@
         }, 800);
     });
 
-    // ============================================================
-    // TOGGLE SECTION
-    // ============================================================
+    // ---------- TOGGLE SECTION ----------
     function toggleSection(header) {
         const content = header.nextElementSibling;
         const icon = header.querySelector('.icon');
@@ -883,9 +952,361 @@
         icon.classList.toggle('rotated');
     }
 
-    // ============================================================
-    // DATA PLAYLIST (8 LAGU DENGAN COVER - TAHUN SESUAI WIKI)
-    // ============================================================
+    // ---------- DATA LIRIK LENGKAP ----------
+    const lyricsData = {
+        "Sinderela": `Unti-unti nang napapagod
+Sa aking puso'y humahagod
+Sa paghintay hanggang sa dulo
+Ako'y nalulunod
+Hindi inaasahang oras
+Huminto na ang paglipas
+Sa lugar na walang alaala
+Nabigyan ng halaga
+Ika'y aking nakita, 'kala ko namalikmata
+Sa wakas, nahanap ko'ng hinahangad ng aking puso
+Ito na ang segundo, 'di ko na palilipasin
+Pilit na hahabulin
+Wala nang hininga, ako'y nanghihina
+Pero 'di alintana
+Oh, kahit ako'y matapilok, tuloy pa rin ang pagtibok
+Ng puso kong sinisigaw pangalan mo
+Huminto na at 'wag lalayo, oh, oh, oh
+Malapit nang mapatingin, ika'y mapapasa'kin din
+Tulak ng bibig, kabig ng dibdib
+Ikaw ang tanging nasa isip
+Sa panaginip na malabo
+Hindi na hihinto
+Ika'y muling nakita, at ngayon, alam ko na
+Ikaw ang laman, alam, at aalamin ng aking puso
+Pawala na ang segundo, isip ay gulong-gulo
+Tuloy ang pagtakbo
+Wala nang hininga, ako'y nanghihina
+Pero 'di alintana
+Oh, kahit ako'y matapilok, tuloy pa rin ang pagtibok
+Ng puso kong sinisigaw pangalan mo
+Huminto na at 'wag lalayo, oh, oh, oh
+Malapit nang mapatingin, ika'y mapapasa'kin din
+Wala nang hininga, ako'y nanghihina
+Pero 'di alintana
+Oh, kahit ako'y matapilok, tuloy pa rin ang pagtibok
+Ng puso kong sinisigaw pangalan mo
+Huminto na at 'wag lalayo, oh, oh, oh
+Malapit nang mapatingin, ika'y mapapasa'kin na
+Ako'y nanghihina
+Pero 'di alintana
+Oh, kahit ako'y matapilok, tuloy pa rin ang pagtibok
+Ng puso kong sinisigaw pangalan mo
+Huminto na at 'wag lalayo, oh, oh, oh
+Malapit nang mapatingin, ika'y mapapasa'kin din`,
+        "Multo": `Humingang malalim, pumikit na muna
+At baka-sakaling namamalikmata lang
+Ba't nababahala? 'Di ba't ako'y mag-isa?
+'Kala ko'y payapa, boses mo'y tumatawag pa
+Binaon naman na ang lahat
+Tinakpan naman na 'king sugat
+Ngunit ba't ba andito pa rin?
+Hirap na 'kong intindihin
+Tanging panalangin, lubayan na sana
+Dahil sa bawat tingin, mukha mo'y nakikita
+Kahit sa'n man mapunta ay anino mo'y kumakapit sa 'king kamay
+Ako ay dahan-dahang nililibing nang buhay pa
+Hindi na makalaya
+Dinadalaw mo 'ko bawat gabi
+Wala mang nakikita
+Haplos mo'y ramdam pa rin sa dilim
+Hindi na nananaginip
+Hindi na ma-makagising
+Pasindi na ng ilaw
+Minumulto na 'ko ng damdamin ko
+Ng damdamin ko
+Hindi mo ba ako lilisanin?
+Hindi pa ba sapat pagpapahirap sa 'kin? (Ng damdamin ko)
+Hindi na ba ma-mamamayapa?
+Hindi na ba ma-mamamayapa?
+Hindi na makalaya
+Dinadalaw mo 'ko bawat gabi
+Wala mang nakikita
+Haplos mo'y ramdam pa rin sa dilim
+Hindi na nananaginip
+Hindi na ma-makagising
+Pasindi na ng ilaw
+Minumulto na 'ko ng damdamin ko
+Ng damdamin ko
+Makalaya (hindi mo ba ako lilisanin?)
+Dinadalaw mo 'ko bawat gabi (hindi pa ba sapat pagpapahirap sa 'kin?)
+Wala mang nakikita (hindi na ba ma-mamamayapa?)
+Haplos mo'y ramdam pa rin sa dilim (hindi na ba ma-mamamayapa?)`,
+        "Bagyo": `Nakakalimutang
+Pati bahay gumuguho
+Inaalalayan
+Mga kaputol na nahuhulog
+Lahat sila'y nagpapatuloy
+Ako'y 'di makaalis
+Kinabukasan walang katuloy
+Kung wala ka
+(Kung wala ka)
+Kapit kahit 'di na matamo
+(Mga matang manlilikha)
+Ninakaw mo ang kulay ng mundo
+(Iyong dala, hinahangad)
+Mahirap pigilan ang pusong ikaw bumuo
+Kaya hayaang bumagyo (oh)
+'Di man maibalik
+Babalik pa rin sa 'yo
+Mapait na nakaraan
+Puso ang nagbura
+Ika'y nilarawan
+Oh isang anghel, nakabakas
+Tuluyan na 'kong lumulubog
+Sa lupang kinatatayuan
+Luha mo sa labi ko ang tanging
+Inaasam
+Kapit kahit 'di na matamo
+(Mga matang manlilikha)
+Ninakaw mo ang kulay ng mundo
+(Iyong dala, hinahangad)
+Mahirap pigilan ang pusong ikaw bumuo
+Kaya hayaang bumagyo (oh)
+'Di man maibalik
+Babalik pa rin sa 'yo
+Kalangitan, araw at buwan
+Lahat isinumpa
+Dugo't pawis 'di na maalis
+Ito ba'y nakatakda
+Kahit na sandali, isang saglit
+Mayakap ka muli, 'to ba'y mali
+Kahit na sandali, isang saglit
+Mayakap ka muli, 'to ba'y mali
+Kapit kahit 'di na matamo
+Ninakaw mo ang kulay ng mundo
+(Iyong dala, hinahangad)
+Mahirap pigilan ang pusong ikaw bumuo
+Kaya hayaang bumagyo (oh)
+'Di man maibalik
+Babalik pa rin sa 'yo`,
+        "Misteryoso": `Oh, eto ka na naman, umiiwas ng tingin
+Laging nakatanaw sa mga tala't nakadungaw sa bintana
+Kailan mo ba magagawang
+Italiwas sa dilim ang natatanging kagandahang
+Nababalot ng hiwagang humalina sa akin
+Kahit na ika'y hindi ko maintindihan?
+Nais masilayan ang iyong mga matang puno ng lihim at ng kislap
+Mananatili na nga lang bang isang estranghero
+O pagbibigyan ang puso kong natotorete sa 'yo?
+Hindi alam kung bakit ba 'ko nabighani sa iyo
+Hindi alam kung bakit ba gan'to, kahit na alam kong
+Mukhang wala rin naman itong patutunguhan
+At kahit pa ilaan lahat ng oras sa 'yo
+Hindi titigil hanggang ako na ang dahilan
+Ng 'yong ngiting misteryoso
+Oh, araw-araw na lang
+Akong bumubulong sa hangin (ha)
+Ilang awit pa ba ang isusulat?
+Wala na bang hangganan?
+Kailan mo ba mapapansin?
+Nais masilayan ang iyong mga matang puno ng lihim at ng kislap
+Mananatili na nga lang bang isang estranghero
+O pagbibigyan ang puso kong natotorete sa 'yo?
+Hindi alam kung bakit ba 'ko nabighani sa iyo
+Hindi alam kung bakit ba gan'to, kahit na alam kong
+Mukhang wala rin naman itong patutunguhan
+Kahit pa ilaan lahat ng oras sa 'yo
+Hindi titigil hanggang ako na ang dahilan
+Ng 'yong ngiting misteryoso
+Mga mata'y nagkatagpo habang naglalaban ang hiwaga ng liwanag at ng dilim
+Ngayong biglang napagtanto na ikaw na rin pala ay narahuyo
+'Di maipaliwanag kung bakit nabighani sa iyo
+Walang rason, walang "pero," basta ito ay totoo
+'Di akalaing makakapiling ko ang isang katulad mo
+Tila isang engkantong laging hinahanap-hanap ko
+Oh giliw, tanging ikaw ang patutunguhan
+Kahit pa salungat ang aking oras sa 'yo
+'Di makapaniwalang ako na ang dahilan
+Ng 'yong ngiting misteryoso
+Da-ram, da-ra-ra-ram
+Misteryoso
+Oh, oh
+Misteryoso`,
+        "Sagada": `Balang-araw ay kakayanin ko
+Makita na ikaw ay wala na sa 'king piling
+Kahit na mahirap kalimutan ang lahat ng alaala
+Iyong tandaan na ako'y masayang ika'y malaya na
+Ako ay pipikit, hihinga nang malalim
+Sa huli ay bibitaw
+Sagada, kung sa'n lahat ay isinigaw
+Sa langit na ikaw ay muling matanaw
+Sagada, ang tagpuan kung sa'n itinakdang
+Magwakas ang kuwento ng ako at ikaw
+Ikaw ang natitirang takbuhan
+Ng pusong ligaw at giniginaw
+Bawat ngiting sa aki'y tumatak
+Ang kapalit ay mga luhang pumapatak
+Ako'y nawawasak
+Ako ay pipikit, hihinga nang malalim
+Sa huli ay bibitaw
+Sagada, kung sa'n lahat ay isinigaw
+Sa langit na ikaw ay muling matanaw
+Sagada, ang tagpuan kung sa'n itinakdang
+Magwakas ang kuwento ng ako at ikaw
+Ikaw ang natitirang takbuhan
+Ng pusong ligaw at giniginaw
+Sagada, kung sa'n ikaw ay bumitaw
+Kung sa'n binulong ang lahat ng sigaw
+Sagada, kung sa'n lilimutin ang sakit
+Na dulot ng iyong pag-alis
+Sagada, kung sa'n lahat ay isinigaw (ay isinigaw)
+Sa langit na ikaw ay muling matanaw (muling matanaw)
+Sagada, ang tagpuan kung sa'n itinakdang
+Magwakas ang kuwento ng ako at ikaw
+Ikaw ang natitirang takbuhan
+Ng pusong ligaw at giniginaw
+Sagada`,
+        "Pahina": `Di na makausad 'di malinawan
+'Di na mabura ang iyong mga larawan
+'Di alam kung sa'n tutungo ang mga hakbang patalikod naghihingalo
+Ang lapis na ginamit sa kuwento nating naudlot
+Bawat buklat ng aklat binabalikan
+Mga liham na ang laman ligaya'ng dala
+Ikaw lang ang may akda
+Sa lahat ng pahinang sinulat ng tadhana'y
+Ikaw at ikaw at ikaw pa rin
+Ang yugtong paulit-ulit kong babalik-balikan
+Sigaw ay sigaw ay ikaw pa rin
+Patuloy kong panghahawakan ang 'yong mga salitang
+Hindi na nakikita sa tingin ng 'yong mga mata
+Ngunit kung sarado na ang puso sa nadarama
+Puwede bang isipin mo kung bakit tayo nagsimula
+Ating katotohana'y naging isang nobelang
+Winakasan ng pagdududang 'di na nalabanan
+Nais na maramdaman muli
+Kung pa'no isulat ang pangalan mo
+Ngunit bawat letra'y mahirap nang iguhit
+Dahil binubuo nila ang 'yong mga pangako
+Sa lahat ng pahinang sinulat ng tadhana'y
+Ikaw at ikaw at ikaw pa rin
+Ang yugtong paulit-ulit kong babalik-balikan
+Sigaw ay sigaw ay ikaw pa rin
+Simula sa wakas na 'di matuklasan
+Pabalik kung saan 'di na natagpuan
+Ang mga matang nakatanaw sa umpisa
+Ng yugtong 'di na sana naisulat pa
+Simula sa wakas na 'di matuklasan
+Pabalik kung saan 'di na natagpuan
+Ang mga matang nakatanaw sa umpisa
+Ng yugtong 'di na sana naisulat pa
+Sa lahat ng pahinang sinulat ng tadhana'y
+Ikaw at ikaw at ikaw pa rin
+Ang yugtong paulit-ulit kong babalik-balikan
+Sigaw ay sigaw ay ikaw pa rin
+Patuloy kong panghahawakan ang 'yong mga salitang
+'Di na nakikita sa tingin ng 'yong mga mata
+Ngunit kung sarado na ang puso sa nadarama
+Puwede bang isipin mo kung bakit tayo nagsimula
+Sa wakas na 'di matuklasan
+Pabalik kung saan 'di na natagpuan (ikaw at ikaw at ikaw pa rin)
+Ang mga matang nakatanaw sa umpisa
+Ng yugtong 'di na sana naisulat pa (sigaw ay sigaw ay)`,
+        "Sandali": `Nahuhulog na pala
+Mga dahon ng alaala ng nakaraan
+Nakalatag na sa 'ting daan
+Nalulunod na pala sa oras
+At kahit pa bali-baliktarin
+Ang agos ay nakakulong pa rin
+Sumasabog na ang mga bituin
+Maaari bang tanungin
+Kung maabot man natin ang hanggan
+Tatalon ka ba Kasi ako
+Kahit pa ang mundo ay gumuho
+At ang kalangitan ay mahulog
+'Di man alam ang gagawin
+Sa 'yo pa rin sa 'yo pa rin
+Kahit araw at buwan ay magtalo
+'Di magbabago aking pagsamo
+Tanging hiling tanging hiling
+Ikaw ang aking huling sandali
+Mawala man sa gitna ng gulo
+Ay hahawakan ang iyong kamay
+Tayo ay sabay na lalakbay
+Sa kalawakan na magsisilbing tulay
+Tungo sa ugnayan ng ikaw at ako (ikaw at ako)
+Tatalon nang sabay (hey)
+Kahit pa ang mundo ay gumuho
+At ang kalangitan ay mahulog
+'Di man alam ang gagawin
+Sa 'yo pa rin sa 'yo pa rin
+Kahit araw at buwan ay magtalo
+'Di magbabago aking pagsamo
+Tanging hiling tanging hiling
+Ikaw ang aking huling sandali
+Tubig nasusunog
+Hangin nananakal
+'Di man alam ang gagawin
+Sa 'yo pa rin sa 'yo pa rin
+Ulap nalulunod
+Araw giniginaw
+Tanging hiling tanging hiling
+Ikaw ang aking huling-
+Kahit pa ang mundo ay gumuho
+At ang kalangitan ay mahulog
+'Di man alam ang gagawin
+Sa 'yo pa rin sa 'yo pa rin
+Kahit pa ang mundo ay gumuho
+At ang kalangitan ay mahulog
+'Di man alam ang gagawin
+Sa 'yo pa rin sa 'yo pa rin
+Kahit araw at buwan ay magtalo
+'Di magbabago aking pagsamo
+Tanging hiling tanging hiling
+Ikaw ang aking huling sandali
+Kahit pa ang mundo ay gumuho
+At ang kalangitan ay mahulog
+'Di man alam ang gagawin
+Sa 'yo pa rin sa 'yo pa rin
+Kahit araw at buwan ay magtalo
+'Di magbabago aking pagsamo
+Tanging hiling tanging hiling
+Ikaw ang aking huling sandali`,
+        "Ikaw Parin Ang Pipilin Ko": `Ako'y nag-iisang muli
+Hawak ang alaala mo
+Ikaw pa rin ang nilalalaman
+Ng mga panalangin ko
+Sino ba'ng mag-aakalang
+Uuwi sa wala?
+Ngunit kahit saan ka mapadpad
+Kahit ilang taon ang lumipas
+Kahit ika'y mapalayo sa piling ko
+Ikaw pa rin ang pipiliin ko
+Oh-whoa
+Oh-whoa, oh
+Parang kailan lang no'ng tayo'y nagtatawanan
+Kayakap ka't nagnakaw ng halik
+Ngunit ang tadhana, ayaw nang makisama
+Lalapit ngunit bibitaw muli
+Pero kahit may hadlang
+Pag-ibig ipaglalaban
+Kaya't kahit saan ka mapadpad
+Kahit ilang taon ang lumipas
+Kahit ika'y mapalayo sa piling ko
+Ikaw pa rin ang pipiliin ko
+Whoa, whoa, whoa-oh, oh-oh, oh
+Ikaw pa rin ang pipiliin ko
+Whoa, whoa, whoa-oh, oh-oh, oh
+Ikaw pa rin ang pipiliin ko
+Ikaw pa rin ang pipiliin (whoa, whoa)
+Ikaw ang pipiliin ko (oh)
+Ikaw pa rin ang pipiliin (whoa, whoa)
+Ikaw ang pipiliin ko (oh)
+Ngunit kahit saan ka mapadpad
+Kahit ilang taon ang lumipas
+Kahit ika'y mapalayo sa piling ko
+Ikaw pa rin ang pipiliin ko
+Whoa, whoa, whoa-oh, oh-oh, oh
+Ikaw pa rin ang pipiliin ko
+Whoa, whoa, whoa-oh, oh-oh, oh
+Ikaw pa rin ang pipiliin ko`
+    };
+
+    // ---------- DATA PLAYLIST ----------
     const songs = [
         { no: 1, title: "Multo", year: "2023", dur: "3:45", src: "multo (1).mp3", cover: "cover-multo.jpg" },
         { no: 2, title: "Bagyo", year: "2024", dur: "4:02", src: "bagyo.mp3", cover: "cover-bagyo.jpg" },
@@ -897,6 +1318,7 @@
         { no: 8, title: "Sinderela", year: "2023", dur: "3:32", src: "sinderela.mp3", cover: "cover-sinderela.jpg" }
     ];
 
+    // ---------- RENDER PLAYLIST ----------
     const plContainer = document.getElementById('playlistContainer');
     songs.forEach((s, i) => {
         const div = document.createElement('div');
@@ -921,35 +1343,78 @@
         plContainer.appendChild(div);
     });
 
-    // ============================================================
-    // FUNGSI PLAY/PAUSE
-    // ============================================================
+    // ---------- FUNGSI PLAY/PAUSE ----------
+    let currentAudioId = null;
+
     function togglePlay(id) {
         const audio = document.getElementById(id);
         const btn = audio.parentElement.querySelector('.play');
         const icon = btn.querySelector('i');
+        const songTitle = audio.parentElement.parentElement.querySelector('.title').innerText;
+
         document.querySelectorAll('audio').forEach(a => {
             if (a.id !== id) {
                 a.pause();
                 a.currentTime = 0;
                 const b = a.parentElement.querySelector('.play');
-                if (b) { b.classList.remove('playing'); b.querySelector('i').className = 'fas fa-play'; }
+                if (b) {
+                    b.classList.remove('playing');
+                    b.querySelector('i').className = 'fas fa-play';
+                }
             }
         });
+
         if (audio.paused) {
             audio.play();
             btn.classList.add('playing');
             icon.className = 'fas fa-pause';
+            currentAudioId = id;
+            showLyrics(songTitle);
         } else {
             audio.pause();
             btn.classList.remove('playing');
             icon.className = 'fas fa-play';
+            currentAudioId = null;
+            closeLyrics();
         }
     }
 
-    // ============================================================
-    // DATA ANGGOTA (WIKIPEDIA)
-    // ============================================================
+    // ---------- FUNGSI LIRIK ----------
+    function showLyrics(title) {
+        const popup = document.getElementById('lyricPopup');
+        const titleEl = document.getElementById('lyricSongTitle');
+        const textEl = document.getElementById('lyricText');
+        const lyrics = lyricsData[title];
+        
+        if (lyrics) {
+            titleEl.textContent = title;
+            textEl.textContent = lyrics;
+            popup.classList.add('active');
+        } else {
+            titleEl.textContent = title;
+            textEl.textContent = "Lirik belum tersedia untuk lagu ini.";
+            popup.classList.add('active');
+        }
+    }
+
+    function closeLyrics() {
+        const popup = document.getElementById('lyricPopup');
+        popup.classList.remove('active');
+    }
+
+    // Tutup lirik jika audio berakhir
+    document.querySelectorAll('audio').forEach(audio => {
+        audio.addEventListener('ended', function() {
+            const btn = this.parentElement.querySelector('.play');
+            if (btn) {
+                btn.classList.remove('playing');
+                btn.querySelector('i').className = 'fas fa-play';
+            }
+            closeLyrics();
+        });
+    });
+
+    // ---------- DATA ANGGOTA ----------
     const members = [
         { name: "Gian Bernardino", role: "Lead Vokal", img: "gian.jpg" },
         { name: "Raphaell Ridao", role: "Lead Vokal", img: "raphael.jpg" },
@@ -958,6 +1423,7 @@
         { name: "Xen Gareza", role: "Keyboard", img: "xen.jpg" }
     ];
 
+    // ---------- RENDER MEMBERS ----------
     const mc = document.getElementById('memberContainer');
     members.forEach(m => {
         const div = document.createElement('div');
@@ -971,18 +1437,16 @@
         mc.appendChild(div);
     });
 
-    // ============================================================
-    // DATA STATISTIKA
-    // ============================================================
+    // ---------- DATA STATISTIKA ----------
     const raw = [35, 42, 28, 50, 31, 47, 53, 22, 49, 36, 55, 38, 47, 60, 44, 33, 39, 41, 58, 45];
     const labels = ["22-29", "30-37", "38-45", "46-53", "54-61"];
     const freqs = [2, 4, 6, 5, 3];
 
-    // Render Data Mentah
+    // ---------- RENDER DATA MENTAH ----------
     const dg = document.getElementById('dataGrid');
     raw.forEach(d => { dg.innerHTML += `<span class="data-item">${d}</span>`; });
 
-    // Render Tabel Frekuensi
+    // ---------- RENDER TABEL FREKUENSI ----------
     const ft = document.getElementById('freqTable');
     const midpoints = [25.5, 33.5, 41.5, 49.5, 57.5];
     const fx = [51, 134, 249, 247.5, 172.5];
@@ -993,7 +1457,7 @@
     tbody += `<tr style="background:rgba(20,16,12,0.4);"><th>Jumlah</th><th>20</th><th>-</th><th>854</th></tr></tbody></table>`;
     ft.innerHTML = tbody;
 
-    // Render Stat Boxes
+    // ---------- RENDER STAT BOXES ----------
     const sb = document.getElementById('statBoxes');
     sb.innerHTML = `
         <div class="stat-box"><div class="num">42.7</div><p>Mean (Rata-rata)</p></div>
@@ -1001,9 +1465,7 @@
         <div class="stat-box"><div class="num">47</div><p>Modus</p></div>
     `;
 
-    // ============================================================
-    // CHARTS
-    // ============================================================
+    // ---------- CHARTS ----------
     new Chart(document.getElementById('barChart'), {
         type: 'bar',
         data: { labels, datasets: [{ label: 'Responden', data: freqs, backgroundColor: '#c28a4e', borderRadius: 8 }] },
@@ -1021,4 +1483,4 @@
     });
 </script>
 </body>
-                        </html>
+</html>
