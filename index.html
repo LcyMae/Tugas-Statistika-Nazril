@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cup of Joe - Secangkir Statistika | Nazril</title>
+    <!-- Chart.js untuk diagram interaktif -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #fef7e0;
+            color: #3e2a1f;
+            line-height: 1.6;
+        }
+
+        nav {
+            background: #6b3e1c;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #fbe9c3;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #ffd966;
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 2rem;
+            background: rgba(255, 252, 240, 0.9);
+            border-radius: 24px;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+        }
+
+        h1, h2, h3 {
+            font-family: 'Georgia', serif;
+            color: #5a2e0e;
+            border-left: 8px solid #c28a4e;
+            padding-left: 20px;
+            margin: 20px 0 15px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            border-left: 12px solid #b55b1a;
+        }
+
+        .card {
+            background: white;
+            border-radius: 28px;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 6px 14px rgba(0,0,0,0.05);
+            border: 1px solid #f0dbc0;
+        }
+
+        .identity-box {
+            background: #f3e5c9;
+            padding: 15px 20px;
+            border-radius: 40px;
+            margin-bottom: 25px;
+            display: inline-block;
+            width: 100%;
+            border-left: 8px solid #b55b1a;
+        }
+
+        .identity-box p {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            background: #fffaf2;
+        }
+
+        th, td {
+            border: 1px solid #d9b48b;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background: #e9cfaa;
+            color: #3b2a1f;
+        }
+
+        .badge {
+            background: #c28a4e;
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 40px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .chart-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+
+        .chart-box {
+            flex: 1;
+            min-width: 280px;
+            background: #fff9ef;
+            padding: 15px;
+            border-radius: 32px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        canvas {
+            max-height: 350px;
+            max-width: 100%;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #d9b48b;
+            color: #2c1c0f;
+            margin-top: 20px;
+            border-radius: 32px 32px 0 0;
+        }
+
+        @media (max-width: 700px) {
+            .container {
+                padding: 1rem;
+            }
+            nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="#beranda">☕ Beranda</a></li>
+        <li><a href="#data">📊 Data Mentah</a></li>
+        <li><a href="#pengolahan">📐 Pengolahan</a></li>
+        <li><a href="#diagram">📈 Diagram</a></li>
+        <li><a href="#kesimpulan">📝 Kesimpulan</a></li>
+    </ul>
+</nav>
+
+<div class="container">
+    <!-- BERANDA -->
+    <section id="beranda">
+        <h1>☕ Secangkir Joe: Statistika Waktu Mendengarkan <br> “Cup of Joe”</h1>
+        <div class="card">
+            <!-- Identitas pembuat tugas sesuai permintaan -->
+            <div class="identity-box">
+                <p>📌 <strong>Penyusun / Pembuat Tugas:</strong> Nazril Ilham Dillion Pratama</p>
+                <p>🏫 <strong>Kelas:</strong> XI TKJ 3</p>
+                <p>🔢 <strong>Nomor Absen:</strong> 04</p>
+            </div>
+            <p><strong>Topik:</strong> Survei durasi mendengarkan lagu-lagu <em>Cup of Joe</em> (band indie asal Filipina yang hits dengan lagu "Tingin", "Misteryoso", dll) oleh 20 responden di kalangan pelajar dan mahasiswa. Data mencerminkan kecintaan pada musik dengan vibe kopi hangat dan nostalgia.</p>
+            <p>☕ <strong>Makna “Cup of Joe”:</strong> Secangkir kopi di pagi hari, hangat dan menemani — seperti musik Cup of Joe yang menemani aktivitas, belajar, maupun santai. Tugas statistika ini menyajikan data <strong>durasi mendengarkan (menit/hari)</strong> dari 20 responden.</p>
+            <p><span class="badge">Total responden = 20 data</span></p>
+            <p><em>Dibuat dalam rangka Tugas Kokurikuler Statistika Kelas XI TKJ 3</em></p>
+        </div>
+    </section>
+
+    <!-- DATA MENTAH -->
+    <section id="data">
+        <h2>📋 Halaman Data — Tabel Data Mentah</h2>
+        <div class="card">
+            <p><strong>Sumber data:</strong> Survei langsung via Google Form (teman & keluarga, usia 15–19 tahun). Pertanyaan: “Rata-rata berapa menit per hari kamu mendengarkan lagu Cup of Joe dalam 1 minggu terakhir?”</p>
+            <table>
+                <tr><th>Responden</th><th>Durasi (menit/hari)</th><th>Responden</th><th>Durasi (menit/hari)</th></tr>
+                <tr><td>1</td><td>35</td><td>11</td><td>55</td></tr>
+                <tr><td>2</td><td>42</td><td>12</td><td>38</td></tr>
+                <tr><td>3</td><td>28</td><td>13</td><td>47</td></tr>
+                <tr><td>4</td><td>50</td><td>14</td><td>60</td></tr>
+                <tr><td>5</td><td>31</td><td>15</td><td>44</td></tr>
+                <tr><td>6</td><td>47</td><td>16</td><td>33</td></tr>
+                <tr><td>7</td><td>53</td><td>17</td><td>39</td></tr>
+                <tr><td>8</td><td>22</td><td>18</td><td>41</td></tr>
+                <tr><td>9</td><td>49</td><td>19</td><td>58</td></tr>
+                <tr><td>10</td><td>36</td><td>20</td><td>45</td></tr>
+            </table>
+            <p><em>Total 20 data durasi (menit):</em> 35,42,28,50,31,47,53,22,49,36,55,38,47,60,44,33,39,41,58,45</p>
+            <p>✅ <strong>Pengumpul data:</strong> Nazril Ilham Dillion Pratama (XI TKJ 3 - 04)</p>
+        </div>
+    </section>
+
+    <!-- PENGOLAHAN DATA -->
+    <section id="pengolahan">
+        <h2>📐 Pengolahan Data Statistika</h2>
+        <div class="card">
+            <h3>📌 Tabel Distribusi Frekuensi</h3>
+            <p>Kelas interval (aturan Sturges: k = 1 + 3.3 log 20 ≈ 5,3 → diambil 5 kelas), rentang = 60-22 = 38, panjang kelas = 38/5 ≈ 7,6 dibulatkan 8.</p>
+            <table>
+                <tr><th>Interval (menit)</th><th>Frekuensi (f)</th><th>Titik Tengah (x)</th><th>f · x</th></tr>
+                <tr><td>22 – 29</td><td>2 (22,28)</td><td>25.5</td><td>51</td></tr>
+                <tr><td>30 – 37</td><td>4 (31,35,36,33)</td><td>33.5</td><td>134</td></tr>
+                <tr><td>38 – 45</td><td>6 (38,39,41,42,44,45)</td><td>41.5</td><td>249</td></tr>
+                <tr><td>46 – 53</td><td>5 (47,47,49,50,53)</td><td>49.5</td><td>247.5</td></tr>
+                <tr><td>54 – 61</td><td>3 (55,58,60)</td><td>57.5</td><td>172.5</td></tr>
+                <tr><th>Jumlah</th><th>20</th><th>-</th><th>∑fx = 854</th></tr>
+            </table>
+
+            <h3>📐 Mean (Rata-rata)</h3>
+            <p><strong>Mean = (∑ semua data) / n</strong><br>
+            Jumlah semua durasi = 35+42+28+50+31+47+53+22+49+36+55+38+47+60+44+33+39+41+58+45 = <strong>853</strong> menit<br>
+            Mean = 853 / 20 = <strong>42,65 menit/hari</strong> ≈ <strong>42,7 menit</strong></p>
+
+            <h3>🎯 Median</h3>
+            <p>Data urut: 22,28,31,33,35,36,38,39,41,42,44,45,47,47,49,50,53,55,58,60.<br>
+            n=20 (genap) → Median = (data ke-10 + data ke-11)/2 = (42 + 44)/2 = <strong>43 menit</strong>.</p>
+
+            <h3>✨ Modus</h3>
+            <p>Frekuensi tertinggi = nilai 47 muncul 2 kali (responden 6 dan 13). Jadi Modus = <strong>47 menit</strong>.</p>
+            <p><em>Kesimpulan sementara:</em> Rata-rata pendengar Cup of Joe menghabiskan ~43 menit per hari untuk menikmati lagu-lagu mereka, dengan kecenderungan sering mendengar di angka 47 menit.</p>
+        </div>
+    </section>
+
+    <!-- DIAGRAM interaktif -->
+    <section id="diagram">
+        <h2>📊 Penyajian Data dalam Diagram</h2>
+        <div class="chart-container">
+            <div class="chart-box">
+                <h3>📊 Diagram Batang (Frekuensi Kelas)</h3>
+                <canvas id="barChart" width="400" height="300"></canvas>
+            </div>
+            <div class="chart-box">
+                <h3>🥧 Diagram Lingkaran (Proporsi Kelas)</h3>
+                <canvas id="pieChart" width="400" height="300"></canvas>
+            </div>
+            <div class="chart-box">
+                <h3>📏 Histogram (Distribusi Frekuensi)</h3>
+                <canvas id="histogramChart" width="400" height="300"></canvas>
+            </div>
+        </div>
+        <div class="card">
+            <p><strong>Keterangan diagram:</strong> Kelas interval yang sama seperti tabel distribusi frekuensi. Diagram batang dan histogram menampilkan frekuensi, diagram lingkaran menunjukkan persentase tiap kelas terhadap total 20 responden.</p>
+            <p>📌 Diagram dibuat oleh <strong>Nazril Ilham Dillion Pratama (XI TKJ 3 - 04)</strong> sebagai bagian dari proyek website statistika.</p>
+        </div>
+    </section>
+
+    <!-- KESIMPULAN -->
+    <section id="kesimpulan">
+        <h2>📝 Analisis & Kesimpulan</h2>
+        <div class="card">
+            <p>✨ <strong>Analisis:</strong> Berdasarkan survei terhadap 20 penggemar musik indie, durasi mendengarkan grup <strong>Cup of Joe</strong> mayoritas berada pada interval 38–45 menit per hari (6 dari 20 orang, yaitu 30%). Nilai mean 42,7 menit dan median 43 menit sangat berdekatan, menunjukkan data cenderung simetris. Modus 47 menit menandakan banyak responden menyukai durasi hampir 3/4 jam untuk mendengarkan lagu seperti <em>"Tingin"</em> atau <em>"Misteryoso"</em>.</p>
+            <p>🎵 <strong>Kesimpulan akhir:</strong> Para penikmat “Cup of Joe” mendengarkan karya mereka sekitar <strong>43 menit per hari</strong>, setara dengan 10-12 lagu. Hal ini mengindikasikan bahwa musik mereka sangat cocok untuk menemani aktivitas sehari-hari — hangat dan rileks bak secangkir kopi di pagi hari. Proyek statistika ini membuktikan bahwa data sederhana bisa memberikan gambaran tentang perilaku musik generasi muda.</p>
+            <p>☕ <em>"Music and coffee — the perfect duo, just like Cup of Joe."</em></p>
+            <p><strong>📌 Tugas ini disusun oleh: Nazril Ilham Dillion Pratama (XI TKJ 3, Absen 04)</strong><br>
+            Link tugas ini dapat di-embed ke Google Sites. Dibuat untuk Tugas Kokurikuler Statistika Kelas XI TKJ 3.</p>
+        </div>
+    </section>
+</div>
+
+<footer>
+    <p>© 2025 - Nazril Ilham Dillion Pratama | XI TKJ 3 - Absen 04 | Tugas Statistika Cup of Joe</p>
+    <p>☕ “Secangkir statistika, sesendok melodi” — Data survei 20 responden</p>
+</footer>
+
+<script>
+    // Data dari tabel distribusi frekuensi
+    const labels = ["22-29", "30-37", "38-45", "46-53", "54-61"];
+    const frekuensi = [2, 4, 6, 5, 3];
+
+    // Diagram Batang
+    const ctxBar = document.getElementById('barChart').getContext('2d');
+    new Chart(ctxBar, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Frekuensi (jumlah responden)',
+                data: frekuensi,
+                backgroundColor: '#c28a4e',
+                borderColor: '#7b3f00',
+                borderWidth: 1,
+                borderRadius: 8
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            plugins: {
+                legend: { position: 'top' },
+                tooltip: { callbacks: { label: (ctx) => `${ctx.raw} responden` } }
+            },
+            scales: {
+                y: { beginAtZero: true, title: { display: true, text: 'Frekuensi' }, stepSize: 1 }
+            }
+        }
+    });
+
+    // Diagram Lingkaran
+    const ctxPie = document.getElementById('pieChart').getContext('2d');
+    new Chart(ctxPie, {
+        type: 'pie',
+        data: {
+            labels: labels,
+            datasets: [{
+                data: frekuensi,
+                backgroundColor: ['#d9a066', '#c2874b', '#a96f3a', '#8b572a', '#6e401c'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: { position: 'right' },
+                tooltip: { callbacks: { label: (ctx) => `${ctx.label}: ${ctx.raw} responden (${((ctx.raw/20)*100).toFixed(1)}%)` } }
+            }
+        }
+    });
+
+    // Histogram (sama dengan batang, tapi styling seperti histogram)
+    const ctxHisto = document.getElementById('histogramChart').getContext('2d');
+    new Chart(ctxHisto, {
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Frekuensi (Histogram)',
+                data: frekuensi,
+                backgroundColor: '#b87b44',
+                borderColor: '#5c351a',
+                borderWidth: 1.5,
+                barPercentage: 1.0,
+                categoryPercentage: 0.9
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                tooltip: { callbacks: { label: (ctx) => `Frekuensi: ${ctx.raw}` } }
+            },
+            scales: {
+                y: { title: { display: true, text: 'Frekuensi' }, beginAtZero: true, ticks: { stepSize: 1 } },
+                x: { title: { display: true, text: 'Durasi (menit)' } }
+            }
+        }
+    });
+</script>
+</body>
+</html>
