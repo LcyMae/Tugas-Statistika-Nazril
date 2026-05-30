@@ -574,15 +574,13 @@
             opacity: 0;
             transform: translateY(24px) scale(0.96);
             pointer-events: none;
-            cursor: grab; /* Indicates draggable */
+            touch-action: none;
+            will-change: transform;
         }
         .lyric-popup.active {
             opacity: 1;
             transform: translateY(0) scale(1);
             pointer-events: auto;
-        }
-        .lyric-popup:active {
-            cursor: grabbing;
         }
         .lyric-popup .close-btn {
             position: absolute;
@@ -597,7 +595,6 @@
             color: #f0ece8;
             transform: rotate(90deg);
         }
-        /* New permanent hide button */
         .lyric-popup .hide-btn {
             position: absolute;
             top: 8px;
@@ -623,7 +620,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            padding-right: 40px; /* Space for buttons */
+            padding-right: 40px;
         }
         .lyric-popup .song-title i { font-size: 1rem; }
         .lyric-popup .lyrics-text {
@@ -640,7 +637,6 @@
         .lyric-popup .lyrics-text::-webkit-scrollbar-thumb { background: #c28a4e; border-radius: 50px; }
         .lyric-popup .lyrics-text::-webkit-scrollbar-track { background: transparent; }
 
-        /* Toggle button to show hidden lyrics */
         .lyric-toggle-btn {
             position: fixed;
             bottom: 90px;
@@ -663,9 +659,7 @@
             color: #0a0a0a;
             transform: scale(1.05);
         }
-        .lyric-toggle-btn.visible {
-            display: block;
-        }
+        .lyric-toggle-btn.visible { display: block; }
 
         @media (max-width: 480px) {
             .lyric-popup {
@@ -1476,7 +1470,6 @@ Ikaw pa rin ang pipiliin ko`
     function showLyricsAgain() {
         lyricsHidden = false;
         document.getElementById('lyricToggle').classList.remove('visible');
-        // If a song is playing, show lyrics again
         if (currentAudioId) {
             const audio = document.getElementById(currentAudioId);
             const songTitle = audio.parentElement.parentElement.querySelector('.title').innerText;
@@ -1496,27 +1489,26 @@ Ikaw pa rin ang pipiliin ko`
         });
     });
 
-    // ---------- DRAGGABLE POPUP ----------
+    // ---------- DRAGGABLE POPUP (SMOOTH & NO PAGE SCROLL) ----------
     const popup = document.getElementById('lyricPopup');
     let isDragging = false;
-    let offsetX, offsetY;
+    let startX, startY, currentX = 0, currentY = 0;
 
+    // Mouse Events (Desktop)
     popup.addEventListener('mousedown', function(e) {
-        // Only drag if not clicking on a button
         if (e.target.closest('.close-btn') || e.target.closest('.hide-btn')) return;
         isDragging = true;
-        offsetX = e.clientX - this.getBoundingClientRect().left;
-        offsetY = e.clientY - this.getBoundingClientRect().top;
+        startX = e.clientX - currentX;
+        startY = e.clientY - currentY;
         this.style.transition = 'none';
     });
 
     document.addEventListener('mousemove', function(e) {
-        if (isDragging) {
-            popup.style.left = (e.clientX - offsetX) + 'px';
-            popup.style.top = (e.clientY - offsetY) + 'px';
-            popup.style.right = 'auto';
-            popup.style.bottom = 'auto';
-        }
+        if (!isDragging) return;
+        currentX = e.clientX - startX;
+        currentY = e.clientY - startY;
+        popup.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        e.preventDefault();
     });
 
     document.addEventListener('mouseup', function() {
@@ -1526,25 +1518,24 @@ Ikaw pa rin ang pipiliin ko`
         }
     });
 
-    // Touch support for mobile
+    // Touch Events (Mobile)
     popup.addEventListener('touchstart', function(e) {
         if (e.target.closest('.close-btn') || e.target.closest('.hide-btn')) return;
         const touch = e.touches[0];
         isDragging = true;
-        offsetX = touch.clientX - this.getBoundingClientRect().left;
-        offsetY = touch.clientY - this.getBoundingClientRect().top;
+        startX = touch.clientX - currentX;
+        startY = touch.clientY - currentY;
         this.style.transition = 'none';
-    });
+    }, { passive: true });
 
     document.addEventListener('touchmove', function(e) {
-        if (isDragging) {
-            const touch = e.touches[0];
-            popup.style.left = (touch.clientX - offsetX) + 'px';
-            popup.style.top = (touch.clientY - offsetY) + 'px';
-            popup.style.right = 'auto';
-            popup.style.bottom = 'auto';
-        }
-    });
+        if (!isDragging) return;
+        const touch = e.touches[0];
+        currentX = touch.clientX - startX;
+        currentY = touch.clientY - startY;
+        popup.style.transform = `translate(${currentX}px, ${currentY}px)`;
+        e.preventDefault();
+    }, { passive: false });
 
     document.addEventListener('touchend', function() {
         if (isDragging) {
@@ -1622,4 +1613,4 @@ Ikaw pa rin ang pipiliin ko`
     });
 </script>
 </body>
-    </html>
+</html>
