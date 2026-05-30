@@ -29,42 +29,110 @@
         ::-webkit-scrollbar-thumb { background: #c28a4e; border-radius: 10px; }
 
         /* ============================================================ */
-        /* 🆕 NAVBAR YANG LEBIH RAPI DAN RINGKAS */
+        /* 🆕 NAVBAR DENGAN TOMBOL BUKA/TUTUP */
         /* ============================================================ */
-        nav {
-            background: rgba(13, 13, 13, 0.95);
-            backdrop-filter: blur(12px);
-            padding: 0.7rem 2rem;
+        .navbar-wrapper {
             position: sticky;
             top: 0;
             z-index: 1000;
+            background: rgba(13, 13, 13, 0.95);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(200, 150, 80, 0.2);
+        }
+
+        .navbar-toggle {
+            display: none;
+            padding: 1rem 2rem;
+            cursor: pointer;
+            color: #faeedb;
+            font-size: 1.2rem;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.3s ease;
+        }
+
+        .navbar-toggle:hover {
+            color: #c28a4e;
+        }
+
+        .navbar-toggle .toggle-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .navbar-toggle .toggle-icon.rotated {
+            transform: rotate(180deg);
+        }
+
+        nav {
+            padding: 0.9rem 2rem;
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 0.8rem;
+            gap: 1.5rem;
             flex-wrap: wrap;
-            border-bottom: 1px solid rgba(200, 150, 80, 0.2);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            max-height: 500px;
+            overflow: hidden;
+        }
+
+        nav.collapsed {
+            max-height: 0;
+            padding: 0 2rem;
+            opacity: 0;
         }
 
         nav a {
             color: #faeedb;
             text-decoration: none;
-            font-weight: 500;
-            padding: 0.4rem 0.8rem;
-            border-radius: 30px;
-            transition: all 0.3s;
-            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
-            gap: 5px;
+            gap: 8px;
         }
 
-        nav a i { font-size: 0.9rem; }
+        nav a i { margin-right: 4px; }
         nav a:hover { 
             background: #c28a4e; 
             color: #0d0d0d; 
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(194, 138, 78, 0.3);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 4px 20px rgba(194, 138, 78, 0.3);
+        }
+
+        /* Tampilan mobile - navbar toggle muncul */
+        @media (max-width: 768px) {
+            .navbar-toggle {
+                display: flex;
+            }
+            nav {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+                padding: 0.5rem 2rem;
+            }
+            nav a {
+                width: 100%;
+                justify-content: center;
+                padding: 0.6rem;
+            }
+            nav.collapsed {
+                max-height: 0;
+                padding: 0 2rem;
+                opacity: 0;
+            }
+        }
+
+        @media (min-width: 769px) {
+            .navbar-toggle {
+                display: none !important;
+            }
+            nav {
+                max-height: 500px !important;
+                opacity: 1 !important;
+                padding: 0.9rem 2rem !important;
+            }
         }
         /* ============================================================ */
 
@@ -78,6 +146,18 @@
             border: 1px solid rgba(200, 150, 80, 0.3);
             position: relative;
             overflow: hidden;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .hero::before {
@@ -108,6 +188,10 @@
             font-size: 3rem;
             box-shadow: 0 10px 25px rgba(0,0,0,0.3);
             overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .band-logo:hover {
+            transform: scale(1.05) rotate(-2deg);
         }
         .band-logo img { 
             width: 100%; 
@@ -129,7 +213,17 @@
 
         .student-info h3 { font-size: 1.3rem; color: #f5d7b3; }
         .student-info p { color: #d4b48c; }
-        .cup-badge { background: #c28a4e; padding: 8px 24px; border-radius: 60px; font-weight: 700; }
+        .cup-badge { 
+            background: #c28a4e; 
+            padding: 8px 24px; 
+            border-radius: 60px; 
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+        .cup-badge:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(194, 138, 78, 0.4);
+        }
 
         /* ============================================================ */
         /* 🆕 ACCORDION STYLE - TOMBOL BUKA/TUTUP PADA JUDUL KONTEN */
@@ -142,16 +236,18 @@
             padding: 8px 0;
             margin: 30px 0 20px 0;
             border-bottom: 1px solid rgba(200, 150, 80, 0.2);
-            transition: 0.2s;
+            transition: all 0.3s ease;
         }
         .section-header:hover {
             opacity: 0.8;
+            padding-left: 8px;
         }
         .section-header h2 {
             margin: 0;
             border-left: 8px solid #c28a4e;
             padding-left: 20px;
             font-size: 1.8rem;
+            transition: all 0.3s ease;
         }
         .section-header h2 i { 
             color: #c28a4e; 
@@ -160,16 +256,21 @@
         .toggle-icon {
             font-size: 1.2rem;
             color: #c28a4e;
-            transition: transform 0.3s;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             margin-left: 16px;
+        }
+        .toggle-icon.rotated {
+            transform: rotate(180deg);
         }
         .section-content {
             overflow: hidden;
-            transition: max-height 0.4s ease;
-            max-height: 3000px; /* default terbuka */
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+            max-height: 3000px;
+            opacity: 1;
         }
         .section-content.collapsed {
             max-height: 0;
+            opacity: 0;
             padding-top: 0;
             padding-bottom: 0;
         }
@@ -181,9 +282,13 @@
             padding: 32px;
             margin: 20px 0 40px 0;
             border: 1px solid #2a241e;
-            transition: transform 0.2s;
+            transition: all 0.3s ease;
         }
-        .card:hover { transform: translateY(-3px); border-color: #c28a4e40; }
+        .card:hover { 
+            transform: translateY(-5px); 
+            border-color: #c28a4e40;
+            box-shadow: 0 8px 30px rgba(194, 138, 78, 0.1);
+        }
 
         h2 {
             font-family: 'Playfair Display', serif;
@@ -210,10 +315,14 @@
             padding: 20px;
             text-align: center;
             width: 140px;
-            transition: 0.2s;
+            transition: all 0.3s ease;
             border: 1px solid #3a2e22;
         }
-        .member-card:hover { transform: translateY(-5px); border-color: #c28a4e; }
+        .member-card:hover { 
+            transform: translateY(-8px) scale(1.03);
+            border-color: #c28a4e;
+            box-shadow: 0 8px 25px rgba(194, 138, 78, 0.2);
+        }
         .member-photo {
             width: 100px;
             height: 100px;
@@ -226,6 +335,10 @@
             font-size: 2.5rem;
             color: #c28a4e;
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .member-card:hover .member-photo {
+            transform: scale(1.05);
         }
         .member-photo img { 
             width: 100%; 
@@ -254,11 +367,12 @@
             justify-content: space-between;
             gap: 15px;
             border: 1px solid #3a2e22;
-            transition: 0.2s;
+            transition: all 0.3s ease;
         }
         .song-item:hover { 
             background: #2a241e; 
             border-color: #c28a4e; 
+            transform: translateX(5px);
             box-shadow: 0 4px 20px rgba(194, 138, 78, 0.15);
         }
         .song-info {
@@ -279,6 +393,10 @@
             justify-content: center;
             font-weight: bold;
             font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        .song-item:hover .song-number {
+            transform: scale(1.1);
         }
         .song-title { 
             font-weight: 700; 
@@ -294,21 +412,25 @@
             background: #c28a4e;
             color: #0d0d0d;
             border: none;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
             cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            box-shadow: 0 2px 10px rgba(194, 138, 78, 0.2);
         }
         .play-btn:hover {
             background: #e6b06e;
-            transform: scale(1.1);
-            box-shadow: 0 4px 15px rgba(194, 138, 78, 0.4);
+            transform: scale(1.15);
+            box-shadow: 0 4px 20px rgba(194, 138, 78, 0.4);
+        }
+        .play-btn:active {
+            transform: scale(0.9);
         }
         .play-btn.playing {
             background: #e6b06e;
@@ -316,14 +438,14 @@
         }
         @keyframes pulse {
             0% { box-shadow: 0 0 0 0 rgba(194, 138, 78, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(194, 138, 78, 0); }
+            70% { box-shadow: 0 0 0 12px rgba(194, 138, 78, 0); }
             100% { box-shadow: 0 0 0 0 rgba(194, 138, 78, 0); }
         }
         
         .audio-wrapper {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             flex: 1;
             min-width: 200px;
             justify-content: flex-end;
@@ -334,6 +456,10 @@
             max-width: 200px; 
             width: 100%;
             background: #1e1914;
+            transition: all 0.3s ease;
+        }
+        audio:hover {
+            transform: scale(1.02);
         }
         .song-duration { 
             font-size: 0.75rem; 
@@ -361,6 +487,11 @@
             border-radius: 60px;
             font-weight: 700;
             border: 1px solid #3a2e22;
+            transition: all 0.3s ease;
+        }
+        .data-item:hover {
+            transform: scale(1.05);
+            border-color: #c28a4e;
         }
 
         .stat-flex {
@@ -376,6 +507,11 @@
             border-radius: 28px;
             text-align: center;
             border-left: 6px solid #c28a4e;
+            transition: all 0.3s ease;
+        }
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 20px rgba(194, 138, 78, 0.15);
         }
         .stat-number { font-size: 2.8rem; font-weight: 800; color: #c28a4e; }
 
@@ -392,6 +528,11 @@
             border-radius: 28px;
             padding: 20px;
             border: 1px solid #3a2e22;
+            transition: all 0.3s ease;
+        }
+        .chart-card:hover {
+            transform: translateY(-5px);
+            border-color: #c28a4e;
         }
         .chart-card h3 { text-align: center; margin-top: 0; }
         canvas { max-height: 280px; width: 100%; }
@@ -403,6 +544,10 @@
             border-radius: 40px 40px 0 0;
             margin-top: 60px;
             border-top: 1px solid #c28a4e30;
+            transition: all 0.3s ease;
+        }
+        footer:hover {
+            border-top-color: #c28a4e;
         }
 
         .guide-note {
@@ -412,11 +557,14 @@
             border-radius: 16px;
             margin-bottom: 20px;
             font-size: 0.85rem;
+            transition: all 0.3s ease;
+        }
+        .guide-note:hover {
+            border-left-color: #e6b06e;
+            transform: translateX(5px);
         }
 
         @media (max-width: 700px) {
-            nav { padding: 0.5rem 1rem; gap: 0.4rem; }
-            nav a { font-size: 0.7rem; padding: 0.3rem 0.5rem; }
             .hero { padding: 32px 20px; }
             .container { padding: 24px 16px; }
             h2 { font-size: 1.4rem; }
@@ -429,15 +577,24 @@
 </head>
 <body>
 
-<nav>
-    <a href="#beranda"><i class="fas fa-home"></i> Beranda</a>
-    <a href="#playlist"><i class="fas fa-headphones"></i> Playlist</a>
-    <a href="#profil"><i class="fas fa-users"></i> Profil</a>
-    <a href="#data"><i class="fas fa-database"></i> Data</a>
-    <a href="#pengolahan"><i class="fas fa-chart-line"></i> Olah</a>
-    <a href="#diagram"><i class="fas fa-chart-pie"></i> Diagram</a>
-    <a href="#kesimpulan"><i class="fas fa-check-circle"></i> Kesimpulan</a>
-</nav>
+<!-- ============================================================ -->
+<!-- 🆕 NAVBAR WRAPPER DENGAN TOGGLE -->
+<!-- ============================================================ -->
+<div class="navbar-wrapper">
+    <div class="navbar-toggle" onclick="toggleNavbar()">
+        <span><i class="fas fa-bars"></i> Menu</span>
+        <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
+    </div>
+    <nav id="mainNav">
+        <a href="#beranda"><i class="fas fa-home"></i> Beranda</a>
+        <a href="#playlist"><i class="fas fa-headphones"></i> Playlist</a>
+        <a href="#profil"><i class="fas fa-users"></i> Profil</a>
+        <a href="#data"><i class="fas fa-database"></i> Data</a>
+        <a href="#pengolahan"><i class="fas fa-chart-line"></i> Olah</a>
+        <a href="#diagram"><i class="fas fa-chart-pie"></i> Diagram</a>
+        <a href="#kesimpulan"><i class="fas fa-check-circle"></i> Kesimpulan</a>
+    </nav>
+</div>
 
 <div class="container">
     <!-- BERANDA -->
@@ -468,7 +625,7 @@
     <section id="playlist">
         <div class="section-header" onclick="toggleSection(this)">
             <h2><i class="fas fa-headphones"></i> 🎵 Playlist Cup of Joe</h2>
-            <span class="toggle-icon"><i class="fas fa-chevron-up"></i></span>
+            <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
         </div>
         <div class="section-content" id="content-playlist">
             <div class="guide-note">
@@ -487,7 +644,7 @@
     <section id="profil">
         <div class="section-header" onclick="toggleSection(this)">
             <h2><i class="fas fa-microphone-alt"></i> Profil Cup of Joe</h2>
-            <span class="toggle-icon"><i class="fas fa-chevron-up"></i></span>
+            <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
         </div>
         <div class="section-content" id="content-profil">
             <div class="card">
@@ -512,7 +669,7 @@
     <section id="data">
         <div class="section-header" onclick="toggleSection(this)">
             <h2><i class="fas fa-database"></i> Data Mentah Survei</h2>
-            <span class="toggle-icon"><i class="fas fa-chevron-up"></i></span>
+            <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
         </div>
         <div class="section-content" id="content-data">
             <div class="card">
@@ -527,7 +684,7 @@
     <section id="pengolahan">
         <div class="section-header" onclick="toggleSection(this)">
             <h2><i class="fas fa-chart-line"></i> Pengolahan Data</h2>
-            <span class="toggle-icon"><i class="fas fa-chevron-up"></i></span>
+            <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
         </div>
         <div class="section-content" id="content-pengolahan">
             <div class="card">
@@ -543,7 +700,7 @@
     <section id="diagram">
         <div class="section-header" onclick="toggleSection(this)">
             <h2><i class="fas fa-chart-pie"></i> Diagram</h2>
-            <span class="toggle-icon"><i class="fas fa-chevron-up"></i></span>
+            <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
         </div>
         <div class="section-content" id="content-diagram">
             <div class="chart-grid">
@@ -558,7 +715,7 @@
     <section id="kesimpulan">
         <div class="section-header" onclick="toggleSection(this)">
             <h2><i class="fas fa-pen-fancy"></i> Kesimpulan</h2>
-            <span class="toggle-icon"><i class="fas fa-chevron-up"></i></span>
+            <span class="toggle-icon"><i class="fas fa-chevron-down"></i></span>
         </div>
         <div class="section-content" id="content-kesimpulan">
             <div class="card">
@@ -576,21 +733,25 @@
 
 <script>
     // ============================================================
+    // 🆕 FUNGSI TOGGLE NAVBAR
+    // ============================================================
+    function toggleNavbar() {
+        const nav = document.getElementById('mainNav');
+        const toggleIcon = document.querySelector('.navbar-toggle .toggle-icon');
+        
+        nav.classList.toggle('collapsed');
+        toggleIcon.classList.toggle('rotated');
+    }
+
+    // ============================================================
     // 🔄 FUNGSI TOGGLE SECTION (BUKA/TUTUP)
     // ============================================================
     function toggleSection(header) {
         const content = header.nextElementSibling;
-        const icon = header.querySelector('.toggle-icon i');
+        const icon = header.querySelector('.toggle-icon');
         
-        if (content.classList.contains('collapsed')) {
-            content.classList.remove('collapsed');
-            icon.classList.remove('fa-chevron-down');
-            icon.classList.add('fa-chevron-up');
-        } else {
-            content.classList.add('collapsed');
-            icon.classList.remove('fa-chevron-up');
-            icon.classList.add('fa-chevron-down');
-        }
+        content.classList.toggle('collapsed');
+        icon.classList.toggle('rotated');
     }
 
     // ============================================================
@@ -756,4 +917,4 @@
     });
 </script>
 </body>
-    </html>
+</html>
